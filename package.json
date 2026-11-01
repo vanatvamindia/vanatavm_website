@@ -2,6 +2,7 @@
   "name": "vanatvam",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "lucide-react": "^1.59.0",
     "react": "^19.3.1",
