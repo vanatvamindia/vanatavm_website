@@ -218,7 +218,7 @@ export default function Home() {
             <picture>
               <source
                 media="(max-width: 768px)"
-                srcSet={slide.img}
+                srcSet={slide.mobileImg}
                 type="image/webp"
               />
               <img

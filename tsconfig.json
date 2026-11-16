@@ -35,6 +35,8 @@
     "vanatvam-next",
     "src/App.test.tsx",
     "src/reportWebVitals.ts",
-    "src/index.tsx"
+    "src/index.tsx",
+    "vite.config.ts",
+    "src/vite-env.d.ts"
   ]
 }
