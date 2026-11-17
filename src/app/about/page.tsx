@@ -37,23 +37,16 @@ export default function About() {
           transition={{ duration: 1.8, ease: [0.25, 1, 0.5, 1] }}
           style={{ position: "absolute", inset: 0, zIndex: 0 }}
         >
-          <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet="/assets/project-images/Brindavana/sunny-tropical-banana-orchard-mobile.webp"
-              type="image/webp"
-            />
-            <img
-              src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp"
-              alt="Vanatvam Vision"
-              fetchPriority="high"
-              loading="eager"
-              decoding="sync"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </picture>
+          <img
+            src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp"
+            alt="Vanatvam Vision"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+            width={1920}
+            height={1080}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
           <div
             style={{
               position: "absolute",
@@ -224,21 +217,20 @@ export default function About() {
         <style jsx>{`
           .about-story-image {
             min-width: 0;
-            position: sticky;
-            top: 120px;
-            height: min(76vh, 760px);
-            min-height: 1000px;
-            overflow: visible;
-          }
-
-          .about-story-photo {
-            position: absolute;
-            inset: 0;
+            position: relative;
+            width: 100%;
+            height: clamp(420px, 58vh, 560px);
             overflow: hidden;
             border-radius: 26px;
             border: 1px solid rgba(198, 162, 101, 0.55);
             box-shadow: 0 32px 80px rgba(18, 34, 23, 0.24);
             background: var(--bg-dark-forest);
+          }
+
+          .about-story-photo {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
           }
 
           @media (max-width: 850px) {
@@ -251,8 +243,11 @@ export default function About() {
               position: relative !important;
               top: auto !important;
               width: 100% !important;
-              height: clamp(260px, 42vh, 320px) !important;
+              height: clamp(260px, 41vh, 340px) !important;
               min-height: 0 !important;
+              max-width: 100% !important;
+              margin: 0 auto;
+            }
               max-width: 100% !important;
               margin: 0 auto;
             }

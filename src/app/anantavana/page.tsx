@@ -788,14 +788,6 @@ export default function Anantavana() {
           background: "var(--bg-cream)",
         }}
       >
-        <FloatingOrb size={260} top="-60px" right="-60px" />
-        <FloatingOrb
-          size={180}
-          top="60%"
-          left="-50px"
-          delay={3}
-          color="rgba(198,162,101,0.25)"
-        />
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div
             style={{
@@ -867,65 +859,87 @@ export default function Anantavana() {
               
             </div>
 
-            <div style={{ flex: "1 1 340px", position: "relative" }}>
+            <div
+              style={{
+                flex: "1 1 340px",
+                width: "100%",
+                maxWidth: "100%",
+                minWidth: 0,
+                position: "relative",
+              }}
+            >
               <motion.div
-                initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-                whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 1.2, ease: EASE }}
+                initial={reduce ? false : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: EASE }}
                 style={{
                   borderRadius: "28px",
                   overflow: "hidden",
                   aspectRatio: "4 / 5",
-                  boxShadow: "0 30px 60px rgba(18,34,23,0.2)",
+                  boxShadow: "0 30px 60px rgba(18,34,23,0.18)",
+                  border: "1px solid rgba(198, 162, 101, 0.25)",
+                  position: "relative",
+                  width: "100%",
                 }}
               >
-                <motion.img
+                <img
                   src="/assets/project-images/Ananthavana/golden-treehouse-garden-retreat-1.webp"
                   alt="Native forest landscape at AnantaVana"
-                  initial={{ scale: 1.3 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.8, ease: EASE }}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 1, ease: EASE }}
-                style={{
-                  position: "absolute",
-                  left: -20,
-                  bottom: 36,
-                  background: FOREST,
-                  color: "#FFF",
-                  padding: "18px 24px",
-                  borderRadius: "18px",
-                  boxShadow: "0 20px 40px rgba(18,34,23,0.3)",
-                }}
-              >
-                <strong
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={1000}
                   style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                     display: "block",
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "2rem",
-                    lineHeight: 1,
                   }}
-                >
-                  34 Acres
-                </strong>
-                <span
+                />
+
+                {/* Floating Acreage Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
                   style={{
-                    fontSize: "0.78rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: GOLD,
+                    position: "absolute",
+                    left: 14,
+                    bottom: 24,
+                    background: FOREST,
+                    color: "#FFF",
+                    padding: "16px 22px",
+                    borderRadius: "18px",
+                    border: "1px solid rgba(198, 162, 101, 0.35)",
+                    boxShadow: "0 20px 40px rgba(18,34,23,0.3)",
+                    zIndex: 3,
                   }}
                 >
-                  Near Kabini
-                </span>
+                  <strong
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "1.8rem",
+                      lineHeight: 1,
+                      marginBottom: "4px",
+                    }}
+                  >
+                    34 Acres
+                  </strong>
+                  <span
+                    style={{
+                      fontSize: "0.78rem",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      color: GOLD,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Near Kabini
+                  </span>
+                </motion.div>
               </motion.div>
             </div>
           </div>
