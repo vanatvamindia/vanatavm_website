@@ -103,33 +103,6 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        {/* Preload critical LCP hero image for ultra-fast First Paint.
-            AVIF: Chrome/Firefox/Edge (169KB). WebP: Safari fallback (207KB). */}
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/project-images/Esahavana/EV-mobile.webp"
-          media="(max-width: 768px)"
-          fetchPriority="high"
-          type="image/webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/project-images/Esahavana/EV.avif"
-          media="(min-width: 769px)"
-          fetchPriority="high"
-          type="image/avif"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/project-images/Esahavana/EV.webp"
-          media="(min-width: 769px)"
-          fetchPriority="high"
-          type="image/webp"
-        />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

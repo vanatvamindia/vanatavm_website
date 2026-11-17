@@ -7,8 +7,10 @@ import Link from 'next/link';
 import RevealText from '@/components/premium/RevealText';
 import Magnetic from '@/components/premium/Magnetic';
 import TiltCard from '@/components/premium/TiltCard';
-import ProjectTunnel from '@/components/premium/ProjectTunnel';
+import dynamic from 'next/dynamic';
 import BrochureModal from '@/components/premium/BrochureModal';
+
+const ProjectTunnel = dynamic(() => import('@/components/premium/ProjectTunnel'), { ssr: false });
 
 export default function Projects() {
   const [filter, setFilter] = useState('all');
@@ -27,6 +29,7 @@ export default function Projects() {
       location: 'PAVAGADA · 30 ACRES',
       desc: 'Our first project demonstrating ecological restoration. What began as largely barren land has evolved into a thriving green ecosystem with over 3000+ mature trees.',
       img: '/assets/project-images/Brindavana/brindavanaaa.webp',
+      cardImg: '/assets/project-images/Brindavana/brindavanaaa-card.webp',
       brochure: null,
        
       badgeBg: 'var(--bg-dark-forest)',
@@ -41,6 +44,7 @@ export default function Projects() {
       location: 'MADDUR - 17 Acres',
       desc: 'A pristine channel bound ecosystem built around 200+ rare & endangered tree species. Features sacred groves like Vinayaka Vana, and cozy cottages designed for peaceful living for our community owners.',
       img: '/assets/project-images/Maduvana/hero.webp',
+      cardImg: '/assets/project-images/Maduvana/hero-card.webp',
       brochure: '/assets/project-images/MadhuVana-Brochure.pdf',
        
       badgeBg: 'var(--accent-gold)',
@@ -55,6 +59,7 @@ export default function Projects() {
       location: 'NEAR KABINI · 34 ACRES',
       desc: 'A nature-rich ecosystem nestled in Kabini’s thriving biodiversity belt, surrounded by pristine forests and abundant wildlife. A peaceful forest community offering thoughtfully planned farm parcels where life unfolds closer to nature.',
       img: '/assets/project-images/Ananthavana/hero-image-2.webp',
+      cardImg: '/assets/project-images/Ananthavana/hero-image-2-card.webp',
       brochure: '/assets/project-images/AnantaVana-Brochure.pdf',
        
       badgeBg: '#2D6A4F',
@@ -69,6 +74,7 @@ export default function Projects() {
       location: 'KOLLEGALA - 10 Acres',
       desc: 'Our premier riverfront community set along the banks of the sacred Kaveri river. Designed around the deep relationship between people, riparian ecology, and water.',
       img: '/assets/project-images/Esahavana/EV.webp',
+      cardImg: '/assets/project-images/Esahavana/EV-card.webp',
       brochure: '/assets/project-images/Eeshavana-Brochure.pdf',
       
       badgeBg: '#1B4965',
@@ -95,19 +101,26 @@ export default function Projects() {
       <section className="hero" style={{ height: '100vh', minHeight: '600px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <picture>
+            {/* Mobile: 170KB WebP */}
             <source
               media="(max-width: 768px)"
               srcSet="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel-mobile.webp"
               type="image/webp"
             />
+            {/* Desktop: AVIF for Chrome/Firefox/Edge, WebP fallback */}
+            <source
+              media="(min-width: 769px)"
+              srcSet="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.avif"
+              type="image/avif"
+            />
             <img
-              src="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp"
+              src="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel-opt.webp"
               alt="Projects Background"
               fetchPriority="high"
               loading="eager"
               decoding="sync"
-              width={1920}
-              height={1080}
+              width={1086}
+              height={1448}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </picture>
@@ -151,12 +164,14 @@ export default function Projects() {
                   style={{ background: '#FFF', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', border: '1px solid rgba(0,0,0,0.03)' }}
                 >
                   <TiltCard max={4} style={{ position: 'relative', height: '280px', overflow: 'hidden' }}>
-                    <motion.img 
-                      whileHover={{ scale: 1.05 }} 
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.6, ease: 'easeOut' }}
-                      src={proj.img} alt={proj.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      src={proj.cardImg} alt={proj.name}
+                      loading="lazy"
+                      decoding="async"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-
                   </TiltCard>
                   <div style={{ padding: '28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <span style={{ color: 'var(--accent-gold)', fontSize: '0.85rem', letterSpacing: '0.15em', fontWeight: 600, marginBottom: '4px', display: 'block', textTransform: 'uppercase' }}>{proj.location}</span>
