@@ -2,13 +2,17 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { riseStyle } from "@/lib/rise";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import Image from "next/image";
-import BrochureModal from "@/components/premium/BrochureModal";
+import BrochureModal from "@/components/premium/LazyBrochureModal";
 import StickyMasterPlanGallery from "@/components/premium/StickyMasterPlanGallery";
 import { ArrowRight, ArrowUpRight, Droplets, Leaf, MapPin, Mountain, PawPrint, ShieldCheck, Ship, Sparkles, Trees, Users, Waves, Sprout } from "lucide-react";
+import { responsiveImg } from "@/lib/responsiveImage";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
 
 const EASE = [0.2, 0.9, 0.2, 1] as const;
 const TITLE = "ISHAVANA";
@@ -362,6 +366,7 @@ const galleryImages = [
 ];
 
 export default function Ishavana() {
+  preloadHero("/assets/project-images/Esahavana/EV.webp");
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const reduce = useReducedMotion() ?? false;
   const enter = (delay: number, duration = 0.8) =>
@@ -387,13 +392,9 @@ export default function Ishavana() {
         >
           <div className="hero-bg-wrapper" style={{ position: "absolute", inset: 0 }}>
             <picture>
-              <source
-                media="(max-width: 768px)"
-                srcSet="/assets/project-images/Esahavana/EV-mobile.webp"
-                type="image/webp"
-              />
+              <PortraitSource src="/assets/project-images/Esahavana/EV.webp" />
               <img
-                src="/assets/project-images/Esahavana/EV.webp"
+                {...responsiveImg("/assets/project-images/Esahavana/EV.webp")}
                 alt="ISHAVANA"
                 fetchPriority="high"
                 loading="eager"
@@ -425,55 +426,34 @@ export default function Ishavana() {
               paddingTop: "80px",
             }}
           >
-            <motion.div
+            <div
               className="hero-content"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.2 },
-                },
-              }}
               style={{ maxWidth: "800px" }}
             >
-              <motion.span
-                className="hero-badge"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <span
+                className="hero-badge vt-rise"
+                style={riseStyle(0, { y: "20px" })}
               >
                 Nature-First Farm Communities
-              </motion.span>
+              </span>
 
-              <motion.h1
-                className="hero-heading"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <h1
+                className="hero-heading vt-rise"
+                style={riseStyle(0.2, { y: "30px" })}
               >
                 ISHAVANA
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                className="hero-tagline"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <p
+                className="hero-tagline vt-rise"
+                style={riseStyle(0.4, { y: "30px" })}
               >
                 A premium riverfront community on the sacred Kaveri.
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="hero-cta-group"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <div
+                className="hero-cta-group vt-rise"
+                style={riseStyle(0.6, { y: "30px" })}
               >
                 <button
                   type="button"
@@ -498,8 +478,8 @@ export default function Ishavana() {
                 >
                   Plan a site visit
                 </Link>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -550,7 +530,7 @@ export default function Ishavana() {
                  }}
                >
                  <img
-                   src="/assets/project-images/Esahavana/EV.webp"
+                   {...responsiveImg("/assets/project-images/Esahavana/EV.webp", "(max-width: 768px) 215vw, 55vw")}
                    alt="A view of the Kaveri river landscape"
                    loading="lazy"
                    decoding="async"

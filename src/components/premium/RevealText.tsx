@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
+import { riseStyle } from '@/lib/rise';
 
 type RevealTextProps = {
   children: string;
@@ -11,6 +12,12 @@ type RevealTextProps = {
   once?: boolean;
   /** stagger per word in seconds */
   stagger?: number;
+  /**
+   * Above-the-fold headlines: animate with CSS on first paint instead of waiting for
+   * JavaScript and a scroll trigger. The words stay visible in the server HTML (only their
+   * position animates), so the headline counts as painted immediately.
+   */
+  immediate?: boolean;
 };
 
 const container: Variants = {
@@ -41,8 +48,32 @@ export default function RevealText({
   delay = 0,
   once = true,
   stagger = 0.06,
+  immediate = false,
 }: RevealTextProps) {
   const words = children.split(' ');
+
+  if (immediate) {
+    return (
+      <span className={className} style={{ display: 'inline', ...style }}>
+        {words.map((w, i) => (
+          <React.Fragment key={i}>
+            <span
+              className="vt-rise"
+              style={riseStyle(delay + i * stagger, { y: '0.45em' }, {
+                display: 'inline-block',
+                verticalAlign: 'top',
+                paddingBottom: '0.08em',
+              })}
+            >
+              {w}
+            </span>
+            {/* The space must sit between the inline-blocks: a trailing space inside one collapses. */}
+            {i !== words.length - 1 ? ' ' : null}
+          </React.Fragment>
+        ))}
+      </span>
+    );
+  }
 
   return (
     <motion.span

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import dynamic from "next/dynamic";
 import Navigation from "@/app/components/Navigation";
 import LiteYouTube from "@/components/ui/LiteYouTube";
@@ -29,6 +29,9 @@ import {
 import Magnetic from "@/components/premium/Magnetic";
 import Counter from "@/components/premium/Counter";
 import { useLenis } from "@/components/premium/SmoothScroll";
+import { responsiveImg } from "@/lib/responsiveImage";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
 
 type PolaroidItem = {
   id: string;
@@ -45,7 +48,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Deepotsava",
     subtitle:
       "Hundreds of earthen lamps lovingly lit across pathways, courtyards, and sacred groves.",
-    img: "/event-images/DSC08963-thumb.webp",
+    img: "/event-images/DSC08963.webp",
   },
   {
     id: "banana-orchard",
@@ -53,7 +56,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Banana Grove",
     subtitle:
       "Vibrant multi-canopy banana and fruit orchards nurtured through chemical-free living soil.",
-    img: "/assets/life/vanatvam3-thumb.webp",
+    img: "/assets/life/vanatvam3.webp",
   },
   {
     id: "vasantotsava",
@@ -61,7 +64,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Vasantotsava",
     subtitle:
       "Joyous spring celebration with music, guided forest walks, and organic farm feasts.",
-    img: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard-thumb.webp",
+    img: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp",
   },
   {
     id: "brick-courtyard",
@@ -69,7 +72,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Brick Courtyard",
     subtitle:
       "Vernacular sustainable architecture embracing terracotta courtyards and open breeze pavilions.",
-    img: "/assets/life/vanatvam-thumb.webp",
+    img: "/assets/life/vanatvam.webp",
   },
   {
     id: "nursery-saplings",
@@ -77,7 +80,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Native Nursery",
     subtitle:
       "Propagating indigenous forestry saplings to restore ancient biodiversity and sacred groves.",
-    img: "/assets/life/vanatvam1-thumb.webp",
+    img: "/assets/life/vanatvam1.webp",
   },
   {
     id: "bonfire-nights",
@@ -85,7 +88,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Bonfire Nights",
     subtitle:
       "Stargazing, storytelling, and communal cooking around gentle twilight farm fires.",
-    img: "/event-images/DSC09025-thumb.webp",
+    img: "/event-images/DSC09025.webp",
   },
   {
     id: "green-tunnel",
@@ -93,7 +96,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Canopy Trails",
     subtitle:
       "Tranquil walking pathways winding through living bamboo clusters and bird-friendly flora.",
-    img: "/assets/life/vanatvam2-thumb.webp",
+    img: "/assets/life/vanatvam2.webp",
   },
     {
     id: "green-tunnel-2",
@@ -101,7 +104,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Canopy Trails",
     subtitle:
       "Tranquil walking pathways winding through living bamboo clusters and bird-friendly flora.",
-    img: "/assets/life/vanatvam4-thumb.webp",
+    img: "/assets/life/vanatvam4.webp",
   },
   
 ];
@@ -112,32 +115,29 @@ const heroSlides = [
     name: "ISHAVANA",
     tagline: "A premium riverfront community on the sacred Kaveri.",
     img: "/assets/project-images/Esahavana/EV.webp",
-    mobileImg: "/assets/project-images/Esahavana/EV-mobile.webp",
   },
   {
     id: "anantavana",
     name: "ANANTAVANA",
     tagline: "An Extensive Eco Conservation project to restore Bio Diversity.",
     img: "/assets/project-images/Ananthavana/hero-image-2.webp",
-    mobileImg: "/assets/project-images/Ananthavana/hero-image-2-mobile.webp",
   },
   {
     id: "madhuvana",
     name: "MADHUVANA",
     tagline: "A dense water-forest ecosystem built around 250+ native trees.",
     img: "/assets/project-images/Maduvana/hero.webp",
-    mobileImg: "/assets/project-images/Maduvana/hero-mobile.webp",
   },
   {
     id: "brindavana",
     name: "BRINDAVANA",
     tagline: "Barren semi-arid land turned into a thriving ecosystem.",
     img: "/assets/project-images/Brindavana/brindavanaaa.webp",
-    mobileImg: "/assets/project-images/Brindavana/brindavanaaa-mobile.webp",
   },
 ];
 
 export default function Home() {
+  preloadHero(heroSlides[0].img);
   const lenisRef = useLenis();
   const [activeSlide, setActiveSlide] = useState(0);
   const [slideChanged, setSlideChanged] = useState(false);
@@ -216,13 +216,9 @@ export default function Home() {
             transition={{ duration: 1.1, ease: "easeInOut" }}
           >
             <picture>
-              <source
-                media="(max-width: 768px)"
-                srcSet={slide.img}
-                type="image/webp"
-              />
+              <PortraitSource src={slide.img} />
               <img
-                src={slide.img}
+                {...responsiveImg(slide.img)}
                 alt={slide.name}
                 fetchPriority={slide.id === heroSlides[0].id ? "high" : "auto"}
                 loading={slide.id === heroSlides[0].id ? "eager" : "lazy"}
@@ -392,7 +388,7 @@ export default function Home() {
                 }}
               >
                 <img
-                  src="/assets/project-images/Ananthavana/ananthavana-hero.webp"
+                  {...responsiveImg("/assets/project-images/Ananthavana/ananthavana-hero.webp", "(max-width: 768px) 175vw, 60vw")}
                   alt="Ancient tall forest grove canopy"
                   loading="lazy"
                   decoding="async"
@@ -423,7 +419,7 @@ export default function Home() {
                 }}
               >
                 <img
-                  src="/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp"
+                  {...responsiveImg("/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp", "(max-width: 768px) 155vw, 70vw")}
                   alt="Living landscape gateway"
                   loading="lazy"
                   decoding="async"
@@ -977,28 +973,28 @@ WHO WE ARE
                   id: "anantavana",
                   name: "ANANTAVANA",
                   badge: "NEAR KABINI · 34 ACRES",
-                  img: "/assets/project-images/Ananthavana/hero-image-2-card.webp",
+                  img: "/assets/project-images/Ananthavana/hero-image-2.webp",
                    
                 },
                 {
                   id: "ishavana",
                   name: "ISHAVANA",
                   badge: "Shivanasamudhra ·10 Acres",
-                  img: "/assets/project-images/Esahavana/EV-card.webp",
+                  img: "/assets/project-images/Esahavana/EV.webp",
                    
                 },
                 {
                   id: "madhuvana",
                   name: "MADHUVANA",
                   badge: "MADDUR · 17 ACRES",
-                  img: "/assets/project-images/Maduvana/hero-card.webp",
+                  img: "/assets/project-images/Maduvana/hero.webp",
                    
                 },
                 {
                   id: "brindavana",
                   name: "BRINDAVANA",
                   badge: "PAVAGADA · 30 ACRES",
-                  img: "/assets/project-images/Brindavana/brindavanaaa-card.webp",
+                  img: "/assets/project-images/Brindavana/brindavanaaa.webp",
                    
                 },
                 
@@ -1031,7 +1027,7 @@ WHO WE ARE
                     }}
                   >
                     <img
-                      src={proj.img}
+                      {...responsiveImg(proj.img, "(max-width: 768px) 165vw, 60vw")}
                       alt={proj.name}
                       loading="lazy"
                       decoding="async"
@@ -1441,7 +1437,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
                 }}
               >
                 <img
-                  src="/event-images/award.webp"
+                  {...responsiveImg("/event-images/award.webp", "(max-width: 768px) 92vw, 46vw")}
                   alt="Vanatvam's natural forest landscape"
                   loading="lazy"
                   decoding="async"

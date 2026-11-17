@@ -1,5 +1,4 @@
-'use client';
-import { motion } from 'framer-motion';
+import { riseStyle } from '@/lib/rise';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 
@@ -10,7 +9,7 @@ export default function PrivacyPolicy() {
       
       <section style={{ padding: 'clamp(120px, 15vh, 160px) 0 clamp(60px, 8vh, 90px)', background: 'var(--bg-cream)' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <div className="vt-rise" style={riseStyle(0, { y: '20px' })}>
             <span style={{ color: 'var(--accent-gold)', fontSize: '0.9rem', fontWeight: 600, letterSpacing: '0.1em' }}>LEGAL</span>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--bg-dark-forest)', marginTop: '20px', marginBottom: '40px', lineHeight: 1.15 }}>Privacy Policy</h1>
             
@@ -58,7 +57,7 @@ export default function PrivacyPolicy() {
                 CIN: U01100KA2022PTC159587
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

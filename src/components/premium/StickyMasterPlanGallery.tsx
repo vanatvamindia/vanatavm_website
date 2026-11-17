@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { responsiveImg } from "@/lib/responsiveImage";
 
 export type MasterPlanItem = {
   id: string;
@@ -85,7 +86,7 @@ export default function StickyMasterPlanGallery({
         >
           <div style={{ position: "relative", width: "100%", height: "100%" }}>
             <img
-              src={card.img}
+              {...responsiveImg(card.img, "(max-width: 768px) 175vw, 50vw")}
               alt={card.name}
               loading="lazy"
               style={{

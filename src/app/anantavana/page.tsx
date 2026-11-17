@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { riseStyle } from "@/lib/rise";
 import {
   motion,
   useScroll,
@@ -8,9 +9,9 @@ import {
 } from "framer-motion";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import AccordionGallery from "@/components/premium/AccordionGallery";
-import BrochureModal from "@/components/premium/BrochureModal";
+import BrochureModal from "@/components/premium/LazyBrochureModal";
 import StickyMasterPlanGallery from "@/components/premium/StickyMasterPlanGallery";
 import {
   ArrowRight,
@@ -29,6 +30,9 @@ import {
  Flower2,
  House,
 } from "lucide-react";
+import { responsiveImg } from "@/lib/responsiveImage";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
 
 const EASE = [0.2, 0.9, 0.2, 1] as const;
 const TITLE = "ANANTAVANA";
@@ -413,16 +417,19 @@ function SpaceBand() {
       }}
     >
       <motion.div style={{ position: "absolute", inset: "-15% 0", y }}>
-        <img
-          src="/assets/project-images/Ananthavana/hero-image-2.webp"
-          alt="Anantavana Nature Reserve"
-          fetchPriority="high"
-          loading="eager"
-          decoding="sync"
-          width={1920}
-          height={1080}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        <picture>
+          <PortraitSource src="/assets/project-images/Ananthavana/hero-image-2.webp" />
+          <img
+            {...responsiveImg("/assets/project-images/Ananthavana/hero-image-2.webp")}
+            alt="Anantavana Nature Reserve"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+            width={1920}
+            height={1080}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </picture>
         <div
           style={{
             position: "absolute",
@@ -559,6 +566,7 @@ const amenities = [
 ];
 
 export default function Anantavana() {
+  preloadHero("/assets/project-images/Ananthavana/hero-image-2.webp");
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 1000], ["0%", "15%"], {
@@ -661,13 +669,9 @@ export default function Anantavana() {
             }}
           >
             <picture>
-              <source
-                media="(max-width: 768px)"
-                srcSet="/assets/project-images/Ananthavana/hero-image-2-mobile.webp"
-                type="image/webp"
-              />
+              <PortraitSource src="/assets/project-images/Ananthavana/hero-image-2.webp" />
               <img
-                src="/assets/project-images/Ananthavana/hero-image-2.webp"
+                {...responsiveImg("/assets/project-images/Ananthavana/hero-image-2.webp")}
                 alt="ANANTAVANA"
                 fetchPriority="high"
                 loading="eager"
@@ -701,55 +705,34 @@ export default function Anantavana() {
             paddingRight: "24px",
           }}
         >
-          <motion.div
+          <div
             className="hero-content"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: 0.2 },
-              },
-            }}
             style={{ maxWidth: "800px" }}
           >
-            <motion.span
-              className="hero-badge"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-              }}
+            <span
+              className="hero-badge vt-rise"
+              style={riseStyle(0, { y: "20px" })}
             >
               Nature-First Farm Communities
-            </motion.span>
+            </span>
 
-            <motion.h1
-              className="hero-heading"
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-              }}
+            <h1
+              className="hero-heading vt-rise"
+              style={riseStyle(0.2, { y: "30px" })}
             >
               ANANTAVANA
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              className="hero-tagline"
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-              }}
+            <p
+              className="hero-tagline vt-rise"
+              style={riseStyle(0.4, { y: "30px" })}
             >
               An Extensive Eco Conservation project to restore Bio Diversity.
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="hero-cta-group"
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-              }}
+            <div
+              className="hero-cta-group vt-rise"
+              style={riseStyle(0.6, { y: "30px" })}
             >
               <button
                 type="button"
@@ -774,8 +757,8 @@ export default function Anantavana() {
               >
                 Plan a site visit
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -884,7 +867,7 @@ export default function Anantavana() {
                 }}
               >
                 <img
-                  src="/assets/project-images/Ananthavana/golden-treehouse-garden-retreat-1.webp"
+                  {...responsiveImg("/assets/project-images/Ananthavana/golden-treehouse-garden-retreat-1.webp", "(max-width: 768px) 92vw, 44vw")}
                   alt="Native forest landscape at AnantaVana"
                   loading="lazy"
                   decoding="async"

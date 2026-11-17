@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
+import Link from '@/components/ui/AppLink';
 import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
+import { responsiveImg } from '@/lib/responsiveImage';
 
 export interface ApertureSlide {
   id: string;
@@ -255,7 +256,7 @@ export default function ApertureRevealCarousel({
       {/* ============================================================== */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0A1510]">
         <img
-          src={currentSlide.img}
+          {...responsiveImg(currentSlide.img, '(max-width: 768px) 175vw, 60vw')}
           alt={currentSlide.name}
           className="w-full h-full object-cover scale-[1.02] transition-transform duration-[8000ms] ease-out will-change-transform"
         />
@@ -293,7 +294,7 @@ export default function ApertureRevealCarousel({
           onAnimationComplete={handleApertureComplete}
         >
           <img
-            src={incomingSlide.img}
+            {...responsiveImg(incomingSlide.img, '(max-width: 768px) 175vw, 60vw')}
             alt={incomingSlide.name}
             className="w-full h-full object-cover scale-[1.04] will-change-transform"
           />

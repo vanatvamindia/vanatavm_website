@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { riseStyle } from "@/lib/rise";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
-import Link from "next/link";
-import BrochureModal from "@/components/premium/BrochureModal";
+import Link from "@/components/ui/AppLink";
+import BrochureModal from "@/components/premium/LazyBrochureModal";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -22,6 +23,9 @@ import {
   Users,
   Waves,
 } from "lucide-react";
+import { responsiveImg } from "@/lib/responsiveImage";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
 
 const EASE = [0.2, 0.9, 0.2, 1] as const;
 const TITLE = "BRINDAVANA";
@@ -295,6 +299,7 @@ const galleryImages = [
 ];
 
 export default function Brindavana() {
+  preloadHero("/assets/project-images/Brindavana/brindavanaaa.webp");
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const reduce = useReducedMotion() ?? false;
   const enter = (delay: number, duration = 0.8) =>
@@ -320,13 +325,9 @@ export default function Brindavana() {
         >
           <div className="hero-bg-wrapper" style={{ position: "absolute", inset: 0 }}>
             <picture>
-              <source
-                media="(max-width: 768px)"
-                srcSet="/assets/project-images/Brindavana/brindavanaaa-mobile.webp"
-                type="image/webp"
-              />
+              <PortraitSource src="/assets/project-images/Brindavana/brindavanaaa.webp" />
               <img
-                src="/assets/project-images/Brindavana/brindavanaaa.webp"
+                {...responsiveImg("/assets/project-images/Brindavana/brindavanaaa.webp")}
                 alt="BRINDAVANA"
                 fetchPriority="high"
                 loading="eager"
@@ -358,55 +359,34 @@ export default function Brindavana() {
               paddingTop: "80px",
             }}
           >
-            <motion.div
+            <div
               className="hero-content"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.2 },
-                },
-              }}
               style={{ maxWidth: "800px" }}
             >
-              <motion.span
-                className="hero-badge"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <span
+                className="hero-badge vt-rise"
+                style={riseStyle(0, { y: "20px" })}
               >
                 Nature-First Farm Communities
-              </motion.span>
+              </span>
 
-              <motion.h1
-                className="hero-heading"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <h1
+                className="hero-heading vt-rise"
+                style={riseStyle(0.2, { y: "30px" })}
               >
                 BRINDAVANA
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                className="hero-tagline"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <p
+                className="hero-tagline vt-rise"
+                style={riseStyle(0.4, { y: "30px" })}
               >
                 Barren semi-arid land turned into a thriving ecosystem.
-              </motion.p>
+              </p>
 
-              <motion.div
-                className="hero-cta-group"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-                }}
+              <div
+                className="hero-cta-group vt-rise"
+                style={riseStyle(0.6, { y: "30px" })}
               >
                 <button
                   type="button"
@@ -431,8 +411,8 @@ export default function Brindavana() {
                 >
                   Plan a site visit
                 </Link>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -481,7 +461,7 @@ export default function Brindavana() {
                   }}
                 >
                   <img
-                    src="/assets/project-images/Brindavana/coconuttree.webp"
+                    {...responsiveImg("/assets/project-images/Brindavana/coconuttree.webp", "(max-width: 768px) 255vw, 115vw")}
                     alt="A view of Brindavana landscape"
                     loading="lazy"
                     decoding="async"
@@ -785,7 +765,7 @@ export default function Brindavana() {
                   }}
                 >
                   <img
-                    src={item.src}
+                    {...responsiveImg(item.src, "(max-width: 768px) 92vw, 26vw")}
                     alt={item.alt || `Brindavana Gallery Image ${idx + 1}`}
                     loading="lazy"
                     decoding="async"

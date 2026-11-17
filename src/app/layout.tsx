@@ -103,23 +103,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        {/* Preload critical LCP hero image responsively for ultra-fast First Paint */}
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/project-images/Esahavana/EV-mobile.webp"
-          media="(max-width: 768px)"
-          fetchPriority="high"
-          type="image/webp"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/project-images/Esahavana/EV.webp"
-          media="(min-width: 769px)"
-          fetchPriority="high"
-          type="image/webp"
-        />
+        {/* Hero images are preloaded by each page via preloadHero() (src/lib/preloadHero.ts),
+            so pages don't download the home page's hero. */}
 
         <script
           type="application/ld+json"

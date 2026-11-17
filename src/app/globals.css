@@ -783,6 +783,34 @@ ul {
   margin-top: 20px;
 }
 
+/* ---- First-paint entrance animations (CSS only, no JavaScript) ----
+   Above-the-fold text must already be visible in the server-rendered HTML so the browser
+   can paint it straight away (this is what Largest Contentful Paint measures). These
+   animate position only, never opacity, and start on first paint instead of waiting for
+   React to hydrate. Set the stagger/offset with riseStyle() from "@/lib/rise".
+   Reduced-motion users get the end state via the global prefers-reduced-motion rule. */
+@keyframes vt-rise {
+  from {
+    transform: translate3d(var(--rise-x, 0), var(--rise-y, 24px), 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.vt-rise {
+  animation: vt-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rise-delay, 0s);
+}
+
+/* Word "wipe": the word slides up from below inside its overflow-hidden parent. */
+.vt-rise-mask {
+  display: inline-block;
+  --rise-y: 110%;
+  animation: vt-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rise-delay, 0s);
+}
+
 .hero-subtitle {
   font-size: 0.75rem;
   letter-spacing: 0.28em;
@@ -4049,8 +4077,7 @@ ul {
   .birds-grid-6,
   .ishavana-stats-grid,
   .projects-grid,
-  .project-cards-grid,
-  .founder-projects-row {
+  .project-cards-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }

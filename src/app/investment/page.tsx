@@ -25,8 +25,13 @@ import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import RevealText from '@/components/premium/RevealText';
 import Magnetic from '@/components/premium/Magnetic';
+import { riseStyle } from '@/lib/rise';
+import PortraitSource from '@/components/ui/PortraitSource';
+import { responsiveImg } from '@/lib/responsiveImage';
+import { preloadHero } from '@/lib/preloadHero';
 
 export default function Investment() {
+  preloadHero('/assets/images/Investment.webp');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -236,13 +241,9 @@ export default function Investment() {
           style={{ position: 'absolute', inset: 0, zIndex: 0 }}
         >
           <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet="/assets/images/Investment-mobile.webp"
-              type="image/webp"
-            />
+            <PortraitSource src="/assets/images/Investment.webp" />
             <img
-              src="/assets/images/Investment.webp"
+              {...responsiveImg('/assets/images/Investment.webp')}
               alt="Alternative Investment Opportunities with Vanatvam"
               fetchPriority="high"
               loading="eager"
@@ -272,17 +273,14 @@ export default function Investment() {
           }}
         >
           {/* Section Badge */}
-          <motion.div
-            className="inv-hero-badge"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            style={{
+          <div
+            className="inv-hero-badge vt-rise"
+            style={riseStyle(0, { y: '20px' }, {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '12px',
               marginBottom: '24px',
-            }}
+            })}
           >
             <span style={{ width: '28px', height: '1px', background: 'var(--accent-gold)' }} />
             <span
@@ -296,7 +294,7 @@ export default function Investment() {
             >
               Alternative Investment Opportunities
             </span>
-          </motion.div>
+          </div>
 
           <h1
             className="inv-hero-h1"
@@ -310,8 +308,9 @@ export default function Investment() {
               fontWeight: 500,
             }}
           >
-            <RevealText>Invest with Purpose.</RevealText>{' '}
+            <RevealText immediate>Invest with Purpose.</RevealText>{' '}
             <RevealText
+              immediate
               delay={0.15}
               style={{
                 display: 'block',
@@ -324,34 +323,28 @@ export default function Investment() {
             </RevealText>
           </h1>
 
-          <motion.p
-            className="inv-hero-desc"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
+          <p
+            className="inv-hero-desc vt-rise"
+            style={riseStyle(0.2, { y: '20px' }, {
               fontSize: 'clamp(1.1rem, 2vw, 1.32rem)',
               color: 'rgba(249, 248, 246, 0.88)',
               lineHeight: 1.7,
               fontWeight: 300,
               maxWidth: '740px',
               margin: '0 0 40px',
-            }}
+            })}
           >
             Explore curated investment opportunities in nature-first development with Vanatvam.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="inv-hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{
+          <div
+            className="inv-hero-buttons vt-rise"
+            style={riseStyle(0.3, { y: '20px' }, {
               display: 'flex',
               justifyContent: 'flex-start',
               gap: '16px',
               flexWrap: 'wrap',
-            }}
+            })}
           >
             <Magnetic strength={0.2}>
               <a href="#connect-form" className="btn-pill btn-pill-gold" style={{ padding: '16px 36px', fontSize: '0.92rem' }}>
@@ -365,7 +358,7 @@ export default function Investment() {
                 <ArrowUpRight className="size-4" />
               </a>
             </Magnetic>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -582,7 +575,7 @@ export default function Investment() {
                 src="/assets/images/global-asset-allocation-infographic.webp"
                 alt="Market Volatility and Diversification Analytics"
                 fill
-                unoptimized
+                unoptimized // infographic with small text: always serve the full-resolution original
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{ objectFit: 'cover' }}
               />
@@ -707,6 +700,7 @@ export default function Investment() {
                   src="/assets/images/global-ripple-effects.webp"
                   alt="Market Volatility and Land Diversification"
                   fill
+                unoptimized // infographic with small text: always serve the full-resolution original
                   sizes="(max-width: 768px) 100vw, 50vw"
                   style={{ objectFit: 'contain', padding: '12px' }}
                 />

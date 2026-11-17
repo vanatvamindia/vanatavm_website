@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import Magnetic from "@/components/premium/Magnetic";
 import { Home, Sprout, Layers, TrendingUp, BookOpen, MapPin, Phone, Mail } from "lucide-react";
+import { responsiveImg } from "@/lib/responsiveImage";
 
 /* 👉 Footer artwork (green hills / sunrise / hut / leaves) */
 const FOOTER_BG = "/assets/images/footer-bg.webp";
@@ -120,7 +121,7 @@ export default function Footer() {
             aria-label="VanaTvam home"
           >
             <img
-              src="/assets/images/Project-Logos/vanatvam.webp"
+              {...responsiveImg("/assets/images/Project-Logos/vanatvam.webp", "(max-width: 768px) 60vw, 16vw")}
               alt="VanaTvam Logo"
               className="vt-footer__logo"
               loading="lazy"
@@ -280,10 +281,15 @@ export default function Footer() {
           position: relative;
           z-index: 5;
           color: #fff;
-          background-color: var(--bg-dark-forest, #0d2414);
-          background-image: url(${FOOTER_BG});
-          background-size: cover;
-          background-position: center bottom;
+          /* The artwork is a wide 1599x209 banner. "cover" stretched it 2-3x (blurry), so it is
+             drawn at the footer's width, anchored to the bottom, and the space above is filled
+             with the banner's own sky colour (#0b3515) so the two blend seamlessly. */
+          /* Layer 1 fades the fill colour into the banner's top edge (hides the seam).
+             Banner height = width x 209/1599 = 13.07vw; the fade covers its top 4.6vw. */
+          background-color: #0b3515;
+          background-image: linear-gradient(#0b3515, rgba(11, 53, 21, 0)), url(${FOOTER_BG});
+          background-size: 100% 4.6vw, 100% auto;
+          background-position: center bottom 8.47vw, center bottom;
           background-repeat: no-repeat;
           min-height: 345px;
           display: flex;
@@ -626,6 +632,13 @@ export default function Footer() {
           }
         }
         @media (max-width: 640px) {
+          /* Phones: show the centre of the banner (sun and hills) larger, but only ~1.3x of
+             its real pixels on a 2.6x-density screen, instead of the previous ~8x stretch. */
+          .vt-footer {
+            /* banner is twice as wide here, so 26.14vw tall; fade its top 9vw */
+            background-size: 100% 9vw, 200% auto;
+            background-position: center bottom 17.14vw, center bottom;
+          }
           .vt-footer__menu ul {
             min-width: min(260px, 80vw);
           }

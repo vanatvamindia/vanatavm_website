@@ -4,8 +4,13 @@ import { motion } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import RevealText from '@/components/premium/RevealText';
+import { riseStyle } from '@/lib/rise';
+import PortraitSource from '@/components/ui/PortraitSource';
+import { responsiveImg } from '@/lib/responsiveImage';
+import { preloadHero } from '@/lib/preloadHero';
 
 export default function BookAVisit() {
+  preloadHero('/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,32 +47,15 @@ export default function BookAVisit() {
     setSubmitting(false);
   };
 
-  const fadeIn = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
   return (
     <>
       <Navigation />
       <section className="hero hero-about" style={{ height: '60vh', minHeight: '500px' }}>
         <div className="hero-bg-wrapper">
           <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet="/assets/project-images/Brindavana/sunny-tropical-banana-orchard-mobile.webp"
-              type="image/webp"
-            />
+            <PortraitSource src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp" />
             <img
-              src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp"
+              {...responsiveImg('/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp')}
               alt="Book a Visit to VanaTvam"
               className="hero-bg-img"
               fetchPriority="high"
@@ -78,15 +66,15 @@ export default function BookAVisit() {
         </div>
         <div className="hero-overlay" style={{ background: 'linear-gradient(180deg, rgba(18, 34, 23, 0.4) 0%, rgba(18, 34, 23, 0.9) 100%)' }}></div>
         <div className="container relative z-10">
-          <motion.div className="hero-content" initial="hidden" animate="visible" variants={staggerContainer} style={{ alignItems: 'center', textAlign: 'center' }}>
-            <motion.span variants={fadeIn} className="hero-subtitle">EXPERIENCE THE LAND</motion.span>
-            <motion.h1 className="hero-title" variants={fadeIn} style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
-              <RevealText>Book a Site Visit</RevealText>
-            </motion.h1>
-            <motion.p className="hero-desc" variants={fadeIn} style={{ margin: '0 auto', maxWidth: '700px' }}>
+          <div className="hero-content" style={{ alignItems: 'center', textAlign: 'center' }}>
+            <span className="hero-subtitle vt-rise" style={riseStyle(0, { y: '30px' })}>EXPERIENCE THE LAND</span>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+              <RevealText immediate delay={0.2}>Book a Site Visit</RevealText>
+            </h1>
+            <p className="hero-desc vt-rise" style={riseStyle(0.4, { y: '30px' }, { margin: '0 auto', maxWidth: '700px' })}>
               Step into our living ecosystems. Schedule a private guided tour of our sustainable managed farmlands in Karnataka.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 

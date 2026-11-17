@@ -4,10 +4,11 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-import Link from 'next/link';
+import Link from '@/components/ui/AppLink';
 import Image from 'next/image';
 import { BlogPostItem } from '@/data/blogs';
 import { resolvePostImage } from '@/sanity/image';
+import { riseStyle } from '@/lib/rise';
 
 interface BlogClientProps {
   initialBlogs: BlogPostItem[];
@@ -58,11 +59,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
         />
 
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '850px', margin: '0 auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="vt-rise" style={riseStyle(0, { y: '20px' })}>
             <span
               style={{
                 color: 'var(--accent-gold, #C6A265)',
@@ -116,7 +113,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
               Insights, updates, and deep dives into ecological restoration, Vedic forest science,
               natural farm communities, and sustainable wealth creation.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -161,7 +158,9 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
               {filteredBlogs.map((blog, i) => (
                 <motion.article
                   key={blog.id}
-                  initial={{ opacity: 0, y: 25 }}
+                  // First row is above the fold: render it visible in the server HTML so the
+                  // cover image can paint immediately; later cards keep the scroll fade-in.
+                  initial={i < 3 ? false : { opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
@@ -201,7 +200,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
                         src={resolvePostImage(blog)}
                         alt={blog.title}
                         fill
-                        unoptimized
+                        preload={i === 0}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         style={{
                           objectFit: 'cover',

@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { responsiveImg } from '@/lib/responsiveImage';
 
 type GalleryItem = {
   img: string;
@@ -51,7 +52,7 @@ export default function AccordionGallery({ items, height = '500px' }: { items: G
             }}
           >
             <motion.img
-              src={item.img}
+              {...responsiveImg(item.img, '(max-width: 768px) 175vw, 50vw')}
               alt={item.title || `Gallery Image ${index}`}
               style={{
                 width: '100%',

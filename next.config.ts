@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: {
+    // Put the (small, Tailwind-based) CSS inside the HTML instead of a separate file.
+    // On Zoho Catalyst every extra request waits ~1.5-3s for the server, and the stylesheet
+    // blocks rendering, so first-time visitors see the page much sooner. Trade-off: ~30 KB more
+    // per HTML page for returning visitors. Remove this flag on a fast CDN host such as Vercel.
+    inlineCss: true,
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",
@@ -24,7 +29,11 @@ const nextConfig: NextConfig = {
     "localhost",
   ],
   images: {
-    unoptimized: true,
+    // Zoho Catalyst does not run the built-in optimizer (/_next/image returns 500), so a custom
+    // loader serves pre-generated sizes from /public/_img instead (see src/lib/imageLoader.ts and
+    // scripts/generate-image-variants.mjs). Sanity images use Sanity's own CDN resizing.
+    loader: "custom",
+    loaderFile: "./src/lib/imageLoader.ts",
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -41,6 +50,13 @@ const nextConfig: NextConfig = {
       {
         source: "/eeshavana",
         destination: "/ishavana",
+        permanent: true,
+      },
+      {
+        // The Founder's Statement page was retired (it was not linked anywhere, its chapter
+        // photos were missing, and its content is covered by the founder section on /about).
+        source: "/founders-statement",
+        destination: "/about",
         permanent: true,
       },
       {

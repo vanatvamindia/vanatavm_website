@@ -3,9 +3,12 @@ import { motion } from "framer-motion";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import RevealText from "@/components/premium/RevealText";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import { ArrowRight } from "lucide-react";
 import Magnetic from "@/components/premium/Magnetic";
+import { responsiveImg } from "@/lib/responsiveImage";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
 
 const STORY_SECTIONS = [
   "For most of human history, we lived close to the land, surrounded by trees, birds and open spaces. It is only in the last century, with rapid urbanisation, that many of us have drifted away from this natural connection. Yet, whenever we step into a forest, walk among trees or spend time in the countryside, something changes. We feel lighter, calmer and more at ease. It feels familiar, almost as if we are returning to something we have always known.",
@@ -15,6 +18,7 @@ const STORY_SECTIONS = [
 ];
 
 export default function About() {
+  preloadHero("/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp");
   return (
     <>
       <Navigation />
@@ -37,16 +41,19 @@ export default function About() {
           transition={{ duration: 1.8, ease: [0.25, 1, 0.5, 1] }}
           style={{ position: "absolute", inset: 0, zIndex: 0 }}
         >
-          <img
-            src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp"
-            alt="Vanatvam Vision"
-            fetchPriority="high"
-            loading="eager"
-            decoding="sync"
-            width={1920}
-            height={1080}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <picture>
+            <PortraitSource src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp" />
+            <img
+              {...responsiveImg("/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp")}
+              alt="Vanatvam Vision"
+              fetchPriority="high"
+              loading="eager"
+              decoding="sync"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </picture>
           <div
             style={{
               position: "absolute",
@@ -72,9 +79,10 @@ export default function About() {
               letterSpacing: "-0.02em",
             }}
           >
-            <RevealText>A Vision Rooted</RevealText>
+            <RevealText immediate>A Vision Rooted</RevealText>
             <br />
             <RevealText
+              immediate
               delay={0.15}
               style={{ fontStyle: "italic", color: "var(--accent-gold)" }}
             >
@@ -196,7 +204,7 @@ export default function About() {
               <motion.img
                 whileHover={{ scale: 1.025 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                src="/assets/images/ourstory.webp"
+                {...responsiveImg("/assets/images/ourstory.webp", "(max-width: 768px) 90vw, 46vw")}
                 alt="A family walking through a green landscape at sunrise"
                 loading="lazy"
                 decoding="async"
@@ -311,7 +319,7 @@ export default function About() {
                       }}
                     >
                       <img
-                        src="/assets/images/founder.webp"
+                        {...responsiveImg("/assets/images/founder.webp", "(max-width: 768px) 88vw, 42vw")}
                         alt="Founder leadership and land care"
                         loading="lazy"
                         decoding="async"
@@ -620,7 +628,7 @@ export default function About() {
               }}
             >
               <motion.img
-                src="/event-images/award.webp"
+                {...responsiveImg("/event-images/award.webp", "(max-width: 768px) 92vw, 46vw")}
                 alt="Vanatvam's nature-led landscape and green surroundings"
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}

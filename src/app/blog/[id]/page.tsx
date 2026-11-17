@@ -1,6 +1,6 @@
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-import Link from 'next/link';
+import Link from '@/components/ui/AppLink';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getBlogs, getBlogById, getAllBlogIds } from '@/data/blogs';
@@ -99,8 +99,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
               src={resolvePostImage(blog)}
               alt={blog.title}
               fill
-              priority
-              unoptimized
+              preload
               style={{
                 objectFit: 'cover',
                 objectPosition: 'center 35%',
@@ -322,8 +321,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                   src={resolvePostImage(blog)}
                   alt={blog.title}
                   fill
-                  priority
-                  unoptimized
+                  preload
                   style={{ objectFit: 'cover' }}
                 />
               </div>
@@ -778,7 +776,6 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                         src={resolvePostImage(r)}
                         alt={r.title}
                         fill
-                        unoptimized
                         sizes="(max-width: 768px) 100vw, 33vw"
                         style={{ objectFit: 'cover' }}
                       />
