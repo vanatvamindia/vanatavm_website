@@ -112,6 +112,7 @@ const heroSlides = [
     name: "ISHAVANA",
     tagline: "A premium riverfront community on the sacred Kaveri.",
     img: "/assets/project-images/Esahavana/EV.webp",
+    imgAvif: "/assets/project-images/Esahavana/EV.avif",
     mobileImg: "/assets/project-images/Esahavana/EV-mobile.webp",
   },
   {
@@ -119,6 +120,7 @@ const heroSlides = [
     name: "ANANTAVANA",
     tagline: "An Extensive Eco Conservation project to restore Bio Diversity.",
     img: "/assets/project-images/Ananthavana/hero-image-2.webp",
+    imgAvif: "/assets/project-images/Ananthavana/hero-image-2.avif",
     mobileImg: "/assets/project-images/Ananthavana/hero-image-2-mobile.webp",
   },
   {
@@ -126,6 +128,7 @@ const heroSlides = [
     name: "MADHUVANA",
     tagline: "A dense water-forest ecosystem built around 250+ native trees.",
     img: "/assets/project-images/Maduvana/hero.webp",
+    imgAvif: "/assets/project-images/Maduvana/hero.avif",
     mobileImg: "/assets/project-images/Maduvana/hero-mobile.webp",
   },
   {
@@ -133,6 +136,7 @@ const heroSlides = [
     name: "BRINDAVANA",
     tagline: "Barren semi-arid land turned into a thriving ecosystem.",
     img: "/assets/project-images/Brindavana/brindavanaaa.webp",
+    imgAvif: "/assets/project-images/Brindavana/brindavanaaa.avif",
     mobileImg: "/assets/project-images/Brindavana/brindavanaaa-mobile.webp",
   },
 ];
@@ -216,11 +220,14 @@ export default function Home() {
             transition={{ duration: 1.1, ease: "easeInOut" }}
           >
             <picture>
+              {/* Mobile: WebP, served at 640px */}
               <source
                 media="(max-width: 768px)"
                 srcSet={slide.mobileImg}
                 type="image/webp"
               />
+              {/* Desktop: AVIF for Chrome/Firefox/Edge (~169KB), WebP fallback for Safari (~207KB) */}
+              <source srcSet={slide.imgAvif} type="image/avif" />
               <img
                 src={slide.img}
                 alt={slide.name}
@@ -228,8 +235,8 @@ export default function Home() {
                 loading={slide.id === heroSlides[0].id ? "eager" : "lazy"}
                 decoding="sync"
                 className="hero-bg-img"
-                width={1920}
-                height={1080}
+                width={1350}
+                height={760}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </picture>
