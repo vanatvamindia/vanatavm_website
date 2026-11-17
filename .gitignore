@@ -33,3 +33,20 @@ dist/
 
 # Zoho Catalyst CLI local project-link state (account-specific)
 .catalystrc
+
+# Lighthouse / perf audit scratch files
+lh-results/
+*.report.html
+lighthouse-run*.json
+check-*.ps1
+compress-*.mjs
+lh-*.ps1
+lh-*.mjs
+lh_extract*.ps1
+check-dimensions.mjs
+
+# Image backup originals created during compression
+public/**/*.webp.bak
+
+# Windows NUL device artifact
+NUL
