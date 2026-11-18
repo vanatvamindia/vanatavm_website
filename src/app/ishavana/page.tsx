@@ -9,7 +9,7 @@ import Link from "@/components/ui/AppLink";
 import Image from "next/image";
 import BrochureModal from "@/components/premium/LazyBrochureModal";
 import StickyMasterPlanGallery from "@/components/premium/StickyMasterPlanGallery";
-import { ArrowRight, ArrowUpRight, Droplets, Leaf, MapPin, Mountain, PawPrint, ShieldCheck, Ship, Sparkles, Trees, Users, Waves, Sprout } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Droplets, Leaf, MapPin, Mountain, ShieldCheck, Ship, Sparkles, Trees, Users, Waves, Sprout } from "lucide-react";
 import { responsiveImg } from "@/lib/responsiveImage";
 import PortraitSource from "@/components/ui/PortraitSource";
 import { preloadHero } from "@/lib/preloadHero";
@@ -1304,13 +1304,6 @@ export default function Ishavana() {
     km: 21,
     time: "~30 mins",
     icon: Waves,
-  },
-  {
-    name: "PG Palya Tiger Safari",
-    desc: "Wildlife safari & tiger habitat",
-    km: 31,
-    time: "~45 mins",
-    icon: PawPrint,
   },
   {
     name: "Somnathpur",
