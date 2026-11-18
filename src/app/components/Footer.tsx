@@ -269,8 +269,8 @@ export default function Footer() {
             <Link href="/terms">Terms &amp; Conditions</Link>
           </div>
           <p className="vt-footer__copy">
-            &copy; {new Date().getFullYear()} VanaTvam Private Limited. CIN:
-            U01100KA2022PTC159587
+            &copy; {new Date().getFullYear()} VanaTvam Private Limited.{" "}
+            <span className="vt-footer__cin">CIN: U01100KA2022PTC159587</span>
           </p>
         </div>
       </div>
@@ -540,6 +540,15 @@ export default function Footer() {
           flex: 1;
           text-align: center;
           color: #fff;
+        }
+        /* Keep "CIN:" and the number together; on phones they get their own line. */
+        .vt-footer__cin {
+          white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+          .vt-footer__cin {
+            display: block;
+          }
         }
 
         /* ---------- Projects dropdown (opens upward) ---------- */

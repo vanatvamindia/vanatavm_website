@@ -135,11 +135,48 @@ const heroSlides = [
   },
 ];
 
+/** Per-tab memory of the hero project on screen, used to restore it after the Back button. */
+const HERO_SLIDE_KEY = "vt-home-hero-slide";
+
+// Back navigations handled inside Next.js (no full reload) don't show up as "back_forward" in
+// the browser's navigation timing, so note them here; the home page reads and clears the flag.
+let cameBackViaHistory = false;
+if (typeof window !== "undefined") {
+  window.addEventListener("popstate", () => {
+    cameBackViaHistory = true;
+  });
+}
+
 export default function Home() {
   preloadHero(heroSlides[0].img);
   const lenisRef = useLenis();
   const [activeSlide, setActiveSlide] = useState(0);
   const [slideChanged, setSlideChanged] = useState(false);
+
+  // Coming back with the Back button returns to the project that was on screen (e.g. Project 2)
+  // instead of starting over. New visits, links and refreshes still start at the first project.
+  useEffect(() => {
+    let saved = 0;
+    try {
+      const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+      const cameBack = cameBackViaHistory || nav?.type === "back_forward";
+      cameBackViaHistory = false;
+      if (cameBack) saved = Number(sessionStorage.getItem(HERO_SLIDE_KEY));
+    } catch {
+      // Storage unavailable (e.g. private mode restrictions): just start at the first project.
+    }
+    if (!Number.isInteger(saved) || saved <= 0 || saved >= heroSlides.length) return;
+    // Applied on the next frame, without the fade, so the restored project simply appears.
+    const frame = requestAnimationFrame(() => setActiveSlide(saved));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(HERO_SLIDE_KEY, String(activeSlide));
+    } catch {
+      // Storage unavailable: nothing to remember.
+    }
+  }, [activeSlide]);
   // Auto-rotation starts only after the visitor's first scroll, tap, click or key press.
   // Rotating on a timer from page load makes each new (larger) slide heading count as a fresh
   // "largest contentful paint", so speed tests like Lighthouse report the page as seconds slower
