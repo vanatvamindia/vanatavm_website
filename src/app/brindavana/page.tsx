@@ -354,9 +354,10 @@ export default function Brindavana() {
               zIndex: 10,
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "flex-end",
               height: "100%",
               paddingTop: "80px",
+              paddingBottom: "clamp(8px, 1vh, 14px)",
             }}
           >
             <div

@@ -555,6 +555,11 @@ ul {
   overflow: hidden;
 }
 
+/* Home hero: fixed full-screen height (like the project heroes) so the text can sit at the bottom */
+.hero-carousel {
+  height: 100vh;
+}
+
 .hero-bg-wrapper {
   position: absolute;
   top: 0;
@@ -570,9 +575,10 @@ ul {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   height: 100%;
   padding-top: 80px;
+  padding-bottom: clamp(8px, 1vh, 14px);
 }
 
 .hero-badge {
@@ -642,8 +648,8 @@ ul {
 
 .hero-carousel-nav {
   position: absolute;
-  bottom: 64px;
-  right: 160px;
+  bottom: 14px;
+  right: 40px;
   display: flex;
   gap: 15px;
   z-index: 15;
@@ -687,8 +693,9 @@ ul {
 
 .hero-carousel-dots {
   position: absolute;
-  bottom: 64px;
-  left: 40px;
+  /* Same baseline as the arrows, sitting just left of them (bottom-right corner) */
+  bottom: 35px;
+  right: 180px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3941,8 +3948,13 @@ ul {
 
   .hero-container {
     padding-top: calc(var(--header-height, 70px) + 20px) !important;
+    padding-bottom: 24px !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Home hero: stay clear of the carousel dots/arrows at the bottom */
+  .hero-carousel .hero-container {
     padding-bottom: 90px !important;
-    justify-content: center !important;
   }
 
   .hero-badge {
