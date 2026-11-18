@@ -626,6 +626,36 @@ export default function Footer() {
           padding-left: 20px;
         }
 
+        /* ---------- desktop: true 3-column alignment ----------
+           Top row is [brand | divider | nav+contact | divider | socials] with equal 1fr
+           outer columns, so the nav+contact block sits exactly on the container centre.
+           The bottom row uses the same centre, so the copyright is centred under it. */
+        @media (min-width: 1101px) {
+          .vt-footer__top {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
+            column-gap: 76px;
+            justify-content: stretch;
+          }
+          .vt-footer__brand {
+            justify-self: start;
+          }
+          .vt-footer__socials {
+            justify-self: end;
+          }
+          .vt-footer__bottom {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+          }
+          .vt-footer__legal {
+            justify-self: start;
+          }
+          .vt-footer__copy {
+            flex: none;
+            white-space: nowrap;
+          }
+        }
+
         /* ---------- responsive ---------- */
         @media (max-width: 1100px) {
           .vt-hide-md {
