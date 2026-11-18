@@ -48,9 +48,9 @@ export default function StickyMasterPlanGallery({
           {eyebrow}
         </span>
         <h3
+          className="mp-gallery-title"
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(1.9rem, 3vw, 2.4rem)",
             color: "var(--bg-dark-forest, #122217)",
             margin: 0,
             fontWeight: 600,

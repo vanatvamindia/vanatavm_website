@@ -913,6 +913,19 @@ ul {
   white-space: nowrap;
 }
 
+/* Section title of the master-plan amenity gallery (StickyMasterPlanGallery). On phones it is
+   sized to the screen width and kept on one line, e.g. "Common Amenities (A – G)". */
+.mp-gallery-title {
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
+}
+
+@media (max-width: 640px) {
+  .mp-gallery-title {
+    font-size: min(1.6rem, 6.2vw);
+    white-space: nowrap;
+  }
+}
+
 /* "Voices of VanaTvam" video row (src/components/premium/VideoTestimonials.tsx): scrollable
    by hand and auto-scrolled by script, with the scrollbar itself hidden. */
 .video-testimonials-scroller {
