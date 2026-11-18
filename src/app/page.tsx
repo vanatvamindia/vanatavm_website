@@ -5,7 +5,7 @@ import type { Variants } from "framer-motion";
 import Link from "@/components/ui/AppLink";
 import dynamic from "next/dynamic";
 import Navigation from "@/app/components/Navigation";
-import LiteYouTube from "@/components/ui/LiteYouTube";
+import VideoTestimonials from "@/components/premium/VideoTestimonials";
 
 const Footer = dynamic(() => import("@/app/components/Footer"), { ssr: true });
 import {
@@ -24,7 +24,6 @@ import {
   MoveLeft,
   ChevronLeft,
   ChevronRight,
-  PlayCircle,
 } from "lucide-react";
 import Magnetic from "@/components/premium/Magnetic";
 import Counter from "@/components/premium/Counter";
@@ -141,7 +140,6 @@ export default function Home() {
   const lenisRef = useLenis();
   const [activeSlide, setActiveSlide] = useState(0);
   const [slideChanged, setSlideChanged] = useState(false);
-  const pausedRef = useRef(false);
   // Auto-rotation starts only after the visitor's first scroll, tap, click or key press.
   // Rotating on a timer from page load makes each new (larger) slide heading count as a fresh
   // "largest contentful paint", so speed tests like Lighthouse report the page as seconds slower
@@ -160,16 +158,32 @@ export default function Home() {
   // Bumped on every manual change so the 6s timer restarts and the chosen slide gets a full 6s.
   const [manualNavCount, setManualNavCount] = useState(0);
 
+  // Rotation pauses once the visitor scrolls past the hero and resumes (with a fresh 6s)
+  // when they scroll back up. "In view" means at least a quarter of the hero is visible.
+  // (This replaces the old pause-on-hover: the hero fills the screen, so on desktop the mouse
+  // was nearly always over it and rotation rarely ran, and on phones a tap fired "mouse enter"
+  // with no matching "leave", pausing it for good.)
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroInView, setHeroInView] = useState(true);
   useEffect(() => {
-    if (!autoRotate) return;
+    const el = heroRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.intersectionRatio >= 0.25),
+      { threshold: [0, 0.25, 0.5] }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!autoRotate || !heroInView) return;
     const timer = setInterval(() => {
-      if (!pausedRef.current) {
-        setSlideChanged(true);
-        setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-      }
+      setSlideChanged(true);
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [autoRotate, manualNavCount]);
+  }, [autoRotate, heroInView, manualNavCount]);
 
   const goToSlide = (step: 1 | -1) => {
     setSlideChanged(true);
@@ -199,7 +213,6 @@ export default function Home() {
   };
 
   // Keyboard: ← / → move between projects while the hero is on screen.
-  const heroRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
@@ -260,12 +273,6 @@ export default function Home() {
         id="hero"
         aria-roledescription="carousel"
         aria-label="Featured projects (swipe, or use the left and right arrow keys, to switch)"
-        onMouseEnter={() => {
-          pausedRef.current = true;
-        }}
-        onMouseLeave={() => {
-          pausedRef.current = false;
-        }}
         onTouchStart={onHeroTouchStart}
         onTouchEnd={onHeroTouchEnd}
         onTouchCancel={() => {
@@ -1585,79 +1592,9 @@ By bringing together ecological restoration, India’s cultural heritage, and th
             </motion.p>
           </div>
 
-          <div
-            style={{
-              overflow: "hidden",
-              padding: "20px 0",
-              width: "100vw",
-              marginLeft: "calc(-50vw + 50%)",
-            }}
-          >
-            <div className="reviews-marquee-track">
-              {[0, 1].map((rep) => (
-                <div
-                  key={rep}
-                  className="reviews-marquee-group"
-                  style={{
-                    display: "flex",
-                    gap: "30px",
-                    paddingRight: "30px",
-                    flexShrink: 0,
-                  }}
-                >
-                  {[
-                    "oTd69o1SAkk",
-                    "rPMv_cggbH8",
-                    "HIuRfVHefz0",
-                    "5sDm6-yiMPs",
-                    "61PcdiIYtgs",
-                  ].map((id, i) => (
-                    <motion.div
-                      key={id + rep}
-                      style={{
-                        width: "360px",
-                        flexShrink: 0,
-                        borderRadius: "24px",
-                        overflow: "hidden",
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-                        background: "#0A1510",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      <div style={{ aspectRatio: "16/9" }}>
-                        <LiteYouTube videoId={id} title="Client Review" />
-                      </div>
-                      <div
-                        style={{
-                          padding: "14px 18px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                        }}
-                      >
-                        <PlayCircle
-                          size={16}
-                          style={{
-                            color: "var(--accent-gold)",
-                          }}
-                        />
-                        <span
-                          style={{
-                            fontSize: "0.8rem",
-                            color: "rgba(255,255,255,0.6)",
-                            letterSpacing: "0.05em",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          Client Video Testimonial
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+          <VideoTestimonials
+            videoIds={["oTd69o1SAkk", "rPMv_cggbH8", "HIuRfVHefz0", "5sDm6-yiMPs", "61PcdiIYtgs"]}
+          />
         </div>
       </section>
       {/* Premium Final CTA — Nature-inspired Contact Experience */}

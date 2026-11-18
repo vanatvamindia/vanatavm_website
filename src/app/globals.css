@@ -913,20 +913,21 @@ ul {
   white-space: nowrap;
 }
 
-.reviews-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: vanaMarqueeScroll 60s linear infinite;
+/* "Voices of VanaTvam" video row (src/components/premium/VideoTestimonials.tsx): scrollable
+   by hand and auto-scrolled by script, with the scrollbar itself hidden. */
+.video-testimonials-scroller {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  cursor: grab;
 }
 
-.reviews-marquee-track:hover {
-  animation-play-state: paused;
+.video-testimonials-scroller::-webkit-scrollbar {
+  display: none;
 }
 
-.reviews-marquee-group {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+.video-testimonials-scroller:active {
+  cursor: grabbing;
 }
 
 @keyframes vanaMarqueeScroll {
@@ -935,7 +936,7 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vana-marquee-track, .reviews-marquee-track {
+  .vana-marquee-track {
     animation: none;
   }
 }
