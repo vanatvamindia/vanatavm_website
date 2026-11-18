@@ -13,6 +13,7 @@ type TiltCardProps = {
 
 export default function TiltCard({ children, className, style, max = 6 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
@@ -22,10 +23,14 @@ export default function TiltCard({ children, className, style, max = 6 }: TiltCa
   const rotateX = useTransform(springY, [0, 1], [max, -max]);
   const rotateY = useTransform(springX, [0, 1], [-max, max]);
 
+  // Read layout once on enter; reuse cached value on every move to avoid forced reflow.
+  const handleMouseEnter = () => {
+    if (ref.current) rectRef.current = ref.current.getBoundingClientRect();
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
+    const rect = rectRef.current;
+    if (!rect) return;
     x.set((e.clientX - rect.left) / rect.width);
     y.set((e.clientY - rect.top) / rect.height);
   };
@@ -38,6 +43,7 @@ export default function TiltCard({ children, className, style, max = 6 }: TiltCa
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={reset}
       style={{

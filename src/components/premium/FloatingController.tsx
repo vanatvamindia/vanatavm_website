@@ -16,13 +16,19 @@ export default function FloatingController() {
     checkMobile();
     window.addEventListener('resize', checkMobile, { passive: true });
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    // Cache threshold so layout is not read on every scroll event.
+    let threshold = window.innerHeight ? window.innerHeight * 0.65 : 400;
+    const computeThreshold = () => {
       const hero = document.getElementById('hero') || document.querySelector('.hero');
-      const threshold = hero
+      threshold = hero
         ? (hero.offsetTop + hero.offsetHeight) * 0.75
         : (window.innerHeight ? window.innerHeight * 0.65 : 400);
+    };
+    computeThreshold();
+    window.addEventListener('resize', computeThreshold, { passive: true });
 
+    const handleScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
       setScrolled(scrollY > threshold);
     };
 
@@ -31,6 +37,7 @@ export default function FloatingController() {
 
     return () => {
       window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('resize', computeThreshold);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);

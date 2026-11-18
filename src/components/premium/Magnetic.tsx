@@ -12,12 +12,17 @@ type MagneticProps = {
 
 export default function Magnetic({ children, strength = 0.35, className, style }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
+  // Read layout once on enter; reuse cached value on every move to avoid forced reflow.
+  const handleMouseEnter = () => {
+    if (ref.current) rectRef.current = ref.current.getBoundingClientRect();
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
+    const rect = rectRef.current;
+    if (!rect) return;
     const x = (e.clientX - rect.left - rect.width / 2) * strength;
     const y = (e.clientY - rect.top - rect.height / 2) * strength;
     setPos({ x, y });
@@ -28,6 +33,7 @@ export default function Magnetic({ children, strength = 0.35, className, style }
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={reset}
       animate={{ x: pos.x, y: pos.y }}

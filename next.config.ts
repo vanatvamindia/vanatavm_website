@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: {
+    // Embed CSS into the HTML <head> to collapse the HTML→CSS dependency chain
+    // and remove the extra round-trip that was adding ~655ms to critical path latency.
+    inlineCss: true,
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",
