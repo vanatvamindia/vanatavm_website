@@ -926,20 +926,20 @@ ul {
   }
 }
 
-/* "Voices of VanaTvam" video row (src/components/premium/VideoTestimonials.tsx): scrollable
-   by hand and auto-scrolled by script, with the scrollbar itself hidden. */
-.video-testimonials-scroller {
+/* Auto-scrolling rows (src/components/premium/AutoScrollRow.tsx: home photos and videos):
+   scrollable by hand and auto-scrolled by script, with the scrollbar itself hidden. */
+.auto-scroll-row {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
   cursor: grab;
 }
 
-.video-testimonials-scroller::-webkit-scrollbar {
+.auto-scroll-row::-webkit-scrollbar {
   display: none;
 }
 
-.video-testimonials-scroller:active {
+.auto-scroll-row:active {
   cursor: grabbing;
 }
 

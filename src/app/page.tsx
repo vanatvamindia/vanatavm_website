@@ -6,6 +6,7 @@ import Link from "@/components/ui/AppLink";
 import dynamic from "next/dynamic";
 import Navigation from "@/app/components/Navigation";
 import VideoTestimonials from "@/components/premium/VideoTestimonials";
+import AutoScrollRow from "@/components/premium/AutoScrollRow";
 
 const Footer = dynamic(() => import("@/app/components/Footer"), { ssr: true });
 import {
@@ -1295,108 +1296,51 @@ WHO WE ARE
           />
         </motion.div>
 
-        {/* Continuous Flow Infinite Marquee */}
-        <div
-          style={{
-            width: "100%",
-            overflow: "hidden",
-            position: "relative",
-            padding: "20px 0",
-          }}
-        >
-          <div
-            className="polaroid-marquee-track"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "nowrap",
-              width: "max-content",
-              willChange: "transform",
-            }}
-          >
-            {[0, 1].map((rep) => (
-              <div
-                key={rep}
-                className="polaroid-marquee-group"
+        {/* Auto-scrolling photo row: swipe/drag, ‹ › buttons and ← / → keys; pauses off screen */}
+        <AutoScrollRow
+          items={lifeAtVanatvamPolaroids}
+          getKey={(item) => item.id}
+          itemWidth={360}
+          gap={32}
+          speed={78}
+          label="Life at the farm photos"
+          itemNoun="photo"
+          renderItem={(item) => (
+            <motion.div
+              whileHover={{ y: -8, scale: 1.03 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                width: "360px",
+                height: "250px",
+                flexShrink: 0,
+                borderRadius: "20px",
+                overflow: "hidden",
+                boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                position: "relative",
+                background: "#1E352F",
+              }}
+            >
+              <motion.img
+                {...responsiveImg(item.img, "360px")}
+                alt={item.title}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                width="360"
+                height="250"
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  flexWrap: "nowrap",
-                  gap: "32px",
-                  paddingRight: "32px",
-                  flexShrink: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
                 }}
-              >
-                {lifeAtVanatvamPolaroids.map((item, index) => (
-                  <motion.div
-                    key={`${item.id}-${rep}-${index}`}
-                    whileHover={{ y: -8, scale: 1.03 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                      width: "360px",
-                      height: "250px",
-                      flexShrink: 0,
-                      borderRadius: "20px",
-                      overflow: "hidden",
-                      boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      position: "relative",
-                      background: "#1E352F",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <motion.img
-                      src={item.img}
-                      alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      width="360"
-                      height="250"
-                      whileHover={{ scale: 1.06 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                      }}
-                    />
-
-                     
-                  </motion.div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <style jsx global>{`
-          @keyframes polaroid-marquee-scroll {
-            from {
-              transform: translateX(0);
-            }
-            to {
-              transform: translateX(-50%);
-            }
-          }
-          .polaroid-marquee-track {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            width: max-content !important;
-            will-change: transform;
-            animation: polaroid-marquee-scroll 45s linear infinite;
-          }
-          .polaroid-marquee-track:hover {
-            animation-play-state: paused;
-          }
-          .polaroid-marquee-group {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            flex-shrink: 0 !important;
-          }
-        `}</style>
+              />
+            </motion.div>
+          )}
+        />
       </section>
 
       {/* FKCCI Award Recognition Section */}
