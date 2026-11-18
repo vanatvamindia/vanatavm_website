@@ -514,14 +514,6 @@ export default function Ishavana() {
            background: "var(--bg-cream, #f9f8f6)",
          }}
        >
-         <FloatingOrb size={260} top="-60px" right="-60px" />
-         <FloatingOrb
-           size={180}
-           top="60%"
-           left="-50px"
-           delay={3}
-           color="rgba(198,162,101,0.25)"
-         />
          <div
            className="container"
            style={{

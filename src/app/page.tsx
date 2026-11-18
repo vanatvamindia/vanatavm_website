@@ -5,6 +5,7 @@ import type { Variants } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Navigation from "@/app/components/Navigation";
+import ClientStoriesCarousel from "@/components/ui/ClientStoriesCarousel";
 import LiteYouTube from "@/components/ui/LiteYouTube";
 
 const Footer = dynamic(() => import("@/app/components/Footer"), { ssr: true });
@@ -352,20 +353,6 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: "10%",
-            right: "-10%",
-            width: "50vw",
-            height: "50vw",
-            background:
-              "radial-gradient(circle, rgba(198,162,101,0.06) 0%, transparent 70%)",
-            zIndex: 0,
-            borderRadius: "50%",
-          }}
-        />
-
         <div className="container relative" style={{ zIndex: 1 }}>
           <div
             style={{
@@ -1528,79 +1515,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
             </motion.p>
           </div>
 
-          <div
-            style={{
-              overflow: "hidden",
-              padding: "20px 0",
-              width: "100vw",
-              marginLeft: "calc(-50vw + 50%)",
-            }}
-          >
-            <div className="reviews-marquee-track">
-              {[0, 1].map((rep) => (
-                <div
-                  key={rep}
-                  className="reviews-marquee-group"
-                  style={{
-                    display: "flex",
-                    gap: "30px",
-                    paddingRight: "30px",
-                    flexShrink: 0,
-                  }}
-                >
-                  {[
-                    "oTd69o1SAkk",
-                    "rPMv_cggbH8",
-                    "HIuRfVHefz0",
-                    "5sDm6-yiMPs",
-                    "61PcdiIYtgs",
-                  ].map((id, i) => (
-                    <motion.div
-                      key={id + rep}
-                      style={{
-                        width: "360px",
-                        flexShrink: 0,
-                        borderRadius: "24px",
-                        overflow: "hidden",
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-                        background: "#0A1510",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      <div style={{ aspectRatio: "16/9" }}>
-                        <LiteYouTube videoId={id} title="Client Review" />
-                      </div>
-                      <div
-                        style={{
-                          padding: "14px 18px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                        }}
-                      >
-                        <PlayCircle
-                          size={16}
-                          style={{
-                            color: "var(--accent-gold)",
-                          }}
-                        />
-                        <span
-                          style={{
-                            fontSize: "0.8rem",
-                            color: "rgba(255,255,255,0.6)",
-                            letterSpacing: "0.05em",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          Client Video Testimonial
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+          <ClientStoriesCarousel />
         </div>
       </section>
       {/* Premium Final CTA — Nature-inspired Contact Experience */}

@@ -1,28 +1,54 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play } from 'lucide-react';
+import { Play, X } from 'lucide-react';
 
 interface LiteYouTubeProps {
   videoId: string;
   title?: string;
   aspectRatio?: string;
+  isPlaying?: boolean;
+  onPlay?: () => void;
+  onClose?: () => void;
 }
 
 export default function LiteYouTube({
   videoId,
   title = 'Watch Vanatvam Video',
   aspectRatio = '16/9',
+  isPlaying: controlledIsPlaying,
+  onPlay,
+  onClose,
 }: LiteYouTubeProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [internalIsPlaying, setInternalIsPlaying] = useState(false);
+  const isPlaying = controlledIsPlaying !== undefined ? controlledIsPlaying : internalIsPlaying;
+
+  const handleStartPlay = () => {
+    if (controlledIsPlaying === undefined) {
+      setInternalIsPlaying(true);
+    }
+    onPlay?.();
+  };
+
+  const handleStopPlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (controlledIsPlaying === undefined) {
+      setInternalIsPlaying(false);
+    }
+    onClose?.();
+  };
 
   if (isPlaying) {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0&enablejsapi=1${origin ? `&origin=${encodeURIComponent(origin)}` : ''}`;
+
     return (
       <div style={{ position: 'relative', width: '100%', aspectRatio, background: '#000', borderRadius: 'inherit' }}>
         <iframe
+          id={`yt-${videoId}`}
           width="100%"
           height="100%"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
+          src={src}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
@@ -35,7 +61,7 @@ export default function LiteYouTube({
   return (
     <button
       type="button"
-      onClick={() => setIsPlaying(true)}
+      onClick={handleStartPlay}
       aria-label={`Play video: ${title}`}
       style={{
         position: 'relative',

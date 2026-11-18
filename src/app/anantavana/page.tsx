@@ -432,19 +432,6 @@ function SpaceBand() {
           }}
         />
       </motion.div>
-      <FloatingOrb
-        size={220}
-        top="10%"
-        left="8%"
-        color="rgba(190,212,167,0.28)"
-      />
-      <FloatingOrb
-        size={160}
-        top="55%"
-        right="10%"
-        delay={2}
-        color="rgba(198,162,101,0.28)"
-      />
       <div style={{ position: "relative", zIndex: 1 }}>
         <Kicker center>Our promise</Kicker>
         <Words
