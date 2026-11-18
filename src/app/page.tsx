@@ -1406,7 +1406,7 @@ WHO WE ARE
                     textTransform: "uppercase",
                   }}
                 >
-                  Institutional Recognition
+                  Recognition
                 </span>
               </div>
 
