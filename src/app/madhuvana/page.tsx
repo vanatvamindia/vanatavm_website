@@ -1333,7 +1333,7 @@ export default function Madhuvana() {
 
                 <a
                   className="av-nearby-map-link"
-                  href="https://maps.app.goo.gl/uxk3NytTybnHp9bs8"
+                  href="https://www.google.com/maps/search/?api=1&query=12.66328,76.937561"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1996,7 +1996,7 @@ export default function Madhuvana() {
                  V.Ballekere, Karnataka 571419  
                       <br />
                       <a
-                        href="https://maps.app.goo.gl/uxk3NytTybnHp9bs8"
+                        href="https://www.google.com/maps/search/?api=1&query=12.66328,76.937561"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
