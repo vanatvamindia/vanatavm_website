@@ -179,6 +179,25 @@ export default function Home() {
   const nextSlide = () => goToSlide(1);
   const prevSlide = () => goToSlide(-1);
 
+  // Touch: swipe left/right on the hero to change project. Only clearly horizontal, quick
+  // swipes count, so vertical scrolling and taps on the buttons behave exactly as before.
+  const swipeStart = useRef<{ x: number; y: number; t: number } | null>(null);
+  const onHeroTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    swipeStart.current = { x: touch.clientX, y: touch.clientY, t: Date.now() };
+  };
+  const onHeroTouchEnd = (e: React.TouchEvent) => {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    if (!start || e.changedTouches.length === 0) return;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    const isSwipe = Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - start.t < 800;
+    if (isSwipe) goToSlide(dx < 0 ? 1 : -1); // swipe left → next project
+  };
+
   // Keyboard: ← / → move between projects while the hero is on screen.
   const heroRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -240,13 +259,20 @@ export default function Home() {
         className="hero hero-carousel"
         id="hero"
         aria-roledescription="carousel"
-        aria-label="Featured projects (use the left and right arrow keys to switch)"
+        aria-label="Featured projects (swipe, or use the left and right arrow keys, to switch)"
         onMouseEnter={() => {
           pausedRef.current = true;
         }}
         onMouseLeave={() => {
           pausedRef.current = false;
         }}
+        onTouchStart={onHeroTouchStart}
+        onTouchEnd={onHeroTouchEnd}
+        onTouchCancel={() => {
+          swipeStart.current = null;
+        }}
+        // Browser keeps vertical scrolling; horizontal swipes are left to the carousel.
+        style={{ touchAction: "pan-y" }}
       >
         <AnimatePresence mode="sync">
           <motion.div
