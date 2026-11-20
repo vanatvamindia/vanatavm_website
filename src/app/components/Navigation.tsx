@@ -26,7 +26,7 @@ const NAV_ITEMS: NavItem[] = [
   { path: "/about", label: "Our Philosophy", icon: Leaf },
   { path: "/projects", label: "Projects", icon: Sprout },
   { path: "/investment", label: "Investment", icon: Coins },
-  { path: "/blog", label: "Journal", icon: BookOpen },
+  { path: "/blog", label: "Articles", icon: BookOpen },
 ];
 
 const EASE_PREMIUM: [number, number, number, number] = [0.16, 1, 0.3, 1];

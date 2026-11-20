@@ -633,6 +633,8 @@ export default function Anantavana() {
 
       {/* ================= HERO (animated) ================= */}
       <section
+        className="hero"
+        id="hero"
         style={{
           height: "100vh",
           position: "relative",

@@ -571,7 +571,7 @@ export default function Ishavana() {
                      fontWeight: 600,
                    }}
                  >
-                   Shivanasamudhra · Kaveri River
+                   Shivanasamudra · Kaveri River
                  </span>
                </motion.div>
                </motion.div>
@@ -1383,7 +1383,7 @@ export default function Ishavana() {
               </div>
 
               <iframe
-                title="Google Maps showing Ishavana at Kollegala"
+                title="Google Maps showing Ishavana at Shivanasamudra"
                 src="https://www.google.com/maps?q=12.1648,77.1082&z=12&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

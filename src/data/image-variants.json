@@ -183,9 +183,9 @@
     ]
   },
   "/assets/images/Project-Logos/1.webp": {
-    "w": 5332,
-    "h": 1284,
-    "hash": "c5b57fe10325",
+    "w": 5340,
+    "h": 1293,
+    "hash": "4647f13d71ca",
     "q": 85,
     "widths": [
       480,
@@ -196,9 +196,9 @@
     ]
   },
   "/assets/images/Project-Logos/2.webp": {
-    "w": 5622,
-    "h": 1350,
-    "hash": "41cb20a9a98a",
+    "w": 5617,
+    "h": 1354,
+    "hash": "8232165757b3",
     "q": 85,
     "widths": [
       480,
@@ -209,9 +209,9 @@
     ]
   },
   "/assets/images/Project-Logos/3.webp": {
-    "w": 5279,
-    "h": 1992,
-    "hash": "bdb35d76407c",
+    "w": 5288,
+    "h": 2002,
+    "hash": "fc2c1d521616",
     "q": 85,
     "widths": [
       480,
@@ -222,16 +222,14 @@
     ]
   },
   "/assets/images/Project-Logos/4.webp": {
-    "w": 4177,
-    "h": 1662,
-    "hash": "ca1c62431094",
+    "w": 1798,
+    "h": 859,
+    "hash": "b732e461e629",
     "q": 85,
     "widths": [
       480,
       828,
-      1200,
-      1920,
-      2560
+      1200
     ]
   },
   "/assets/images/Project-Logos/vanatvam.webp": {
@@ -341,6 +339,16 @@
     "w": 1028,
     "h": 714,
     "hash": "a7a3887b7971",
+    "q": 85,
+    "widths": [
+      480,
+      828
+    ]
+  },
+  "/assets/images/strategic.png": {
+    "w": 1028,
+    "h": 578,
+    "hash": "a1dd982c77c9",
     "q": 85,
     "widths": [
       480,

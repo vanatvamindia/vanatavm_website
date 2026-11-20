@@ -3,7 +3,7 @@ import { getBlogs } from '@/data/blogs';
 import BlogClient from './components/BlogClient';
 
 export const metadata = {
-  title: 'Journal & Stories | Vanatvam',
+  title: 'Articles & Stories | Vanatvam',
   description:
     'Insights, updates, and deep dives into ecological restoration, Vedic forest science, natural farm communities, and sustainable wealth creation.',
 };

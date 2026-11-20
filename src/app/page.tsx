@@ -628,10 +628,21 @@ WHO WE ARE
     fontSize: "1.05rem",
     color: "#556358",
     lineHeight: 1.8,
+    marginBottom: "16px",
+  }}
+>
+  Our biodiversity-led farm communities are located along the resource-rich Bengaluru–Mysuru–Chamarajanagar corridor, nestled within the Kaveri River belt of Karnataka.
+</p>
+
+<p
+  style={{
+    fontSize: "1.05rem",
+    color: "#556358",
+    lineHeight: 1.8,
     marginBottom: "24px",
   }}
 >
-  Our biodiversity-led farm communities are located natural resource rich Bangalore Mysore-Chamarajanagar corridor along the Kaveri river belt in Karnataka. Vanatvam follows six core principles while evolving the projects.
+  At Vanatvam, we follow six core principles that guide the planning, development, and evolution of every project.
 </p>
 
 
@@ -703,7 +714,7 @@ WHO WE ARE
             marginBottom: "16px",
           }}
         >
-          Our Approach
+          Our Core Principles
         </motion.span>
 
         <motion.h2
@@ -759,7 +770,7 @@ WHO WE ARE
           {
             num: "01 / Strategic Locations",
             title: "Along the Bangalore–Mysore Corridor",
-            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Eeshavana (Near Shivanasamudhra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
+            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Eeshavana (Near Shivanasamudra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
           },
           {
             num: "02 / Biodiversity by Design",
@@ -1092,7 +1103,7 @@ WHO WE ARE
                 {
                   id: "ishavana",
                   name: "ISHAVANA",
-                  badge: "Shivanasamudhra ·10 Acres",
+                  badge: "Shivanasamudra ·10 Acres",
                   img: "/assets/project-images/Esahavana/EV.webp",
                    
                 },
@@ -1406,7 +1417,7 @@ WHO WE ARE
                     textTransform: "uppercase",
                   }}
                 >
-                  Recognition
+                  Reward &amp; Recognition
                 </span>
               </div>
 

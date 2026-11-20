@@ -34,7 +34,7 @@ const NAV: NavItem[] = [
     children: PROJECT_LINKS,
   },
   { Icon: TrendingUp, label: "Investment", href: "/investment" },
-  { Icon: BookOpen, label: "Journal", href: "/blog" },
+  { Icon: BookOpen, label: "Articles", href: "/blog" },
 ];
 
 const SOCIALS = [

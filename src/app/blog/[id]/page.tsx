@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const blog = await getBlogById(id);
   if (!blog) return { title: 'Post Not Found | Vanatvam' };
   return {
-    title: `${blog.title} | Vanatvam Journal`,
+    title: `${blog.title} | Vanatvam Articles`,
     description: blog.excerpt,
   };
 }
@@ -154,7 +154,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
               </Link>
               <span style={{ opacity: 0.5 }}>/</span>
               <Link href="/blog" style={{ color: 'rgba(255, 255, 255, 0.75)', textDecoration: 'none' }}>
-                Journal
+                Articles
               </Link>
               <span style={{ opacity: 0.5 }}>/</span>
               <span style={{ color: 'var(--accent-gold, #C6A265)', fontWeight: 500 }}>{blog.category}</span>
@@ -269,7 +269,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                   borderRadius: '50%',
                 }}
               />
-              <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Vanatvam Journal</span>
+              <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Vanatvam Articles</span>
             </div>
           </div>
         </header>

@@ -71,7 +71,7 @@ export default function Projects() {
       category: 'riverfront',
       name: 'ISHAVANA',
       logo: '/assets/images/Project-Logos/4.webp',
-      location: 'KOLLEGALA - 10 Acres',
+      location: 'Shivanasamudra - 10 Acres',
       desc: 'Our premier riverfront community set along the banks of the sacred Kaveri river. Designed around the deep relationship between people, riparian ecology, and water.',
       img: '/assets/project-images/Esahavana/EV.webp',
       brochure: '/assets/project-images/Eeshavana-Brochure.pdf',
@@ -168,7 +168,7 @@ export default function Projects() {
                         style={{
                           margin: '2px 0 10px 0',
                           padding: '0',
-                          height: '42px',
+                          height: '70px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'flex-start',
@@ -183,9 +183,8 @@ export default function Projects() {
                           height={42}
                           style={{
                             height: 'auto',
-                            maxHeight: '40px',
-                            width: 'auto',
-                            maxWidth: '180px',
+                            width: '170px',
+                            maxWidth: '100%',
                             objectFit: 'contain',
                             objectPosition: 'left center',
                             display: 'block',
@@ -247,8 +246,8 @@ export default function Projects() {
             .project-card-logo-container {
               margin: 4px 0 10px 0 !important;
               padding: 0 !important;
-              height: 42px !important;
-              min-height: 42px !important;
+              height: 70px !important;
+              min-height: 70px !important;
             }
           }
         `}</style>

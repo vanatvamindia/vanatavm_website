@@ -85,7 +85,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
                   backgroundColor: 'var(--accent-gold, #C6A265)',
                 }}
               />
-              VANATVAM JOURNAL
+              VANATVAM ARTICLES
             </span>
             <h1
               style={{
