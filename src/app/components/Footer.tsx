@@ -26,7 +26,7 @@ const PROJECT_LINKS: NavChild[] = [
 
 const NAV: NavItem[] = [
   { Icon: Home, label: "Home", href: "/" },
-  { Icon: Sprout, label: "Our Philosophy", href: "/about" },
+  { Icon: Sprout, label: "About Us", href: "/about" },
   {
     Icon: Layers,
     label: "Projects",
@@ -40,6 +40,8 @@ const NAV: NavItem[] = [
 const SOCIALS = [
   {
     id: "instagram",
+    brandBg: "linear-gradient(45deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%)",
+    brandColor: "#d62976",
     label: "Instagram",
     url: "https://www.instagram.com/vanatvamindia/",
     svg: (
@@ -50,6 +52,8 @@ const SOCIALS = [
   },
   {
     id: "facebook",
+    brandBg: "#1877f2",
+    brandColor: "#1877f2",
     label: "Facebook",
     url: "https://www.facebook.com/vanatvamfarms",
     svg: (
@@ -60,6 +64,8 @@ const SOCIALS = [
   },
   {
     id: "youtube",
+    brandBg: "#ff0000",
+    brandColor: "#ff0000",
     label: "YouTube",
     url: "https://www.youtube.com/@VanaTvam",
     svg: (
@@ -70,6 +76,8 @@ const SOCIALS = [
   },
   {
     id: "linkedin",
+    brandBg: "#0a66c2",
+    brandColor: "#0a66c2",
     label: "LinkedIn",
     url: "https://www.linkedin.com/company/vanatvam-farms/home/",
     svg: (
@@ -237,24 +245,28 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
 
-          <span className="vt-footer__divider vt-hide-md" aria-hidden="true" />
-
-          <div className="vt-footer__socials">
-            {SOCIALS.map((s) => (
-              <Magnetic key={s.id} strength={0.3}>
-                <a
-                  href={s.url}
-                  aria-label={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="vt-footer__social"
-                >
-                  {s.svg}
-                </a>
-              </Magnetic>
-            ))}
+            <div className="vt-footer__socials">
+              {SOCIALS.map((s) => (
+                <Magnetic key={s.id} strength={0.3}>
+                  <a
+                    href={s.url}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vt-footer__social"
+                    style={
+                      {
+                        "--brand-bg": s.brandBg,
+                        "--brand-color": s.brandColor,
+                      } as React.CSSProperties
+                    }
+                  >
+                    {s.svg}
+                  </a>
+                </Magnetic>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -474,7 +486,9 @@ export default function Footer() {
           justify-content: center;
           width: 38px;
           height: 38px;
-          border: 1.5px solid #fff;
+          /* brand colours are always on (Instagram = its pink/orange gradient) */
+          background: var(--brand-bg, transparent);
+          border: 1.5px solid var(--brand-color, #fff);
           border-radius: 10px;
           color: #fff;
           font-size: 1rem;
@@ -486,11 +500,12 @@ export default function Footer() {
         }
         .vt-footer__social:hover,
         .vt-footer__social:focus-visible {
-          background: var(--gold);
-          border-color: var(--gold);
-          color: #0d2414;
+          /* each network's real logo colour (Instagram = its pink/orange gradient) */
+          background: var(--brand-bg, var(--gold));
+          border-color: var(--brand-color, var(--gold));
+          color: #fff;
           transform: translateY(-4px) scale(1.08);
-          box-shadow: 0 8px 20px rgba(242, 183, 5, 0.45);
+          box-shadow: 0 8px 20px color-mix(in srgb, var(--brand-color, #f2b705) 55%, transparent);
         }
         .vt-footer__social:hover i,
         .vt-footer__social:focus-visible i {
@@ -639,9 +654,6 @@ export default function Footer() {
           }
           .vt-footer__brand {
             justify-self: start;
-          }
-          .vt-footer__socials {
-            justify-self: end;
           }
           .vt-footer__bottom {
             display: grid;

@@ -19,9 +19,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const blog = await getBlogById(id);
-  if (!blog) return { title: 'Post Not Found | Vanatvam' };
+  if (!blog) return { title: 'Vanatvam | Post Not Found' };
   return {
-    title: `${blog.title} | Vanatvam Articles`,
+    title: `Vanatvam | ${blog.title}`,
     description: blog.excerpt,
   };
 }
@@ -212,7 +212,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                 color: '#FFFFFF',
                 lineHeight: 1.2,
                 maxWidth: '1120px',
-                marginBottom: '24px',
+                marginBottom: 0,
                 letterSpacing: '-0.02em',
                 fontWeight: 600,
                 textShadow: '0 4px 20px rgba(0, 0, 0, 0.35)',
@@ -220,57 +220,6 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
             >
               {blog.title}
             </h1>
-
-            {/* Author, Date & Editorial Info */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                color: 'rgba(255, 255, 255, 0.85)',
-                fontSize: '0.95rem',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '50%',
-                    backgroundColor: 'rgba(198, 162, 101, 0.25)',
-                    border: '1px solid rgba(198, 162, 101, 0.5)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--accent-gold, #C6A265)',
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                  }}
-                >
-                  VT
-                </span>
-                <span style={{ fontWeight: 600, color: '#FFFFFF' }}>{blog.author}</span>
-              </div>
-              <span
-                style={{
-                  width: '4px',
-                  height: '4px',
-                  background: 'var(--accent-gold, #C6A265)',
-                  borderRadius: '50%',
-                }}
-              />
-              <span>{blog.date}</span>
-              <span
-                style={{
-                  width: '4px',
-                  height: '4px',
-                  background: 'rgba(255, 255, 255, 0.4)',
-                  borderRadius: '50%',
-                }}
-              />
-              <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Vanatvam Articles</span>
-            </div>
           </div>
         </header>
 
