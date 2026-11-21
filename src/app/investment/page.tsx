@@ -25,8 +25,52 @@ import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import RevealText from '@/components/premium/RevealText';
 import Magnetic from '@/components/premium/Magnetic';
+import { riseStyle } from '@/lib/rise';
+import PortraitSource from '@/components/ui/PortraitSource';
+import { responsiveImg } from '@/lib/responsiveImage';
+import { preloadHero } from '@/lib/preloadHero';
+
+/*
+ * Indicative land-value trend, in ₹ lakh per acre, for every project.
+ * ILLUSTRATIVE: `start` is each project's 2018 starting price. Replace these with verified,
+ * sourced figures before relying on them publicly. Every project rises LAND_VALUE_MULTIPLE
+ * times between the first and the last year, so the end value is simply start × multiple.
+ */
+const LAND_VALUE_YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+const LAND_VALUE_MULTIPLE = 6.2;
+// Order here is the order of the legend. `from` is the year a project's line begins; `start` is
+// its price per acre (₹ lakh) in that year. Every project grows at the same yearly rate.
+const landValueProjects = [
+  { name: 'Anantavana', start: 12, from: 2018, color: '#122217', dash: '8 5' },
+  { name: 'Madhuvana', start: 10, from: 2018, color: '#C6A265', dash: undefined },
+  { name: 'Brindavana', start: 11, from: 2018, color: '#2F6B45', dash: undefined },
+  { name: 'Ishavana', start: 20, from: 2022, color: '#8A7A66', dash: '2 6' },
+];
+
+const LV_X0 = 52;
+const LV_X1 = 540;
+const LV_Y_TOP = 24;
+const LV_Y_BOTTOM = 240;
+const LV_Y_MIN = 10;
+const LV_Y_MAX = 80;
+const LV_Y_TICKS = [10, 20, 30, 40, 50, 60, 70, 80];
+const lvX = (i: number) => LV_X0 + ((LV_X1 - LV_X0) * i) / (LAND_VALUE_YEARS.length - 1);
+const lvY = (v: number) => LV_Y_BOTTOM - ((v - LV_Y_MIN) / (LV_Y_MAX - LV_Y_MIN)) * (LV_Y_BOTTOM - LV_Y_TOP);
+
+const landValueSeries = landValueProjects.map((p) => {
+  const firstIndex = LAND_VALUE_YEARS.indexOf(p.from);
+  const yearlyGrowth = Math.pow(LAND_VALUE_MULTIPLE, 1 / (LAND_VALUE_YEARS.length - 1));
+  const points = LAND_VALUE_YEARS.flatMap((_, i) => {
+    if (i < firstIndex) return [];
+    const value = p.start * Math.pow(yearlyGrowth, i - firstIndex);
+    return [{ x: lvX(i), y: lvY(value), value }];
+  });
+  const path = points.map((pt, i) => `${i === 0 ? 'M' : 'L'}${pt.x.toFixed(1)},${pt.y.toFixed(1)}`).join(' ');
+  return { ...p, points, path, end: points[points.length - 1] };
+});
 
 export default function Investment() {
+  preloadHero('/assets/images/Investment.webp');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -236,13 +280,9 @@ export default function Investment() {
           style={{ position: 'absolute', inset: 0, zIndex: 0 }}
         >
           <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet="/assets/images/Investment-mobile.webp"
-              type="image/webp"
-            />
+            <PortraitSource src="/assets/images/Investment.webp" />
             <img
-              src="/assets/images/Investment.webp"
+              {...responsiveImg('/assets/images/Investment.webp')}
               alt="Alternative Investment Opportunities with Vanatvam"
               fetchPriority="high"
               loading="eager"
@@ -272,17 +312,14 @@ export default function Investment() {
           }}
         >
           {/* Section Badge */}
-          <motion.div
-            className="inv-hero-badge"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            style={{
+          <div
+            className="inv-hero-badge vt-rise"
+            style={riseStyle(0, { y: '20px' }, {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '12px',
               marginBottom: '24px',
-            }}
+            })}
           >
             <span style={{ width: '28px', height: '1px', background: 'var(--accent-gold)' }} />
             <span
@@ -296,7 +333,7 @@ export default function Investment() {
             >
               Alternative Investment Opportunities
             </span>
-          </motion.div>
+          </div>
 
           <h1
             className="inv-hero-h1"
@@ -310,8 +347,9 @@ export default function Investment() {
               fontWeight: 500,
             }}
           >
-            <RevealText>Invest with Purpose.</RevealText>{' '}
+            <RevealText immediate>Invest with Purpose.</RevealText>{' '}
             <RevealText
+              immediate
               delay={0.15}
               style={{
                 display: 'block',
@@ -324,34 +362,28 @@ export default function Investment() {
             </RevealText>
           </h1>
 
-          <motion.p
-            className="inv-hero-desc"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
+          <p
+            className="inv-hero-desc vt-rise"
+            style={riseStyle(0.2, { y: '20px' }, {
               fontSize: 'clamp(1.1rem, 2vw, 1.32rem)',
               color: 'rgba(249, 248, 246, 0.88)',
               lineHeight: 1.7,
               fontWeight: 300,
               maxWidth: '740px',
               margin: '0 0 40px',
-            }}
+            })}
           >
             Explore curated investment opportunities in nature-first development with Vanatvam.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="inv-hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{
+          <div
+            className="inv-hero-buttons vt-rise"
+            style={riseStyle(0.3, { y: '20px' }, {
               display: 'flex',
               justifyContent: 'flex-start',
               gap: '16px',
               flexWrap: 'wrap',
-            }}
+            })}
           >
             <Magnetic strength={0.2}>
               <a href="#connect-form" className="btn-pill btn-pill-gold" style={{ padding: '16px 36px', fontSize: '0.92rem' }}>
@@ -365,7 +397,7 @@ export default function Investment() {
                 <ArrowUpRight className="size-4" />
               </a>
             </Magnetic>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -582,7 +614,7 @@ export default function Investment() {
                 src="/assets/images/global-asset-allocation-infographic.webp"
                 alt="Market Volatility and Diversification Analytics"
                 fill
-                unoptimized
+                unoptimized // infographic with small text: always serve the full-resolution original
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{ objectFit: 'cover' }}
               />
@@ -707,6 +739,7 @@ export default function Investment() {
                   src="/assets/images/global-ripple-effects.webp"
                   alt="Market Volatility and Land Diversification"
                   fill
+                unoptimized // infographic with small text: always serve the full-resolution original
                   sizes="(max-width: 768px) 100vw, 50vw"
                   style={{ objectFit: 'contain', padding: '12px' }}
                 />
@@ -832,6 +865,148 @@ export default function Investment() {
               })}
             </div>
           </div>
+
+          {/* Land value over time: indicative price per acre, all projects */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            style={{ marginTop: '60px' }}
+          >
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+              <span style={{ width: '24px', height: '1px', background: 'var(--accent-gold)' }} />
+              <span
+                style={{
+                  color: 'var(--accent-gold)',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Land Value Over Time
+              </span>
+            </div>
+
+            <h3
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
+                color: 'var(--bg-dark-forest, #122217)',
+                lineHeight: 1.2,
+                marginBottom: '14px',
+                fontWeight: 500,
+              }}
+            >
+              Indicative price per acre,{' '}
+              <span style={{ color: 'var(--accent-gold)', fontStyle: 'italic', fontWeight: 400 }}>year by year</span>
+            </h3>
+
+            <p
+              style={{
+                fontSize: '1.05rem',
+                color: '#5A685E',
+                lineHeight: 1.75,
+                fontWeight: 300,
+                maxWidth: '720px',
+                marginBottom: '32px',
+              }}
+            >
+              How indicative land values across all our project regions have moved from 2018 to 2026.
+            </p>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+                gap: 'clamp(24px, 4vw, 56px)',
+                alignItems: 'center',
+              }}
+            >
+              <div
+                style={{
+                  background: '#F9F8F6',
+                  border: '1px solid rgba(18, 34, 23, 0.1)',
+                  borderRadius: '24px',
+                  padding: 'clamp(16px, 2.5vw, 28px)',
+                }}
+              >
+                <svg
+                  viewBox="0 0 560 280"
+                  width="100%"
+                  role="img"
+                  aria-label={`Line chart of indicative land price per acre from ${LAND_VALUE_YEARS[0]} to ${LAND_VALUE_YEARS[LAND_VALUE_YEARS.length - 1]} for ${landValueProjects.map((p) => p.name).join(', ')}, each rising ${LAND_VALUE_MULTIPLE} times`}
+                  style={{ display: 'block' }}
+                >
+                  {LV_Y_TICKS.map((tick) => (
+                    <g key={tick}>
+                      <line x1={LV_X0} x2={LV_X1} y1={lvY(tick)} y2={lvY(tick)} stroke="#E3E1DB" strokeWidth="1" />
+                      <text x={LV_X0 - 8} y={lvY(tick) + 4} textAnchor="end" fontSize="11" fill="#6B756D">
+                        {`₹${tick}L`}
+                      </text>
+                    </g>
+                  ))}
+                  {LAND_VALUE_YEARS.map((year, i) =>
+                    i % 2 === 0 ? (
+                      <text key={year} x={lvX(i)} y={LV_Y_BOTTOM + 24} textAnchor="middle" fontSize="11" fill="#6B756D">
+                        {year}
+                      </text>
+                    ) : null
+                  )}
+                  {landValueSeries.map((s) => (
+                    <g key={s.name}>
+                      <path
+                        d={s.path}
+                        fill="none"
+                        stroke={s.color}
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeDasharray={s.dash}
+                      />
+                      <circle cx={s.end.x} cy={s.end.y} r="5" fill={s.color} />
+                    </g>
+                  ))}
+                </svg>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 22px', marginTop: '8px', paddingLeft: '4px' }}>
+                  {landValueSeries.map((s) => (
+                    <span
+                      key={s.name}
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: '#33403A' }}
+                    >
+                      <i style={{ width: '18px', height: '3px', borderRadius: '2px', background: s.color, display: 'inline-block' }} />
+                      {s.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 'clamp(3.4rem, 7vw, 5.2rem)',
+                    lineHeight: 1,
+                    color: 'var(--accent-gold)',
+                    fontWeight: 500,
+                    marginBottom: '14px',
+                  }}
+                >
+                  {LAND_VALUE_MULTIPLE}×
+                </div>
+                <p style={{ fontSize: '1.08rem', color: '#33403A', lineHeight: 1.7, margin: '0 0 14px', fontWeight: 300 }}>
+                  Indicative rise in land value per acre across our projects between {LAND_VALUE_YEARS[0]} and{' '}
+                  {LAND_VALUE_YEARS[LAND_VALUE_YEARS.length - 1]}.
+                </p>
+                <p style={{ fontSize: '0.82rem', color: '#5A685E', lineHeight: 1.6, margin: 0 }}>
+                  Indicative figures for illustration. Land values can fall as well as rise, and past performance does
+                  not guarantee future returns.
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Full Narrative Banner: The Vanatvam Model */}
           <motion.div

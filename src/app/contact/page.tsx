@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import Magnetic from "@/components/premium/Magnetic";
+import { riseStyle } from "@/lib/rise";
 import {
   MapPin,
   Phone,
@@ -187,16 +188,13 @@ export default function Contact() {
               }}
             >
              {/* Left Column: Office Details & Live Google Map */}
-              <motion.div
-                initial={reduce ? false : { opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: EASE }}
-                style={{
+              <div
+                className="vt-rise"
+                style={riseStyle(0, { y: "24px" }, {
                   display: "flex",
                   flexDirection: "column",
                   gap: "32px",
-                }}
+                })}
               >
                 {/* Office Info Card */}
                 <div
@@ -400,15 +398,10 @@ export default function Contact() {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Right Column: Premium Inquiry & Site Visit Form */}
-              <motion.div
-                initial={reduce ? false : { opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-              >
+              <div className="vt-rise" style={riseStyle(0.1, { y: "24px" })}>
                 <form
                   onSubmit={handleSubmit}
                   style={{
@@ -731,7 +724,7 @@ export default function Contact() {
                     </>
                   )}
                 </form>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -790,7 +783,7 @@ export default function Contact() {
                   number: "03",
                   question: "How far are the project sites from Bengaluru?",
                   answer:
-                    "Madhuvana is ~80 km (Maddur), Anantavana is near Kabini (~210 km), Ishavana is near Kollegala (~130 km), and Brindavana is near Pavagada (~150 km).",
+                    "Madhuvana is ~80 km (Maddur), Anantavana is near Kabini (~210 km), Ishavana is near Shivanasamudra (~130 km), and Brindavana is near Pavagada (~150 km).",
                 },
                 {
                   number: "04",

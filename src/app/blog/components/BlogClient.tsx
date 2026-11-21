@@ -4,16 +4,24 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-import Link from 'next/link';
+import Link from '@/components/ui/AppLink';
 import Image from 'next/image';
 import { BlogPostItem } from '@/data/blogs';
 import { resolvePostImage } from '@/sanity/image';
+import { riseStyle } from '@/lib/rise';
+import RevealText from '@/components/premium/RevealText';
+import PortraitSource from '@/components/ui/PortraitSource';
+import { responsiveImg } from '@/lib/responsiveImage';
+import { preloadHero } from '@/lib/preloadHero';
+
+const HERO_IMG = '/assets/images/Biodiversity.webp';
 
 interface BlogClientProps {
   initialBlogs: BlogPostItem[];
 }
 
 export default function BlogClient({ initialBlogs }: BlogClientProps) {
+  preloadHero(HERO_IMG);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -35,93 +43,156 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
     <>
       <Navigation />
 
+      <style>{`
+        @media (max-width: 900px) {
+          .blog-hero-section {
+            padding-top: clamp(170px, 22vh, 210px) !important;
+            padding-bottom: 50px !important;
+            min-height: auto !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+          .blog-hero-container {
+            padding-left: 0 !important;
+            max-width: 100% !important;
+          }
+          .blog-hero-h1 {
+            font-size: clamp(2.2rem, 7.5vw, 3.8rem) !important;
+          }
+          .blog-hero-badge span:last-child {
+            font-size: 0.75rem !important;
+            letter-spacing: 0.12em !important;
+          }
+        }
+      `}</style>
+
       {/* Hero Header */}
       <section
+        className="hero blog-hero-section"
         style={{
+          minHeight: '100vh',
           position: 'relative',
-          padding: 'clamp(140px, 18vh, 180px) 20px clamp(70px, 9vh, 90px)',
+          display: 'flex',
+          alignItems: 'center',
+          padding: 'clamp(120px, 16vh, 160px) 20px clamp(50px, 8vh, 90px)',
           overflow: 'hidden',
-          background: 'linear-gradient(180deg, #0D1910 0%, #122217 100%)',
-          color: '#FFF',
-          textAlign: 'center',
+          backgroundColor: 'var(--bg-dark-forest, #122217)',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            opacity: 0.12,
-            backgroundImage:
-              'radial-gradient(circle at 20% 30%, #C6A265 0%, transparent 40%), radial-gradient(circle at 80% 70%, #52B788 0%, transparent 40%)',
-            pointerEvents: 'none',
-          }}
-        />
+        <motion.div
+          initial={{ scale: 1.1, opacity: 0.7 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.6, ease: [0.25, 1, 0.5, 1] }}
+          style={{ position: 'absolute', inset: 0, zIndex: 0 }}
+        >
+          <picture>
+            <PortraitSource src={HERO_IMG} />
+            <img
+              {...responsiveImg(HERO_IMG)}
+              alt="Vanatvam articles on natural farming and forest living"
+              fetchPriority="high"
+              loading="eager"
+              decoding="sync"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%' }}
+            />
+          </picture>
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background:
+                'linear-gradient(180deg, rgba(18, 34, 23, 0.35) 0%, rgba(18, 34, 23, 0.6) 70%, #122217 100%)',
+            }}
+          />
+        </motion.div>
 
-        <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '850px', margin: '0 auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+        <div
+          className="container blog-hero-container"
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            textAlign: 'left',
+            maxWidth: '960px',
+            margin: '0 auto 0 0',
+            paddingLeft: 'clamp(58px, 10vw, 180px)',
+          }}
+        >
+          <div
+            className="blog-hero-badge vt-rise"
+            style={riseStyle(0, { y: '20px' }, {
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              marginBottom: '24px',
+            })}
           >
+            <span style={{ width: '28px', height: '1px', background: 'var(--accent-gold)' }} />
             <span
               style={{
-                color: 'var(--accent-gold, #C6A265)',
-                fontSize: '0.85rem',
+                color: 'var(--accent-gold)',
+                fontSize: '0.8rem',
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                border: '1px solid rgba(198, 162, 101, 0.35)',
-                padding: '6px 18px',
-                borderRadius: '999px',
-                backdropFilter: 'blur(6px)',
-                marginBottom: '20px',
               }}
             >
-              <span
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--accent-gold, #C6A265)',
-                }}
-              />
-              VANATVAM JOURNAL
+              Vanatvam Articles
             </span>
-            <h1
+          </div>
+
+          <h1
+            className="blog-hero-h1"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(2.8rem, 5.8vw, 5rem)',
+              color: '#FFFFFF',
+              lineHeight: 1.1,
+              marginBottom: '26px',
+              letterSpacing: '-0.02em',
+              fontWeight: 500,
+            }}
+          >
+            <RevealText immediate>Stories</RevealText>{' '}
+            <RevealText
+              immediate
+              delay={0.15}
               style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2.75rem, 5.5vw, 4.4rem)',
-                color: '#FFF',
-                marginTop: '10px',
-                lineHeight: 1.15,
-                fontWeight: 600,
-                letterSpacing: '-0.02em',
+                display: 'block',
+                color: 'var(--accent-gold)',
+                fontStyle: 'italic',
+                fontWeight: 400,
               }}
             >
-              Stories from the Soil
-            </h1>
-            <p
-              style={{
-                fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
-                color: 'rgba(249, 248, 246, 0.85)',
-                maxWidth: '680px',
-                margin: '20px auto 0',
-                lineHeight: 1.7,
-                fontWeight: 300,
-              }}
-            >
-              Insights, updates, and deep dives into ecological restoration, Vedic forest science,
-              natural farm communities, and sustainable wealth creation.
-            </p>
-          </motion.div>
+              from the Soil.
+            </RevealText>
+          </h1>
+
+          <p
+            className="vt-rise"
+            style={riseStyle(0.2, { y: '20px' }, {
+              fontSize: 'clamp(1.1rem, 2vw, 1.32rem)',
+              color: 'rgba(249, 248, 246, 0.88)',
+              lineHeight: 1.7,
+              fontWeight: 300,
+              maxWidth: '740px',
+              margin: 0,
+            })}
+          >
+            Insights, updates, and deep dives into ecological restoration, Vedic forest science,
+            natural farm communities, and sustainable wealth creation.
+          </p>
         </div>
       </section>
 
       {/* Filter and Content Section */}
-      <section style={{ padding: '60px 20px 100px', background: 'var(--bg-cream, #F9F8F6)', minHeight: '60vh' }}>
+      <section
+        style={{
+          position: 'relative',
+          padding: '60px 20px 100px',
+          background: 'var(--bg-cream, #F9F8F6)',
+          minHeight: '60vh',
+        }}
+      >
         <div className="container" style={{ maxWidth: '1280px', margin: '0 auto' }}>
           {/* Articles Grid (1x1 Aspect Ratio Cards) */}
           {filteredBlogs.length === 0 ? (
@@ -161,7 +232,9 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
               {filteredBlogs.map((blog, i) => (
                 <motion.article
                   key={blog.id}
-                  initial={{ opacity: 0, y: 25 }}
+                  // First row is above the fold: render it visible in the server HTML so the
+                  // cover image can paint immediately; later cards keep the scroll fade-in.
+                  initial={i < 3 ? false : { opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
@@ -201,7 +274,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
                         src={resolvePostImage(blog)}
                         alt={blog.title}
                         fill
-                        unoptimized
+                        preload={i === 0}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         style={{
                           objectFit: 'cover',

@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import Magnetic from "@/components/premium/Magnetic";
 import { Home, Sprout, Layers, TrendingUp, BookOpen, MapPin, Phone, Mail } from "lucide-react";
+import { responsiveImg } from "@/lib/responsiveImage";
 
 /* 👉 Footer artwork (green hills / sunrise / hut / leaves) */
 const FOOTER_BG = "/assets/images/footer-bg.webp";
@@ -25,7 +26,7 @@ const PROJECT_LINKS: NavChild[] = [
 
 const NAV: NavItem[] = [
   { Icon: Home, label: "Home", href: "/" },
-  { Icon: Sprout, label: "Our Philosophy", href: "/about" },
+  { Icon: Sprout, label: "About Us", href: "/about" },
   {
     Icon: Layers,
     label: "Projects",
@@ -33,12 +34,14 @@ const NAV: NavItem[] = [
     children: PROJECT_LINKS,
   },
   { Icon: TrendingUp, label: "Investment", href: "/investment" },
-  { Icon: BookOpen, label: "Journal", href: "/blog" },
+  { Icon: BookOpen, label: "Articles", href: "/blog" },
 ];
 
 const SOCIALS = [
   {
     id: "instagram",
+    brandBg: "linear-gradient(45deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%)",
+    brandColor: "#d62976",
     label: "Instagram",
     url: "https://www.instagram.com/vanatvamindia/",
     svg: (
@@ -49,6 +52,8 @@ const SOCIALS = [
   },
   {
     id: "facebook",
+    brandBg: "#1877f2",
+    brandColor: "#1877f2",
     label: "Facebook",
     url: "https://www.facebook.com/vanatvamfarms",
     svg: (
@@ -59,6 +64,8 @@ const SOCIALS = [
   },
   {
     id: "youtube",
+    brandBg: "#ff0000",
+    brandColor: "#ff0000",
     label: "YouTube",
     url: "https://www.youtube.com/@VanaTvam",
     svg: (
@@ -69,6 +76,8 @@ const SOCIALS = [
   },
   {
     id: "linkedin",
+    brandBg: "#0a66c2",
+    brandColor: "#0a66c2",
     label: "LinkedIn",
     url: "https://www.linkedin.com/company/vanatvam-farms/home/",
     svg: (
@@ -120,7 +129,7 @@ export default function Footer() {
             aria-label="VanaTvam home"
           >
             <img
-              src="/assets/images/Project-Logos/vanatvam.webp"
+              {...responsiveImg("/assets/images/Project-Logos/vanatvam.webp", "(max-width: 768px) 60vw, 16vw")}
               alt="VanaTvam Logo"
               className="vt-footer__logo"
               loading="lazy"
@@ -236,24 +245,28 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
 
-          <span className="vt-footer__divider vt-hide-md" aria-hidden="true" />
-
-          <div className="vt-footer__socials">
-            {SOCIALS.map((s) => (
-              <Magnetic key={s.id} strength={0.3}>
-                <a
-                  href={s.url}
-                  aria-label={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="vt-footer__social"
-                >
-                  {s.svg}
-                </a>
-              </Magnetic>
-            ))}
+            <div className="vt-footer__socials">
+              {SOCIALS.map((s) => (
+                <Magnetic key={s.id} strength={0.3}>
+                  <a
+                    href={s.url}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vt-footer__social"
+                    style={
+                      {
+                        "--brand-bg": s.brandBg,
+                        "--brand-color": s.brandColor,
+                      } as React.CSSProperties
+                    }
+                  >
+                    {s.svg}
+                  </a>
+                </Magnetic>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -268,8 +281,8 @@ export default function Footer() {
             <Link href="/terms">Terms &amp; Conditions</Link>
           </div>
           <p className="vt-footer__copy">
-            &copy; {new Date().getFullYear()} VanaTvam Private Limited. CIN:
-            U01100KA2022PTC159587
+            &copy; {new Date().getFullYear()} VanaTvam Private Limited.{" "}
+            <span className="vt-footer__cin">CIN: U01100KA2022PTC159587</span>
           </p>
         </div>
       </div>
@@ -280,10 +293,15 @@ export default function Footer() {
           position: relative;
           z-index: 5;
           color: #fff;
-          background-color: var(--bg-dark-forest, #0d2414);
-          background-image: url(${FOOTER_BG});
-          background-size: cover;
-          background-position: center bottom;
+          /* The artwork is a wide 1599x209 banner. "cover" stretched it 2-3x (blurry), so it is
+             drawn at the footer's width, anchored to the bottom, and the space above is filled
+             with the banner's own sky colour (#0b3515) so the two blend seamlessly. */
+          /* Layer 1 fades the fill colour into the banner's top edge (hides the seam).
+             Banner height = width x 209/1599 = 13.07vw; the fade covers its top 4.6vw. */
+          background-color: #0b3515;
+          background-image: linear-gradient(#0b3515, rgba(11, 53, 21, 0)), url(${FOOTER_BG});
+          background-size: 100% 4.6vw, 100% auto;
+          background-position: center bottom 8.47vw, center bottom;
           background-repeat: no-repeat;
           min-height: 345px;
           display: flex;
@@ -468,7 +486,9 @@ export default function Footer() {
           justify-content: center;
           width: 38px;
           height: 38px;
-          border: 1.5px solid #fff;
+          /* brand colours are always on (Instagram = its pink/orange gradient) */
+          background: var(--brand-bg, transparent);
+          border: 1.5px solid var(--brand-color, #fff);
           border-radius: 10px;
           color: #fff;
           font-size: 1rem;
@@ -480,11 +500,12 @@ export default function Footer() {
         }
         .vt-footer__social:hover,
         .vt-footer__social:focus-visible {
-          background: var(--gold);
-          border-color: var(--gold);
-          color: #0d2414;
+          /* each network's real logo colour (Instagram = its pink/orange gradient) */
+          background: var(--brand-bg, var(--gold));
+          border-color: var(--brand-color, var(--gold));
+          color: #fff;
           transform: translateY(-4px) scale(1.08);
-          box-shadow: 0 8px 20px rgba(242, 183, 5, 0.45);
+          box-shadow: 0 8px 20px color-mix(in srgb, var(--brand-color, #f2b705) 55%, transparent);
         }
         .vt-footer__social:hover i,
         .vt-footer__social:focus-visible i {
@@ -534,6 +555,15 @@ export default function Footer() {
           flex: 1;
           text-align: center;
           color: #fff;
+        }
+        /* Keep "CIN:" and the number together; on phones they get their own line. */
+        .vt-footer__cin {
+          white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+          .vt-footer__cin {
+            display: block;
+          }
         }
 
         /* ---------- Projects dropdown (opens upward) ---------- */
@@ -611,6 +641,33 @@ export default function Footer() {
           padding-left: 20px;
         }
 
+        /* ---------- desktop: true 3-column alignment ----------
+           Top row is [brand | divider | nav+contact | divider | socials] with equal 1fr
+           outer columns, so the nav+contact block sits exactly on the container centre.
+           The bottom row uses the same centre, so the copyright is centred under it. */
+        @media (min-width: 1101px) {
+          .vt-footer__top {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
+            column-gap: 76px;
+            justify-content: stretch;
+          }
+          .vt-footer__brand {
+            justify-self: start;
+          }
+          .vt-footer__bottom {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+          }
+          .vt-footer__legal {
+            justify-self: start;
+          }
+          .vt-footer__copy {
+            flex: none;
+            white-space: nowrap;
+          }
+        }
+
         /* ---------- responsive ---------- */
         @media (max-width: 1100px) {
           .vt-hide-md {
@@ -626,6 +683,13 @@ export default function Footer() {
           }
         }
         @media (max-width: 640px) {
+          /* Phones: show the centre of the banner (sun and hills) larger, but only ~1.3x of
+             its real pixels on a 2.6x-density screen, instead of the previous ~8x stretch. */
+          .vt-footer {
+            /* banner is twice as wide here, so 26.14vw tall; fade its top 9vw */
+            background-size: 100% 9vw, 200% auto;
+            background-position: center bottom 17.14vw, center bottom;
+          }
           .vt-footer__menu ul {
             min-width: min(260px, 80vw);
           }

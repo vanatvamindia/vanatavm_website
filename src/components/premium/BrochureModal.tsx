@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Leaf, Download, ArrowRight, CheckCircle2 } from "lucide-react";
 
-type BrochureModalProps = {
+export type BrochureModalProps = {
   isOpen: boolean;
   onClose: () => void;
   brochureUrl?: string | null;

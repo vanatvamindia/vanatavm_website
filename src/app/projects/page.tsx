@@ -3,14 +3,19 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-import Link from 'next/link';
+import Link from '@/components/ui/AppLink';
 import RevealText from '@/components/premium/RevealText';
+import { riseStyle } from '@/lib/rise';
 import Magnetic from '@/components/premium/Magnetic';
 import TiltCard from '@/components/premium/TiltCard';
 import ProjectTunnel from '@/components/premium/ProjectTunnel';
-import BrochureModal from '@/components/premium/BrochureModal';
+import BrochureModal from '@/components/premium/LazyBrochureModal';
+import { responsiveImg } from '@/lib/responsiveImage';
+import PortraitSource from '@/components/ui/PortraitSource';
+import { preloadHero } from '@/lib/preloadHero';
 
 export default function Projects() {
+  preloadHero('/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp');
   const [filter, setFilter] = useState('all');
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState({
@@ -66,7 +71,7 @@ export default function Projects() {
       category: 'riverfront',
       name: 'ISHAVANA',
       logo: '/assets/images/Project-Logos/4.webp',
-      location: 'KOLLEGALA - 10 Acres',
+      location: 'Shivanasamudra - 10 Acres',
       desc: 'Our premier riverfront community set along the banks of the sacred Kaveri river. Designed around the deep relationship between people, riparian ecology, and water.',
       img: '/assets/project-images/Esahavana/EV.webp',
       brochure: '/assets/project-images/Eeshavana-Brochure.pdf',
@@ -95,13 +100,9 @@ export default function Projects() {
       <section className="hero" style={{ height: '100vh', minHeight: '600px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel-mobile.webp"
-              type="image/webp"
-            />
+            <PortraitSource src="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp" />
             <img
-              src="/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp"
+              {...responsiveImg('/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp')}
               alt="Projects Background"
               fetchPriority="high"
               loading="eager"
@@ -115,15 +116,15 @@ export default function Projects() {
         </div>
 
         <div className="container relative" style={{ zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', paddingTop: '80px' }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
+          <div className="vt-rise" style={riseStyle(0, { y: '30px' })}>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(3.5rem, 6.5vw, 6rem)', color: '#FFF', lineHeight: 0.95, marginBottom: '24px', letterSpacing: '-0.02em', textShadow: '0 4px 24px rgba(0,0,0,0.5)' }}>
-              <RevealText>Explore our</RevealText><br/>
-              <RevealText delay={0.1} style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>Natural communities.</RevealText>
+              <RevealText immediate>Explore our</RevealText><br/>
+              <RevealText immediate delay={0.1} style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>Natural communities.</RevealText>
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.3rem', maxWidth: '640px', lineHeight: 1.6, textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
-             In Bangalore Mysore Chamarajanagar corridor. Where nature heritage and culture come together. 
+             In Bangalore Mysore Chamarajanagar corridor. Where nature heritage and culture come together.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -154,7 +155,7 @@ export default function Projects() {
                     <motion.img 
                       whileHover={{ scale: 1.05 }} 
                       transition={{ duration: 0.6, ease: 'easeOut' }}
-                      src={proj.img} alt={proj.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      {...responsiveImg(proj.img, '(max-width: 768px) 130vw, 100vw')} alt={proj.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
 
                   </TiltCard>
@@ -167,14 +168,14 @@ export default function Projects() {
                         style={{
                           margin: '2px 0 10px 0',
                           padding: '0',
-                          height: '42px',
+                          height: '70px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'flex-start',
                         }}
                       >
                         <img
-                          src={proj.logo}
+                          {...responsiveImg(proj.logo, '(max-width: 768px) 45vw, 14vw')}
                           alt={proj.name}
                           loading="lazy"
                           decoding="async"
@@ -182,9 +183,8 @@ export default function Projects() {
                           height={42}
                           style={{
                             height: 'auto',
-                            maxHeight: '40px',
-                            width: 'auto',
-                            maxWidth: '180px',
+                            width: '170px',
+                            maxWidth: '100%',
                             objectFit: 'contain',
                             objectPosition: 'left center',
                             display: 'block',
@@ -246,8 +246,8 @@ export default function Projects() {
             .project-card-logo-container {
               margin: 4px 0 10px 0 !important;
               padding: 0 !important;
-              height: 42px !important;
-              min-height: 42px !important;
+              height: 70px !important;
+              min-height: 70px !important;
             }
           }
         `}</style>

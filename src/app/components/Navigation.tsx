@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import { usePathname } from "next/navigation";
 import {
   Home,
@@ -23,10 +23,10 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { path: "/", label: "Home", icon: Home },
-  { path: "/about", label: "Our Philosophy", icon: Leaf },
+  { path: "/about", label: "About Us", icon: Leaf },
   { path: "/projects", label: "Projects", icon: Sprout },
   { path: "/investment", label: "Investment", icon: Coins },
-  { path: "/blog", label: "Journal", icon: BookOpen },
+  { path: "/blog", label: "Articles", icon: BookOpen },
 ];
 
 const EASE_PREMIUM: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -40,29 +40,16 @@ export default function Navigation() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [hidden, setHidden] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   const lastScrollY = useRef<number>(0);
   const pathname = usePathname();
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile, { passive: true });
-
     lastScrollY.current = window.scrollY;
 
     const handleScroll = () => {
       const currentY = window.scrollY;
       setScrolled(currentY > 30);
-
-      // On mobile devices, keep navbar constant (always visible at top)
-      if (window.innerWidth <= 1024) {
-        setHidden(false);
-        return;
-      }
 
       const delta = currentY - lastScrollY.current;
 
@@ -87,7 +74,6 @@ export default function Navigation() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("resize", checkMobile);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -112,7 +98,7 @@ export default function Navigation() {
   return (
     <>
       <motion.header
-        animate={{ y: !isMobile && hidden && !isDrawerOpen ? -140 : 0 }}
+        animate={{ y: hidden && !isDrawerOpen ? -140 : 0 }}
         transition={{ duration: 0.35, ease: EASE_PREMIUM }}
         style={{
           position: "fixed",

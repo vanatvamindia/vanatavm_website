@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
+import { responsiveImg } from '@/lib/responsiveImage';
 
 export interface HangingPolaroidItem {
   id: string | number;
@@ -101,7 +102,28 @@ export default function HangingPolaroidCarousel({
   // Animation frame loop for continuous silky-smooth auto-moving
   const lastTimeRef = useRef<number | null>(null);
 
+  // Only animate while the carousel is on screen: an always-running frame loop costs CPU and
+  // battery on every page view, even when the visitor is reading a different section.
+  const [isOnScreen, setIsOnScreen] = useState(false);
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setIsOnScreen(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsOnScreen(entry.isIntersecting),
+      { rootMargin: '200px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Restart timing from the next frame so resuming never jumps by the time spent paused.
+    lastTimeRef.current = null;
+    if (!isOnScreen) return;
+
     let animId: number;
 
     const animate = (time: number) => {
@@ -130,7 +152,7 @@ export default function HangingPolaroidCarousel({
 
     animId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animId);
-  }, [isDragging, isHovered, autoSpeed, singleLoopWidth, prefersReducedMotion, xOffset]);
+  }, [isOnScreen, isDragging, isHovered, autoSpeed, singleLoopWidth, prefersReducedMotion, xOffset]);
 
   // Drag handlers with momentum swing
   const lastDragPos = useRef<number>(0);
@@ -273,7 +295,7 @@ export default function HangingPolaroidCarousel({
               onClick={(event) => event.stopPropagation()}
             >
               <img
-                src={selectedItem.img}
+                {...responsiveImg(selectedItem.img, '(max-width: 768px) 100vw, 70vw')}
                 alt={selectedItem.alt || selectedItem.title || 'Vanatvam moment'}
                 className="max-h-[85vh] max-w-[92vw] rounded-sm object-contain shadow-2xl"
               />
@@ -458,7 +480,7 @@ function ClampedPolaroid({
               }}
             >
               <img
-                src={item.img}
+                {...responsiveImg(item.img, '(max-width: 768px) 92vw, 26vw')}
                 alt={item.alt || 'Vanatvam moment'}
                 className="block h-full w-full pointer-events-none select-none object-cover transition-transform duration-500 ease-out hover:scale-104"
               />

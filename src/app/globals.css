@@ -555,6 +555,11 @@ ul {
   overflow: hidden;
 }
 
+/* Home hero: fixed full-screen height (like the project heroes) so the text can sit at the bottom */
+.hero-carousel {
+  height: 100vh;
+}
+
 .hero-bg-wrapper {
   position: absolute;
   top: 0;
@@ -570,9 +575,10 @@ ul {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   height: 100%;
   padding-top: 80px;
+  padding-bottom: clamp(8px, 1vh, 14px);
 }
 
 .hero-badge {
@@ -642,8 +648,8 @@ ul {
 
 .hero-carousel-nav {
   position: absolute;
-  bottom: 64px;
-  right: 160px;
+  bottom: 14px;
+  right: 40px;
   display: flex;
   gap: 15px;
   z-index: 15;
@@ -687,8 +693,9 @@ ul {
 
 .hero-carousel-dots {
   position: absolute;
-  bottom: 64px;
-  left: 40px;
+  /* Same baseline as the arrows, sitting just left of them (bottom-right corner) */
+  bottom: 35px;
+  right: 180px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -781,6 +788,34 @@ ul {
   z-index: 3;
   width: 100%;
   margin-top: 20px;
+}
+
+/* ---- First-paint entrance animations (CSS only, no JavaScript) ----
+   Above-the-fold text must already be visible in the server-rendered HTML so the browser
+   can paint it straight away (this is what Largest Contentful Paint measures). These
+   animate position only, never opacity, and start on first paint instead of waiting for
+   React to hydrate. Set the stagger/offset with riseStyle() from "@/lib/rise".
+   Reduced-motion users get the end state via the global prefers-reduced-motion rule. */
+@keyframes vt-rise {
+  from {
+    transform: translate3d(var(--rise-x, 0), var(--rise-y, 24px), 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.vt-rise {
+  animation: vt-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rise-delay, 0s);
+}
+
+/* Word "wipe": the word slides up from below inside its overflow-hidden parent. */
+.vt-rise-mask {
+  display: inline-block;
+  --rise-y: 110%;
+  animation: vt-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rise-delay, 0s);
 }
 
 .hero-subtitle {
@@ -885,20 +920,34 @@ ul {
   white-space: nowrap;
 }
 
-.reviews-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: vanaMarqueeScroll 60s linear infinite;
+/* Section title of the master-plan amenity gallery (StickyMasterPlanGallery). On phones it is
+   sized to the screen width and kept on one line, e.g. "Common Amenities (A – G)". */
+.mp-gallery-title {
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
 }
 
-.reviews-marquee-track:hover {
-  animation-play-state: paused;
+@media (max-width: 640px) {
+  .mp-gallery-title {
+    font-size: min(1.6rem, 6.2vw);
+    white-space: nowrap;
+  }
 }
 
-.reviews-marquee-group {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+/* Auto-scrolling rows (src/components/premium/AutoScrollRow.tsx: home photos and videos):
+   scrollable by hand and auto-scrolled by script, with the scrollbar itself hidden. */
+.auto-scroll-row {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+}
+
+.auto-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+.auto-scroll-row:active {
+  cursor: grabbing;
 }
 
 @keyframes vanaMarqueeScroll {
@@ -907,7 +956,7 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vana-marquee-track, .reviews-marquee-track {
+  .vana-marquee-track {
     animation: none;
   }
 }
@@ -3899,8 +3948,13 @@ ul {
 
   .hero-container {
     padding-top: calc(var(--header-height, 70px) + 20px) !important;
+    padding-bottom: 24px !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Home hero: stay clear of the carousel dots/arrows at the bottom */
+  .hero-carousel .hero-container {
     padding-bottom: 90px !important;
-    justify-content: center !important;
   }
 
   .hero-badge {
@@ -4049,8 +4103,7 @@ ul {
   .birds-grid-6,
   .ishavana-stats-grid,
   .projects-grid,
-  .project-cards-grid,
-  .founder-projects-row {
+  .project-cards-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }

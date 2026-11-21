@@ -10,6 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import type { MotionValue, Variants } from "framer-motion";
+import { responsiveImg } from "@/lib/responsiveImage";
 
 type ProjectItem = {
   id: string;
@@ -207,7 +208,7 @@ function TunnelCard({
       <div className="project-tunnel-card-float" style={floatStyle}>
         {card.item.img ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={card.item.img} alt="" draggable={false} loading="lazy" />
+          <img {...responsiveImg(card.item.img, "(max-width: 768px) 90vw, 60vw")} alt="" draggable={false} loading="lazy" />
         ) : (
           <div className="project-tunnel-card-placeholder" />
         )}

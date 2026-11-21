@@ -2,11 +2,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
-import Link from "next/link";
+import Link from "@/components/ui/AppLink";
 import dynamic from "next/dynamic";
 import Navigation from "@/app/components/Navigation";
-import ClientStoriesCarousel from "@/components/ui/ClientStoriesCarousel";
-import LiteYouTube from "@/components/ui/LiteYouTube";
+import VideoTestimonials from "@/components/premium/VideoTestimonials";
+import AutoScrollRow from "@/components/premium/AutoScrollRow";
 
 const Footer = dynamic(() => import("@/app/components/Footer"), { ssr: true });
 import {
@@ -25,11 +25,13 @@ import {
   MoveLeft,
   ChevronLeft,
   ChevronRight,
-  PlayCircle,
 } from "lucide-react";
 import Magnetic from "@/components/premium/Magnetic";
 import Counter from "@/components/premium/Counter";
 import { useLenis } from "@/components/premium/SmoothScroll";
+import { responsiveImg } from "@/lib/responsiveImage";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
 
 type PolaroidItem = {
   id: string;
@@ -46,7 +48,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Deepotsava",
     subtitle:
       "Hundreds of earthen lamps lovingly lit across pathways, courtyards, and sacred groves.",
-    img: "/event-images/DSC08963-thumb.webp",
+    img: "/event-images/DSC08963.webp",
   },
   {
     id: "banana-orchard",
@@ -54,7 +56,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Banana Grove",
     subtitle:
       "Vibrant multi-canopy banana and fruit orchards nurtured through chemical-free living soil.",
-    img: "/assets/life/vanatvam3-thumb.webp",
+    img: "/assets/life/vanatvam3.webp",
   },
   {
     id: "vasantotsava",
@@ -62,7 +64,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Vasantotsava",
     subtitle:
       "Joyous spring celebration with music, guided forest walks, and organic farm feasts.",
-    img: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard-thumb.webp",
+    img: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp",
   },
   {
     id: "brick-courtyard",
@@ -70,7 +72,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Brick Courtyard",
     subtitle:
       "Vernacular sustainable architecture embracing terracotta courtyards and open breeze pavilions.",
-    img: "/assets/life/vanatvam-thumb.webp",
+    img: "/assets/life/vanatvam.webp",
   },
   {
     id: "nursery-saplings",
@@ -78,7 +80,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Native Nursery",
     subtitle:
       "Propagating indigenous forestry saplings to restore ancient biodiversity and sacred groves.",
-    img: "/assets/life/vanatvam1-thumb.webp",
+    img: "/assets/life/vanatvam1.webp",
   },
   {
     id: "bonfire-nights",
@@ -86,7 +88,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Bonfire Nights",
     subtitle:
       "Stargazing, storytelling, and communal cooking around gentle twilight farm fires.",
-    img: "/event-images/DSC09025-thumb.webp",
+    img: "/event-images/DSC09025.webp",
   },
   {
     id: "green-tunnel",
@@ -94,7 +96,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Canopy Trails",
     subtitle:
       "Tranquil walking pathways winding through living bamboo clusters and bird-friendly flora.",
-    img: "/assets/life/vanatvam2-thumb.webp",
+    img: "/assets/life/vanatvam2.webp",
   },
     {
     id: "green-tunnel-2",
@@ -102,7 +104,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
     caption: "Canopy Trails",
     subtitle:
       "Tranquil walking pathways winding through living bamboo clusters and bird-friendly flora.",
-    img: "/assets/life/vanatvam4-thumb.webp",
+    img: "/assets/life/vanatvam4.webp",
   },
   
 ];
@@ -113,55 +115,161 @@ const heroSlides = [
     name: "ISHAVANA",
     tagline: "A premium riverfront community on the sacred Kaveri.",
     img: "/assets/project-images/Esahavana/EV.webp",
-    mobileImg: "/assets/project-images/Esahavana/EV-mobile.webp",
   },
   {
     id: "anantavana",
     name: "ANANTAVANA",
     tagline: "An Extensive Eco Conservation project to restore Bio Diversity.",
     img: "/assets/project-images/Ananthavana/hero-image-2.webp",
-    mobileImg: "/assets/project-images/Ananthavana/hero-image-2-mobile.webp",
   },
   {
     id: "madhuvana",
     name: "MADHUVANA",
     tagline: "A dense water-forest ecosystem built around 250+ native trees.",
     img: "/assets/project-images/Maduvana/hero.webp",
-    mobileImg: "/assets/project-images/Maduvana/hero-mobile.webp",
   },
   {
     id: "brindavana",
     name: "BRINDAVANA",
     tagline: "Barren semi-arid land turned into a thriving ecosystem.",
     img: "/assets/project-images/Brindavana/brindavanaaa.webp",
-    mobileImg: "/assets/project-images/Brindavana/brindavanaaa-mobile.webp",
   },
 ];
 
+/** Per-tab memory of the hero project on screen, used to restore it after the Back button. */
+const HERO_SLIDE_KEY = "vt-home-hero-slide";
+
+// Back navigations handled inside Next.js (no full reload) don't show up as "back_forward" in
+// the browser's navigation timing, so note them here; the home page reads and clears the flag.
+let cameBackViaHistory = false;
+if (typeof window !== "undefined") {
+  window.addEventListener("popstate", () => {
+    cameBackViaHistory = true;
+  });
+}
+
 export default function Home() {
+  preloadHero(heroSlides[0].img);
   const lenisRef = useLenis();
   const [activeSlide, setActiveSlide] = useState(0);
   const [slideChanged, setSlideChanged] = useState(false);
-  const pausedRef = useRef(false);
+
+  // Coming back with the Back button returns to the project that was on screen (e.g. Project 2)
+  // instead of starting over. New visits, links and refreshes still start at the first project.
+  useEffect(() => {
+    let saved = 0;
+    try {
+      const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+      const cameBack = cameBackViaHistory || nav?.type === "back_forward";
+      cameBackViaHistory = false;
+      if (cameBack) saved = Number(sessionStorage.getItem(HERO_SLIDE_KEY));
+    } catch {
+      // Storage unavailable (e.g. private mode restrictions): just start at the first project.
+    }
+    if (!Number.isInteger(saved) || saved <= 0 || saved >= heroSlides.length) return;
+    // Applied on the next frame, without the fade, so the restored project simply appears.
+    const frame = requestAnimationFrame(() => setActiveSlide(saved));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(HERO_SLIDE_KEY, String(activeSlide));
+    } catch {
+      // Storage unavailable: nothing to remember.
+    }
+  }, [activeSlide]);
+  // Auto-rotation starts only after the visitor's first scroll, tap, click or key press.
+  // Rotating on a timer from page load makes each new (larger) slide heading count as a fresh
+  // "largest contentful paint", so speed tests like Lighthouse report the page as seconds slower
+  // than it really is. Real visitors almost always interact within moments, so they still see
+  // the carousel rotate; the prev/next arrows and dots work from the start.
+  const [autoRotate, setAutoRotate] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (!pausedRef.current) {
-        setSlideChanged(true);
-        setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-      }
-    }, 6000);
-    return () => clearInterval(timer);
+    if (autoRotate) return;
+    const events = ["scroll", "wheel", "pointerdown", "touchstart", "keydown"] as const;
+    const start = () => setAutoRotate(true);
+    events.forEach((e) => window.addEventListener(e, start, { passive: true, once: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, start));
+  }, [autoRotate]);
+
+  // Bumped on every manual change so the 6s timer restarts and the chosen slide gets a full 6s.
+  const [manualNavCount, setManualNavCount] = useState(0);
+
+  // Rotation pauses once the visitor scrolls past the hero and resumes (with a fresh 6s)
+  // when they scroll back up. "In view" means at least a quarter of the hero is visible.
+  // (This replaces the old pause-on-hover: the hero fills the screen, so on desktop the mouse
+  // was nearly always over it and rotation rarely ran, and on phones a tap fired "mouse enter"
+  // with no matching "leave", pausing it for good.)
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroInView, setHeroInView] = useState(true);
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.intersectionRatio >= 0.25),
+      { threshold: [0, 0.25, 0.5] }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  const nextSlide = () => {
+  useEffect(() => {
+    if (!autoRotate || !heroInView) return;
+    const timer = setInterval(() => {
+      setSlideChanged(true);
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [autoRotate, heroInView, manualNavCount]);
+
+  const goToSlide = (step: 1 | -1) => {
     setSlideChanged(true);
-    setActiveSlide((p) => (p + 1) % heroSlides.length);
+    setManualNavCount((n) => n + 1);
+    setActiveSlide((p) => (p + step + heroSlides.length) % heroSlides.length);
   };
-  const prevSlide = () => {
-    setSlideChanged(true);
-    setActiveSlide((p) => (p - 1 + heroSlides.length) % heroSlides.length);
+  const nextSlide = () => goToSlide(1);
+  const prevSlide = () => goToSlide(-1);
+
+  // Touch: swipe left/right on the hero to change project. Only clearly horizontal, quick
+  // swipes count, so vertical scrolling and taps on the buttons behave exactly as before.
+  const swipeStart = useRef<{ x: number; y: number; t: number } | null>(null);
+  const onHeroTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    swipeStart.current = { x: touch.clientX, y: touch.clientY, t: Date.now() };
   };
+  const onHeroTouchEnd = (e: React.TouchEvent) => {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    if (!start || e.changedTouches.length === 0) return;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    const isSwipe = Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - start.t < 800;
+    if (isSwipe) goToSlide(dx < 0 ? 1 : -1); // swipe left → next project
+  };
+
+  // Keyboard: ← / → move between projects while the hero is on screen.
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.defaultPrevented) return;
+      // Never hijack arrows while the visitor is typing or using another widget.
+      const t = e.target as HTMLElement | null;
+      if (t?.closest("input, textarea, select, [contenteditable='true'], [role='slider'], [role='listbox']")) return;
+      // Only while at least half of the hero is visible.
+      const r = heroRef.current?.getBoundingClientRect();
+      if (!r || Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0) < r.height / 2) return;
+      e.preventDefault();
+      setSlideChanged(true);
+      setManualNavCount((n) => n + 1);
+      const step = e.key === "ArrowRight" ? 1 : -1;
+      setActiveSlide((p) => (p + step + heroSlides.length) % heroSlides.length);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
   const slide = heroSlides[activeSlide];
 
   const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -198,14 +306,18 @@ export default function Home() {
 
       {/* ORIGINAL HERO SECTION RESTORED */}
       <section
+        ref={heroRef}
         className="hero hero-carousel"
         id="hero"
-        onMouseEnter={() => {
-          pausedRef.current = true;
+        aria-roledescription="carousel"
+        aria-label="Featured projects (swipe, or use the left and right arrow keys, to switch)"
+        onTouchStart={onHeroTouchStart}
+        onTouchEnd={onHeroTouchEnd}
+        onTouchCancel={() => {
+          swipeStart.current = null;
         }}
-        onMouseLeave={() => {
-          pausedRef.current = false;
-        }}
+        // Browser keeps vertical scrolling; horizontal swipes are left to the carousel.
+        style={{ touchAction: "pan-y" }}
       >
         <AnimatePresence mode="sync">
           <motion.div
@@ -217,13 +329,9 @@ export default function Home() {
             transition={{ duration: 1.1, ease: "easeInOut" }}
           >
             <picture>
-              <source
-                media="(max-width: 768px)"
-                srcSet={slide.img}
-                type="image/webp"
-              />
+              <PortraitSource src={slide.img} />
               <img
-                src={slide.img}
+                {...responsiveImg(slide.img)}
                 alt={slide.name}
                 fetchPriority={slide.id === heroSlides[0].id ? "high" : "auto"}
                 loading={slide.id === heroSlides[0].id ? "eager" : "lazy"}
@@ -379,7 +487,7 @@ export default function Home() {
                 }}
               >
                 <img
-                  src="/assets/project-images/Ananthavana/ananthavana-hero.webp"
+                  {...responsiveImg("/assets/project-images/Ananthavana/ananthavana-hero.webp", "(max-width: 768px) 175vw, 60vw")}
                   alt="Ancient tall forest grove canopy"
                   loading="lazy"
                   decoding="async"
@@ -410,7 +518,7 @@ export default function Home() {
                 }}
               >
                 <img
-                  src="/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp"
+                  {...responsiveImg("/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp", "(max-width: 768px) 155vw, 70vw")}
                   alt="Living landscape gateway"
                   loading="lazy"
                   decoding="async"
@@ -506,10 +614,21 @@ WHO WE ARE
     fontSize: "1.05rem",
     color: "#556358",
     lineHeight: 1.8,
+    marginBottom: "16px",
+  }}
+>
+  Our biodiversity-led farm communities are located along the resource-rich Bengaluru–Mysuru–Chamarajanagar corridor, nestled within the Kaveri River belt of Karnataka.
+</p>
+
+<p
+  style={{
+    fontSize: "1.05rem",
+    color: "#556358",
+    lineHeight: 1.8,
     marginBottom: "24px",
   }}
 >
-  Our biodiversity-led farm communities are located natural resource rich Bangalore Mysore-Chamarajanagar corridor along the Kaveri river belt in Karnataka. Vanatvam follows six core principles while evolving the projects.
+  At Vanatvam, we follow six core principles that guide the planning, development, and evolution of every project.
 </p>
 
 
@@ -581,7 +700,7 @@ WHO WE ARE
             marginBottom: "16px",
           }}
         >
-          Our Approach
+          Our Core Principles
         </motion.span>
 
         <motion.h2
@@ -637,7 +756,7 @@ WHO WE ARE
           {
             num: "01 / Strategic Locations",
             title: "Along the Bangalore–Mysore Corridor",
-            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Eeshavana (Near Shivanasamudhra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
+            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Eeshavana (Near Shivanasamudra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
           },
           {
             num: "02 / Biodiversity by Design",
@@ -964,28 +1083,28 @@ WHO WE ARE
                   id: "anantavana",
                   name: "ANANTAVANA",
                   badge: "NEAR KABINI · 34 ACRES",
-                  img: "/assets/project-images/Ananthavana/hero-image-2-card.webp",
+                  img: "/assets/project-images/Ananthavana/hero-image-2.webp",
                    
                 },
                 {
                   id: "ishavana",
                   name: "ISHAVANA",
-                  badge: "Shivanasamudhra ·10 Acres",
-                  img: "/assets/project-images/Esahavana/EV-card.webp",
+                  badge: "Shivanasamudra ·10 Acres",
+                  img: "/assets/project-images/Esahavana/EV.webp",
                    
                 },
                 {
                   id: "madhuvana",
                   name: "MADHUVANA",
                   badge: "MADDUR · 17 ACRES",
-                  img: "/assets/project-images/Maduvana/hero-card.webp",
+                  img: "/assets/project-images/Maduvana/hero.webp",
                    
                 },
                 {
                   id: "brindavana",
                   name: "BRINDAVANA",
                   badge: "PAVAGADA · 30 ACRES",
-                  img: "/assets/project-images/Brindavana/brindavanaaa-card.webp",
+                  img: "/assets/project-images/Brindavana/brindavanaaa.webp",
                    
                 },
                 
@@ -1018,7 +1137,7 @@ WHO WE ARE
                     }}
                   >
                     <img
-                      src={proj.img}
+                      {...responsiveImg(proj.img, "(max-width: 768px) 165vw, 60vw")}
                       alt={proj.name}
                       loading="lazy"
                       decoding="async"
@@ -1174,108 +1293,51 @@ WHO WE ARE
           />
         </motion.div>
 
-        {/* Continuous Flow Infinite Marquee */}
-        <div
-          style={{
-            width: "100%",
-            overflow: "hidden",
-            position: "relative",
-            padding: "20px 0",
-          }}
-        >
-          <div
-            className="polaroid-marquee-track"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "nowrap",
-              width: "max-content",
-              willChange: "transform",
-            }}
-          >
-            {[0, 1].map((rep) => (
-              <div
-                key={rep}
-                className="polaroid-marquee-group"
+        {/* Auto-scrolling photo row: swipe/drag, ‹ › buttons and ← / → keys; pauses off screen */}
+        <AutoScrollRow
+          items={lifeAtVanatvamPolaroids}
+          getKey={(item) => item.id}
+          itemWidth={360}
+          gap={32}
+          speed={78}
+          label="Life at the farm photos"
+          itemNoun="photo"
+          renderItem={(item) => (
+            <motion.div
+              whileHover={{ y: -8, scale: 1.03 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                width: "360px",
+                height: "250px",
+                flexShrink: 0,
+                borderRadius: "20px",
+                overflow: "hidden",
+                boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                position: "relative",
+                background: "#1E352F",
+              }}
+            >
+              <motion.img
+                {...responsiveImg(item.img, "360px")}
+                alt={item.title}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                width="360"
+                height="250"
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  flexWrap: "nowrap",
-                  gap: "32px",
-                  paddingRight: "32px",
-                  flexShrink: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
                 }}
-              >
-                {lifeAtVanatvamPolaroids.map((item, index) => (
-                  <motion.div
-                    key={`${item.id}-${rep}-${index}`}
-                    whileHover={{ y: -8, scale: 1.03 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                      width: "360px",
-                      height: "250px",
-                      flexShrink: 0,
-                      borderRadius: "20px",
-                      overflow: "hidden",
-                      boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      position: "relative",
-                      background: "#1E352F",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <motion.img
-                      src={item.img}
-                      alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      width="360"
-                      height="250"
-                      whileHover={{ scale: 1.06 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                      }}
-                    />
-
-                     
-                  </motion.div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <style jsx global>{`
-          @keyframes polaroid-marquee-scroll {
-            from {
-              transform: translateX(0);
-            }
-            to {
-              transform: translateX(-50%);
-            }
-          }
-          .polaroid-marquee-track {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            width: max-content !important;
-            will-change: transform;
-            animation: polaroid-marquee-scroll 45s linear infinite;
-          }
-          .polaroid-marquee-track:hover {
-            animation-play-state: paused;
-          }
-          .polaroid-marquee-group {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            flex-shrink: 0 !important;
-          }
-        `}</style>
+              />
+            </motion.div>
+          )}
+        />
       </section>
 
       {/* FKCCI Award Recognition Section */}
@@ -1341,7 +1403,7 @@ WHO WE ARE
                     textTransform: "uppercase",
                   }}
                 >
-                  Institutional Recognition
+                  Reward &amp; Recognition
                 </span>
               </div>
 
@@ -1428,7 +1490,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
                 }}
               >
                 <img
-                  src="/event-images/award.webp"
+                  {...responsiveImg("/event-images/award.webp", "(max-width: 768px) 92vw, 46vw")}
                   alt="Vanatvam's natural forest landscape"
                   loading="lazy"
                   decoding="async"
@@ -1508,7 +1570,9 @@ By bringing together ecological restoration, India’s cultural heritage, and th
             </motion.p>
           </div>
 
-          <ClientStoriesCarousel />
+          <VideoTestimonials
+            videoIds={["oTd69o1SAkk", "rPMv_cggbH8", "HIuRfVHefz0", "5sDm6-yiMPs", "61PcdiIYtgs"]}
+          />
         </div>
       </section>
       {/* Premium Final CTA — Nature-inspired Contact Experience */}

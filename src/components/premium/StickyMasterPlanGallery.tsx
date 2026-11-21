@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { responsiveImg } from "@/lib/responsiveImage";
 
 export type MasterPlanItem = {
   id: string;
@@ -47,9 +48,9 @@ export default function StickyMasterPlanGallery({
           {eyebrow}
         </span>
         <h3
+          className="mp-gallery-title"
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(1.9rem, 3vw, 2.4rem)",
             color: "var(--bg-dark-forest, #122217)",
             margin: 0,
             fontWeight: 600,
@@ -85,7 +86,7 @@ export default function StickyMasterPlanGallery({
         >
           <div style={{ position: "relative", width: "100%", height: "100%" }}>
             <img
-              src={card.img}
+              {...responsiveImg(card.img, "(max-width: 768px) 175vw, 50vw")}
               alt={card.name}
               loading="lazy"
               style={{
