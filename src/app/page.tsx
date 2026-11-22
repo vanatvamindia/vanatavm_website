@@ -1,39 +1,29 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { useLeadForm } from "@/lib/useLeadForm";
-import LeadFormStatus from "@/components/LeadFormStatus";
-import { motion, AnimatePresence } from "framer-motion";
-import type { Variants } from "framer-motion";
-import Link from "@/components/ui/AppLink";
-import dynamic from "next/dynamic";
 import Navigation from "@/app/components/Navigation";
-import VideoTestimonials from "@/components/premium/VideoTestimonials";
+import LeadFormStatus from "@/components/LeadFormStatus";
 import AutoScrollRow from "@/components/premium/AutoScrollRow";
-
-const Footer = dynamic(() => import("@/app/components/Footer"), { ssr: true });
-import {
-  TreePine,
-  Leaf,
-  Droplets,
-  RefreshCcw,
-  Users,
-  Target,
-  Award,
-  Sparkles,
-  Compass,
-  ShieldCheck,
-  ArrowRight,
-  CheckCircle2,
-  MoveLeft,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import Magnetic from "@/components/premium/Magnetic";
 import Counter from "@/components/premium/Counter";
+import Magnetic from "@/components/premium/Magnetic";
 import { useLenis } from "@/components/premium/SmoothScroll";
-import { responsiveImg } from "@/lib/responsiveImage";
+import VideoTestimonials from "@/components/premium/VideoTestimonials";
+import Link from "@/components/ui/AppLink";
 import PortraitSource from "@/components/ui/PortraitSource";
 import { preloadHero } from "@/lib/preloadHero";
+import { responsiveImg } from "@/lib/responsiveImage";
+import { useLeadForm } from "@/lib/useLeadForm";
+import type { Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowRight,
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  Leaf
+} from "lucide-react";
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
+
+const Footer = dynamic(() => import("@/app/components/Footer"), { ssr: true });
 
 type PolaroidItem = {
   id: string;
@@ -100,7 +90,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
       "Tranquil walking pathways winding through living bamboo clusters and bird-friendly flora.",
     img: "/assets/life/vanatvam2.webp",
   },
-    {
+  {
     id: "green-tunnel-2",
     title: "Canopy Trail Pathways",
     caption: "Canopy Trails",
@@ -108,7 +98,7 @@ const lifeAtVanatvamPolaroids: PolaroidItem[] = [
       "Tranquil walking pathways winding through living bamboo clusters and bird-friendly flora.",
     img: "/assets/life/vanatvam4.webp",
   },
-  
+
 ];
 
 const heroSlides = [
@@ -444,9 +434,9 @@ export default function Home() {
           ))}
         </div>
       </section>
-      
-      
-      
+
+
+
 
       {/* Section 5: More than land. A way to belong. & Ancient Wisdom */}
       <section
@@ -595,285 +585,285 @@ export default function Home() {
                   display: "block",
                   marginBottom: "18px",
                 }}
->
-WHO WE ARE
-</span>
+              >
+                WHO WE ARE
+              </span>
 
-<h2
-  style={{
-    fontFamily: "var(--font-serif)",
-    fontSize: "clamp(2.5rem, 4.5vw, 3.8rem)",
-    color: "var(--bg-dark-forest)",
-    lineHeight: 1.12,
-    marginBottom: "24px",
-    letterSpacing: "-0.02em",
-    fontWeight: 600,
-  }}
->
-  More than land.
-  <br />
-  A way to belong.
-</h2>
+              <h2
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "clamp(2.5rem, 4.5vw, 3.8rem)",
+                  color: "var(--bg-dark-forest)",
+                  lineHeight: 1.12,
+                  marginBottom: "24px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: 600,
+                }}
+              >
+                More than land.
+                <br />
+                A way to belong.
+              </h2>
 
-<p
-  style={{
-    fontSize: "1.05rem",
-    color: "#556358",
-    lineHeight: 1.8,
-    marginBottom: "16px",
-  }}
->
-  Vana means forest, Tvam means you — the forest isn't separate from us, we're part of it. VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka: VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka : organic, biodiverse and built to be lived in, not just owned. organic, biodiverse, and built to be lived in, not just owned.
-</p>
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  color: "#556358",
+                  lineHeight: 1.8,
+                  marginBottom: "16px",
+                }}
+              >
+                Vana means forest, Tvam means you — the forest isn't separate from us, we're part of it. VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka: organic, biodiverse and built to be lived in, not just owned.
+              </p>
 
-<p
-  style={{
-    fontSize: "1.05rem",
-    color: "#556358",
-    lineHeight: 1.8,
-    marginBottom: "16px",
-  }}
->
-  Our biodiversity-led farm communities are located along the resource-rich Bangalore–Mysore–Chamarajanagar corridor, nestled within the Kaveri River belt of Karnataka.
-</p>
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  color: "#556358",
+                  lineHeight: 1.8,
+                  marginBottom: "16px",
+                }}
+              >
+                Our biodiversity-led farm communities are located along the resource-rich Bangalore–Mysore–Chamarajanagar corridor, nestled within the Kaveri River belt of Karnataka.
+              </p>
 
-<p
-  style={{
-    fontSize: "1.05rem",
-    color: "#556358",
-    lineHeight: 1.8,
-    marginBottom: "24px",
-  }}
->
-  At VanaTvam, we follow six core principles that guide the planning, development, and evolution of every project.
-</p>
+              <p
+                style={{
+                  fontSize: "1.05rem",
+                  color: "#556358",
+                  lineHeight: 1.8,
+                  marginBottom: "24px",
+                }}
+              >
+                At VanaTvam, we follow six core principles that guide the planning, development, and evolution of every project.
+              </p>
 
 
-        <Magnetic strength={0.25}>
-       <Link
-         href="/about"
-         className="btn-pill btn-pill-gold"
-         style={{
-         padding: "14px 32px",
-         fontSize: "1rem",
-         fontWeight: 700,
-         display: "inline-flex",
-         alignItems: "center",
-        gap: "8px",
-       }}
-       >
-         Our Philosophy <ArrowRight className="size-4" />
-  </Link>
-</Magnetic>
+              <Magnetic strength={0.25}>
+                <Link
+                  href="/about"
+                  className="btn-pill btn-pill-gold"
+                  style={{
+                    padding: "14px 32px",
+                    fontSize: "1rem",
+                    fontWeight: 700,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  Our Philosophy <ArrowRight className="size-4" />
+                </Link>
+              </Magnetic>
             </div>
           </div>
         </div>
       </section>
 
-     {/* Section 6: Not just a farmland developer. A landscape-led approach. */}
-<section
-  style={{
-    padding: "clamp(48px, 6.5vh, 72px) 0",
-    background: "#F5F2EB",
-    position: "relative",
-  }}
->
-  <div
-    className="container"
-    style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}
-  >
-    {/* Main Grid Layout: Left Sticky Header, Right Scrolling Overlap Stack */}
-    <div
-      className="projects-sticky-layout"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-        gap: "clamp(36px, 6vw, 96px)",
-        alignItems: "start",
-        position: "relative",
-      }}
-    >
-      {/* LEFT COLUMN: Sticky Header Content */}
-      <div
-        className="projects-sticky-header"
+      {/* Section 6: Not just a farmland developer. A landscape-led approach. */}
+      <section
         style={{
-          position: "sticky",
-          top: "120px",
-          maxWidth: "480px",
-        }}
-      >
-        <motion.span
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          style={{
-            color: "var(--accent-gold)",
-            fontSize: "0.8rem",
-            letterSpacing: "0.26em",
-            textTransform: "uppercase",
-            fontWeight: 700,
-            display: "block",
-            marginBottom: "16px",
-          }}
-        >
-          Our Core Principles
-        </motion.span>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
-            color: "var(--bg-dark-forest)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.025em",
-            fontWeight: 600,
-            marginBottom: "24px",
-          }}
-        >
-          Not a farmland developer. 
-          <br />
-          <span style={{ fontStyle: "italic", fontWeight: 400 }}>
-            A philosophy.
-          </span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          style={{
-            fontSize: "clamp(1.05rem, 1.2vw, 1.2rem)",
-            color: "#556358",
-            lineHeight: "1.75",
-            fontWeight: 400,
-            margin: 0,
-          }}
-        >
-          Every decision on every piece of land we touch comes back to six core  principles — ensuring that as the landscape matures, experiences take root and people become true stewards of the place.
-        </motion.p>
-      </div>
-
-      {/* RIGHT COLUMN: Overlapping Scrolling Approach Cards (All 6 Commitments) */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
+          padding: "clamp(48px, 6.5vh, 72px) 0",
+          background: "#F5F2EB",
           position: "relative",
-          paddingBottom: "40px",
         }}
       >
-        {[
-          {
-            num: "01 / Strategic Locations",
-            title: "Along the Bangalore–Mysore Corridor",
-            desc: "Located amidst stunning natural settings in Madhuvana (Near Maddur), Anantavana (Near Kabini), Ishavana (Near Shivanasamudra), and Brindavana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
-          },
-          {
-            num: "02 / Biodiversity by Design",
-            title: "We plant for the ecosystem, not just a crop",
-            desc: "Featuring 200+ native, rare and endangered tree species gathered into sacred groves like Nakshatra, Navagraha and Saraswathi Vana. Naturalists have documented 50+ bird species on our chemical-free land against national decline trends (State of India's Birds, 2023).",
-          },
-          {
-            num: "03 / Natural and Organic",
-            title: "Grown naturally, no compromise",
-            desc: "Everything we grow is organic, full stop — not a certification to chase, but the discipline VanaTvam is built on. We stay on the land season after season, adapting to local soil and climate rather than planting once and walking away.",
-          },
-          {
-            num: "04 / Integration Of Sacred Groves",
-            title: "Vedic forest science, woven into the land",
-            desc: "Our communities are woven with conceptual Vanas — Nakshatra, Navagraha, Saraswathi and more — a tradition documented in the Vanyashastra Samhita, where each grove has a specific composition of trees and a specific purpose. ",
-          },
-          {
-            num: "05 /Features to Enrich Experience",
-            title: "Shared amenities to Enrich Experience.",
-            desc: "Cottages, ponds, gazebos, tree houses — laid out in an architect-led master plan and shared across the community. Features like these are built to enrich the experience and invite people to keep returning to VanaTvam communities.",
-          },
-          {
-            num: "06 /Aesthetically Designed Water Bodies",
-            title: "Well designed water bodies create a calming effect. ",
-            desc: "Every community is designed around its relationship with water — ponds and groves that purify groundwater and keep it healthy, shaping how a place feels as much as how it functions. The aesthetically designed water bodies enable visitors to reflect and feel a calming effect ",
-          },
-        ].map((card, i) => (
-          <motion.div
-            key={card.num}
-            className="projects-sticky-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{
-              duration: 0.5,
-              ease: [0.25, 1, 0.5, 1],
-              delay: 0.04 * i,
-            }}
+        <div
+          className="container"
+          style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}
+        >
+          {/* Main Grid Layout: Left Sticky Header, Right Scrolling Overlap Stack */}
+          <div
+            className="projects-sticky-layout"
             style={{
-              "--sticky-top": `${130 + i * 26}px`,
-              minHeight: "fit-content",
-              height: "auto",
-              background: "#FFFFFF",
-              border: "1px solid rgba(18,34,23,0.08)",
-              borderRadius: "24px",
-              padding: "clamp(28px, 4vw, 40px)",
-              boxShadow: "0 12px 36px rgba(18, 34, 23, 0.06)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              zIndex: i + 1,
-            } as React.CSSProperties}
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+              gap: "clamp(36px, 6vw, 96px)",
+              alignItems: "start",
+              position: "relative",
+            }}
           >
-            <div>
-              <span
+            {/* LEFT COLUMN: Sticky Header Content */}
+            <div
+              className="projects-sticky-header"
+              style={{
+                position: "sticky",
+                top: "120px",
+                maxWidth: "480px",
+              }}
+            >
+              <motion.span
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
                 style={{
-                  fontSize: "0.8rem",
                   color: "var(--accent-gold)",
-                  letterSpacing: "0.18em",
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.26em",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   display: "block",
-                  marginBottom: "14px",
+                  marginBottom: "16px",
                 }}
               >
-                {card.num}
-              </span>
+                Our Core Principles
+              </motion.span>
 
-              <h3
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "clamp(1.4rem, 2.2vw, 1.75rem)",
+                  fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
                   color: "var(--bg-dark-forest)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.025em",
                   fontWeight: 600,
-                  lineHeight: 1.3,
-                  marginBottom: "14px",
+                  marginBottom: "24px",
                 }}
               >
-                {card.title}
-              </h3>
+                Not a farmland developer.
+                <br />
+                <span style={{ fontStyle: "italic", fontWeight: 400 }}>
+                  A philosophy.
+                </span>
+              </motion.h2>
 
-              <p
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 style={{
-                  fontSize: "1.02rem",
-                  color: "#5A685E",
-                  lineHeight: 1.75,
-                  margin: 0,
+                  fontSize: "clamp(1.05rem, 1.2vw, 1.2rem)",
+                  color: "#556358",
+                  lineHeight: "1.75",
                   fontWeight: 400,
-                  width: "100%",
+                  margin: 0,
                 }}
               >
-                {card.desc}
-              </p>
+                Every decision on every piece of land we touch comes back to six core  principles — ensuring that as the landscape matures, experiences take root and people become true stewards of the place.
+              </motion.p>
             </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+
+            {/* RIGHT COLUMN: Overlapping Scrolling Approach Cards (All 6 Commitments) */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "24px",
+                position: "relative",
+                paddingBottom: "40px",
+              }}
+            >
+              {[
+                {
+                  num: "01 / Strategic Locations",
+                  title: "Along the Bangalore–Mysore Corridor",
+                  desc: "Located amidst stunning natural settings in Madhuvana (Near Maddur), Anantavana (Near Kabini), Ishavana (Near Shivanasamudra), and Brindavana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
+                },
+                {
+                  num: "02 / Biodiversity by Design",
+                  title: "We plant for the ecosystem, not just a crop",
+                  desc: "Featuring 200+ native, rare and endangered tree species gathered into sacred groves like Nakshatra, Navagraha and Saraswathi Vana. Naturalists have documented 50+ bird species on our chemical-free land against national decline trends (State of India's Birds, 2023).",
+                },
+                {
+                  num: "03 / Natural and Organic",
+                  title: "Grown naturally, no compromise",
+                  desc: "Everything we grow is organic, full stop — not a certification to chase, but the discipline VanaTvam is built on. We stay on the land season after season, adapting to local soil and climate rather than planting once and walking away.",
+                },
+                {
+                  num: "04 / Integration Of Sacred Groves",
+                  title: "Vedic forest science, woven into the land",
+                  desc: "Our communities are woven with conceptual Vanas — Nakshatra, Navagraha, Saraswathi and more — a tradition documented in the Vanyashastra Samhita, where each grove has a specific composition of trees and a specific purpose. ",
+                },
+                {
+                  num: "05 /Features to Enrich Experience",
+                  title: "Shared amenities to Enrich Experience.",
+                  desc: "Cottages, ponds, gazebos, tree houses — laid out in an architect-led master plan and shared across the community. Features like these are built to enrich the experience and invite people to keep returning to VanaTvam communities.",
+                },
+                {
+                  num: "06 /Aesthetically Designed Water Bodies",
+                  title: "Well designed water bodies create a calming effect. ",
+                  desc: "Every community is designed around its relationship with water — ponds and groves that purify groundwater and keep it healthy, shaping how a place feels as much as how it functions. The aesthetically designed water bodies enable visitors to reflect and feel a calming effect ",
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.num}
+                  className="projects-sticky-card"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.25, 1, 0.5, 1],
+                    delay: 0.04 * i,
+                  }}
+                  style={{
+                    "--sticky-top": `${130 + i * 26}px`,
+                    minHeight: "fit-content",
+                    height: "auto",
+                    background: "#FFFFFF",
+                    border: "1px solid rgba(18,34,23,0.08)",
+                    borderRadius: "24px",
+                    padding: "clamp(28px, 4vw, 40px)",
+                    boxShadow: "0 12px 36px rgba(18, 34, 23, 0.06)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    zIndex: i + 1,
+                  } as React.CSSProperties}
+                >
+                  <div>
+                    <span
+                      style={{
+                        fontSize: "0.8rem",
+                        color: "var(--accent-gold)",
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        fontWeight: 700,
+                        display: "block",
+                        marginBottom: "14px",
+                      }}
+                    >
+                      {card.num}
+                    </span>
+
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(1.4rem, 2.2vw, 1.75rem)",
+                        color: "var(--bg-dark-forest)",
+                        fontWeight: 600,
+                        lineHeight: 1.3,
+                        marginBottom: "14px",
+                      }}
+                    >
+                      {card.title}
+                    </h3>
+
+                    <p
+                      style={{
+                        fontSize: "1.02rem",
+                        color: "#5A685E",
+                        lineHeight: 1.75,
+                        margin: 0,
+                        fontWeight: 400,
+                        width: "100%",
+                      }}
+                    >
+                      {card.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Impact in Numbers */}
       <section
@@ -953,7 +943,7 @@ WHO WE ARE
 
 
 
-      
+
       {/* Section 9: Four Unique Expressions of Nature's Abundance with Sticky Left Header and Overlapping Scrolling Cards */}
       <section
         className="projects-section projects-sticky-section"
@@ -1095,36 +1085,36 @@ WHO WE ARE
             {/* RIGHT COLUMN: Overlapping Scrolling Project Cards Stack */}
             <div className="projects-sticky-cards">
               {[
-                
+
                 {
                   id: "anantavana",
                   name: "ANANTAVANA",
                   badge: "NEAR KABINI · 34 ACRES",
                   img: "/assets/project-images/Ananthavana/hero-image-2.webp",
-                   
+
                 },
                 {
                   id: "ishavana",
                   name: "ISHAVANA",
                   badge: "Shivanasamudra ·10 Acres",
                   img: "/assets/project-images/Esahavana/EV.webp",
-                   
+
                 },
                 {
                   id: "madhuvana",
                   name: "MADHUVANA",
                   badge: "MADDUR · 17 ACRES",
                   img: "/assets/project-images/Maduvana/hero.webp",
-                   
+
                 },
                 {
                   id: "brindavana",
                   name: "BRINDAVANA",
                   badge: "PAVAGADA · 30 ACRES",
                   img: "/assets/project-images/Brindavana/brindavanaaa.webp",
-                   
+
                 },
-                
+
               ].map((proj, i) => (
                 <motion.div
                   key={proj.id}
@@ -1446,7 +1436,7 @@ WHO WE ARE
                     fontSize: "2.8rem",
                   }}
                 >
-                   Tourism &amp; Hospitality - 2026
+                  Tourism &amp; Hospitality - 2026
                 </span>
               </h2>
 
@@ -1459,7 +1449,7 @@ WHO WE ARE
                   fontWeight: 400,
                 }}
               >
-             VanaTvam has been honoured with the{" "}
+                VanaTvam has been honoured with the{" "}
                 <strong
                   style={{ color: "var(--bg-dark-forest)", fontWeight: 600 }}
                 >
@@ -1477,12 +1467,12 @@ WHO WE ARE
                   marginBottom: "32px",
                 }}
               >
-                
-By bringing together ecological restoration, India’s cultural heritage, and thoughtfully developed natural farm communities,
+
+                By bringing together ecological restoration, India’s cultural heritage, and thoughtfully developed natural farm communities,
                 VanaTvam demonstrates how meaningful nature experiences and environmental stewardship can flourish together for generations to come.
               </p>
 
-               
+
             </motion.div>
 
             {/* Right Side — Premium Image Gallery */}

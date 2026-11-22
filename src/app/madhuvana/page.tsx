@@ -1,38 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { useLeadForm } from "@/lib/useLeadForm";
-import LeadFormStatus from "@/components/LeadFormStatus";
-import { motion, useReducedMotion } from "framer-motion";
-import { riseStyle } from "@/lib/rise";
-import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
-import Link from "@/components/ui/AppLink";
+import Navigation from "@/app/components/Navigation";
+import LeadFormStatus from "@/components/LeadFormStatus";
 import BrochureModal from "@/components/premium/LazyBrochureModal";
 import StickyMasterPlanGallery from "@/components/premium/StickyMasterPlanGallery";
+import Link from "@/components/ui/AppLink";
+import PortraitSource from "@/components/ui/PortraitSource";
+import { preloadHero } from "@/lib/preloadHero";
+import { responsiveImg } from "@/lib/responsiveImage";
+import { riseStyle } from "@/lib/rise";
+import { useLeadForm } from "@/lib/useLeadForm";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
   Compass,
-  Droplets,
+  Flower2,
   Leaf,
   MapPin,
   Mountain,
-  PawPrint,
-  ShieldCheck,
   Ship,
-  Sparkles,
   Trees,
-  Users,
-  Waves,
-  Sprout,
-  Flower2,
-  House,
-} 
-  from "lucide-react";
-import { responsiveImg } from "@/lib/responsiveImage";
-import PortraitSource from "@/components/ui/PortraitSource";
-import { preloadHero } from "@/lib/preloadHero";
+  Waves
+} from "lucide-react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 const EASE = [0.2, 0.9, 0.2, 1] as const;
 const TITLE = "MADHUVANA";
@@ -483,51 +475,51 @@ export default function Madhuvana() {
                     height={1000}
                     style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   />
-                   {/* Floating Acreage Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
-                  style={{
-                    position: "absolute",
-                    left: 10,
-                    bottom: 32,
-                    background: FOREST,
-                    color: "#FFF",
-                    padding: "18px 24px",
-                    borderRadius: "20px",
-                    border: "1px solid rgba(198, 162, 101, 0.35)",
-                    boxShadow: "0 20px 40px rgba(18, 34, 23, 0.3)",
-                    zIndex: 3,
-                  }}
-                >
-                  <strong
+                  {/* Floating Acreage Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
                     style={{
-                      display: "block",
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "1.8rem",
-                      lineHeight: 1,
-                      marginBottom: "4px",
+                      position: "absolute",
+                      left: 10,
+                      bottom: 32,
+                      background: FOREST,
+                      color: "#FFF",
+                      padding: "18px 24px",
+                      borderRadius: "20px",
+                      border: "1px solid rgba(198, 162, 101, 0.35)",
+                      boxShadow: "0 20px 40px rgba(18, 34, 23, 0.3)",
+                      zIndex: 3,
                     }}
                   >
-                    17 Acres
-                  </strong>
-                  <span
-                    style={{
-                      fontSize: "0.78rem",
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                      color: GOLD,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Maddur · Karnataka
-                  </span>
-                </motion.div>
+                    <strong
+                      style={{
+                        display: "block",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "1.8rem",
+                        lineHeight: 1,
+                        marginBottom: "4px",
+                      }}
+                    >
+                      17 Acres
+                    </strong>
+                    <span
+                      style={{
+                        fontSize: "0.78rem",
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        color: GOLD,
+                        fontWeight: 600,
+                      }}
+                    >
+                      Maddur · Karnataka
+                    </span>
+                  </motion.div>
                 </motion.div>
 
-                
+
               </div>
               <div className="ishavana-idea-copy">
                 <Kicker>The Madhuvana idea</Kicker>
@@ -554,12 +546,12 @@ export default function Madhuvana() {
                 >
                   <Reveal delay={0.1}>
                     <p style={{ margin: 0 }}>
-                     Madhuvana is a joint offering from VanaTvam and Indus Herbs who were chosen to develop Madhuvana as Indus Herbs have extensive experience in designing and developing eco-landscaping, afforestation, and themed herbal gardens. Madhuvana is spread across 17 acres and has over 5000 Trees and plants, Ponds, Gazebos, Walk Ways, perimeter fencing. The project has a common area with Cottages with Kitchenette, Landscaped garden, Car Parking, and a Dining area among others. We offer complementary stays at our eco-friendly cottages for the community owners to experience the beauty of nature while they decide to build their own farm houses.
+                      Madhuvana is a joint offering from VanaTvam and Indus Herbs who were chosen to develop Madhuvana as Indus Herbs have extensive experience in designing and developing eco-landscaping, afforestation, and themed herbal gardens. Madhuvana is spread across 17 acres and has over 5000 Trees and plants, Ponds, Gazebos, Walk Ways, perimeter fencing. The project has a common area with Cottages with Kitchenette, Landscaped garden, Car Parking, and a Dining area among others. We offer complementary stays at our eco-friendly cottages for the community owners to experience the beauty of nature while they decide to build their own farm houses.
                     </p>
                   </Reveal>
                   <Reveal delay={0.2}>
                     <p style={{ margin: 0 }}>
-                     Located off the 10-lane Bangalore and Mysore highway MadhuVanThis offering is envisioned a is just about 20 km from Maddur and Mandya and is surrounded by River Kaveri and interlaced with Vishweshwaraiah Canals  Madhuvana is offered as quarter-acre farm plots with various trees and Herbal plants in each plot and we will also plant vegetables and fruit trees which will be grown using 100% Natural and Organic  methods. as a “ Natural, Sustainable Farm Community” meaning we are building a strong community that believes in a common goal and shares common views. This means that your neighbours are people who think and live like you! Come, be a part of this awesome community!
+                      Located off the 10-lane Bangalore–Mysore highway, MadhuVana is just about 20 km from Maddur and Mandya, interlaced with the Vishweshwaraiah Channel. Madhuvana is offered as quarter-acre farm plots, with various trees and herbal plants in each plot — we will also plant vegetables and fruit trees, grown using 100% natural and organic methods. This offering is envisioned as a "Natural, Sustainable Farm Community," meaning we are building a strong community that believes in a common goal and shares common views. This means your neighbours are people who think and live like you! Come, be a part of this awesome community!
                     </p>
                   </Reveal>
                   <Reveal delay={0.3}>
@@ -584,9 +576,9 @@ export default function Madhuvana() {
                     ))}
                   </div>
                 </Reveal>
-                
-                  
-              
+
+
+
               </div>
             </div>
           </div>
@@ -699,7 +691,7 @@ export default function Madhuvana() {
           </div>
         </section>
 
-         
+
 
         {/* ================= CONCEPT MASTER PLAN ================= */}
         <section
@@ -1996,7 +1988,7 @@ export default function Madhuvana() {
                   question: "Where is Madhuvana located?",
                   answer: (
                     <>
-                 V.Ballekere, Karnataka 571419  
+                      V.Ballekere, Karnataka 571419
                       <br />
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=Madhuvana%2C%20V.Ballekere%2C%20Karnataka%20571419"
@@ -2015,39 +2007,39 @@ export default function Madhuvana() {
                   ),
                 },
                 {
-  number: "02",
-  question: "What is Madhuvana by VanaTvam?",
-  answer:
-    "Madhuvana is a 17-acre managed natural farmland community developed by VanaTvam. Envisioned as a sustainable farm community, it brings together organic farming, native trees, biodiversity, herbal gardens and thoughtfully designed common spaces. It offers individuals and families an opportunity to own farmland and reconnect with nature.",
-},
-{
-  number: "03",
-  question: "How far is Madhuvana from Bangalore and Mysore?",
-  answer: (
-    <>
-      Madhuvana enjoys convenient road connectivity along the Bangalore–Mysore corridor.
-      {"\n\n"}
-      Approximate distances from the project are:
-      <ul>
-        <li>Bangalore: 80 km</li>
-        <li>Mysore: 60 km</li>
-      </ul>
-      These approximate distances make Madhuvana an accessible farmland destination for weekend visits and nature getaways from both Bangalore and Mysore.
-    </>
-  ),
-},
-{
-  number: "04",
-  question: "What makes Madhuvana a unique managed farmland community in Karnataka?",
-  answer:
-    "Madhuvana goes beyond conventional farmland development by bringing together agriculture, biodiversity and community living. Spread across 17 acres, the project is envisioned with over 200 native and rare tree varieties, sacred groves, herbal gardens, water bodies and nature-inspired common spaces. The focus is on creating a living ecosystem that supports birds, butterflies, bees and other wildlife while allowing farm owners to experience the joys of nurturing their own land.",
-},
-{
-  number: "05",
-  question: "Is Madhuvana suitable for weekend farmhouse living near Bangalore?",
-  answer:
-    "Yes. Madhuvana is envisioned as a natural farm community near Maddur, Karnataka, offering an ideal setting for families looking to spend quality time away from the bustle of city life. Surrounded by green landscapes, fruit-bearing trees and thoughtfully planned natural spaces, it offers an opportunity to reconnect with nature, enjoy outdoor activities and experience the joys of farm living with convenient connectivity to Bangalore and Mysore, Madhuvana makes a wonderful choice for those seeking a peaceful weekend retreat and a closer connection with the land. We offer complementary stays in eco friendly cottages for the community owners to experience Madhuvana.",
-},
+                  number: "02",
+                  question: "What is Madhuvana by VanaTvam?",
+                  answer:
+                    "Madhuvana is a 17-acre managed natural farmland community developed by VanaTvam. Envisioned as a sustainable farm community, it brings together organic farming, native trees, biodiversity, herbal gardens and thoughtfully designed common spaces. It offers individuals and families an opportunity to own farmland and reconnect with nature.",
+                },
+                {
+                  number: "03",
+                  question: "How far is Madhuvana from Bangalore and Mysore?",
+                  answer: (
+                    <>
+                      Madhuvana enjoys convenient road connectivity along the Bangalore–Mysore corridor.
+                      {"\n\n"}
+                      Approximate distances from the project are:
+                      <ul>
+                        <li>Bangalore: 80 km</li>
+                        <li>Mysore: 60 km</li>
+                      </ul>
+                      These approximate distances make Madhuvana an accessible farmland destination for weekend visits and nature getaways from both Bangalore and Mysore.
+                    </>
+                  ),
+                },
+                {
+                  number: "04",
+                  question: "What makes Madhuvana a unique managed farmland community in Karnataka?",
+                  answer:
+                    "Madhuvana goes beyond conventional farmland development by bringing together agriculture, biodiversity and community living. Spread across 17 acres, the project is envisioned with over 200 native and rare tree varieties, sacred groves, herbal gardens, water bodies and nature-inspired common spaces. The focus is on creating a living ecosystem that supports birds, butterflies, bees and other wildlife while allowing farm owners to experience the joys of nurturing their own land.",
+                },
+                {
+                  number: "05",
+                  question: "Is Madhuvana suitable for weekend farmhouse living near Bangalore?",
+                  answer:
+                    "Yes. Madhuvana is envisioned as a natural farm community near Maddur, Karnataka, offering an ideal setting for families looking to spend quality time away from the bustle of city life. Surrounded by green landscapes, fruit-bearing trees and thoughtfully planned natural spaces, it offers an opportunity to reconnect with nature, enjoy outdoor activities and experience the joys of farm living with convenient connectivity to Bangalore and Mysore, Madhuvana makes a wonderful choice for those seeking a peaceful weekend retreat and a closer connection with the land. We offer complementary stays in eco friendly cottages for the community owners to experience Madhuvana.",
+                },
               ].map((faq, index) => (
                 <motion.details
                   key={index}
@@ -2134,7 +2126,7 @@ export default function Madhuvana() {
             </div>
           </div>
         </section>
-        
+
       </main>
 
       <BrochureModal
