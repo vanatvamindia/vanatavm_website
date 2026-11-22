@@ -1,8 +1,8 @@
 import React from 'react';
 
 export const metadata = {
-  title: 'Admin CMS | Vanatvam',
-  description: 'Manage Vanatvam Blogs & Content',
+  title: 'Admin CMS | VanaTvam',
+  description: 'Manage VanaTvam Blogs & Content',
   // Keep the CMS out of search results (overrides the site-wide index/follow default).
   robots: {
     index: false,

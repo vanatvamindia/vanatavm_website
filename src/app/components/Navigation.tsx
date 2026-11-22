@@ -6,7 +6,7 @@ import Link from "@/components/ui/AppLink";
 import { usePathname } from "next/navigation";
 import {
   Home,
-  Leaf,
+  Users,
   Sprout,
   Coins,
   BookOpen,
@@ -23,11 +23,23 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { path: "/", label: "Home", icon: Home },
-  { path: "/about", label: "About Us", icon: Leaf },
+  { path: "/about", label: "About Us", icon: Users },
   { path: "/projects", label: "Projects", icon: Sprout },
   { path: "/investment", label: "Investment", icon: Coins },
   { path: "/blog", label: "Articles", icon: BookOpen },
 ];
+
+const PROJECT_PATHS = ["/projects", "/madhuvana", "/ishavana", "/anantavana", "/brindavana"];
+
+function isPathActive(pathname: string, itemPath: string): boolean {
+  if (itemPath === "/projects") {
+    return PROJECT_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  }
+  if (itemPath === "/blog") {
+    return pathname === "/blog" || pathname.startsWith("/blog/");
+  }
+  return pathname === itemPath;
+}
 
 const EASE_PREMIUM: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -133,7 +145,7 @@ export default function Navigation() {
           >
             <motion.img
               src="/assets/images/vanatvamlogo.webp"
-              alt="Vanatvam Logo"
+              alt="VanaTvam Logo"
               initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, ease: EASE_PREMIUM }}
@@ -174,7 +186,7 @@ export default function Navigation() {
           >
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.path;
+              const isActive = isPathActive(pathname, item.path);
               const isHovered = hoveredPath === item.path;
               const lit = isActive || isHovered;
 
@@ -382,7 +394,7 @@ export default function Navigation() {
             >
               {NAV_ITEMS.map((item, i) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.path;
+                const isActive = isPathActive(pathname, item.path);
                 return (
                   <motion.div
                     key={item.path}

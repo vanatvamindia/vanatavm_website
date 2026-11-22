@@ -84,7 +84,7 @@ export default function PostEditor({ mode, initialPost }: PostEditorProps) {
     Boolean(initialPost?.category && !PRESET_CATEGORIES.includes(initialPost.category))
   );
   const [date, setDate] = useState(initialPost?.date || getTodayFormatted());
-  const [author, setAuthor] = useState(initialPost?.author || 'Vanatvam Team');
+  const [author, setAuthor] = useState(initialPost?.author || 'VanaTvam Team');
   const [excerpt, setExcerpt] = useState(initialPost?.excerpt || '');
 
   const initialHeroImg = initialPost ? resolvePostImage(initialPost) : '';
@@ -182,7 +182,7 @@ export default function PostEditor({ mode, initialPost }: PostEditorProps) {
           id: finalSlug,
           category: category.trim() || 'Philosophy',
           date: date.trim() || getTodayFormatted(),
-          author: author.trim() || 'Vanatvam Team',
+          author: author.trim() || 'VanaTvam Team',
           excerpt: excerpt.trim(),
           img: img.trim(),
           assetId,
@@ -707,7 +707,7 @@ export default function PostEditor({ mode, initialPost }: PostEditorProps) {
                         type="text"
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
-                        placeholder="Vanatvam Team"
+                        placeholder="VanaTvam Team"
                         style={inputStyle}
                       />
                     </div>

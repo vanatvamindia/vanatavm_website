@@ -56,9 +56,9 @@ export default function PrivacyPolicy() {
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>5. Contact Us</h3>
               <p style={{ marginBottom: '20px' }}>
                 If you have any questions about this privacy policy, please contact us at:<br /><br />
-                <strong>Vanatvam Private Limited</strong><br />
+                <strong>VanaTvam Private Limited</strong><br />
                 #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase,<br />
-                Bengaluru – 560085<br />
+                Bangalore – 560085<br />
                 Email: info@vanatvam.com<br />
                 CIN: U01100KA2022PTC159587
               </p>

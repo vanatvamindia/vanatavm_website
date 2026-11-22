@@ -23,7 +23,7 @@ const YT_ORIGIN = 'https://www.youtube-nocookie.com';
  */
 export default function LiteYouTube({
   videoId,
-  title = 'Watch Vanatvam Video',
+  title = 'Watch VanaTvam Video',
   aspectRatio = '16/9',
   onPlayingChange,
 }: LiteYouTubeProps) {

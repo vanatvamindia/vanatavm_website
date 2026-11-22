@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "@/components/ui/AppLink";
 import Magnetic from "@/components/premium/Magnetic";
-import { Home, Sprout, Layers, TrendingUp, BookOpen, MapPin, Phone, Mail } from "lucide-react";
+import { Home, Users, Layers, TrendingUp, BookOpen, MapPin, Phone, Mail } from "lucide-react";
 import { responsiveImg } from "@/lib/responsiveImage";
 
 /* 👉 Footer artwork (green hills / sunrise / hut / leaves) */
@@ -26,7 +26,7 @@ const PROJECT_LINKS: NavChild[] = [
 
 const NAV: NavItem[] = [
   { Icon: Home, label: "Home", href: "/" },
-  { Icon: Sprout, label: "About Us", href: "/about" },
+  { Icon: Users, label: "About Us", href: "/about" },
   {
     Icon: Layers,
     label: "Projects",
@@ -221,7 +221,7 @@ export default function Footer() {
                 >
                   <MapPin size={15} style={{ flexShrink: 0, marginTop: "4px" }} aria-hidden="true" />
                   #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase, (Behind
-                  Radhakrishna Hospital), Bengaluru – 560085
+                  Radhakrishna Hospital), Bangalore – 560085
                 </span>
               </a>
 

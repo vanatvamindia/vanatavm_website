@@ -106,7 +106,7 @@ export async function POST(req: Request) {
         new Date()
           .toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
           .toUpperCase(),
-      author: author || 'Vanatvam Team',
+      author: author || 'VanaTvam Team',
       excerpt: excerpt || '',
       img: (img || '')
         .replace(/\/Blogs-content\/May(%20| )2022\//g, '/Blogs-content/May-2022/')

@@ -49,10 +49,10 @@ export default function FloatingWhatsApp() {
           }}
         >
           <a
-            href="https://wa.me/918047095111?text=Hello%20Vanatvam,%20I%20would%20like%20to%20know%20more%20about%20your%20sustainable%20farmland%20communities."
+            href="https://wa.me/918047095111?text=Hello%20VanaTvam,%20I%20would%20like%20to%20know%20more%20about%20your%20sustainable%20farmland%20communities."
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Chat with Vanatvam on WhatsApp"
+            aria-label="Chat with VanaTvam on WhatsApp"
             className="floating-whatsapp-action"
             style={{
               display: 'flex',

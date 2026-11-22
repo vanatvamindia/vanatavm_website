@@ -42,7 +42,7 @@ export const postType = defineType({
     defineField({
       name: 'author',
       type: 'string',
-      initialValue: 'Vanatvam Team',
+      initialValue: 'VanaTvam Team',
       validation: (rule) => rule.required(),
     }),
     defineField({

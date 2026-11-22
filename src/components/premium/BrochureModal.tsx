@@ -12,12 +12,19 @@ export type BrochureModalProps = {
   projectName?: string;
 };
 
+const PROJECT_OPTIONS = ["Anantavana", "Madhuvana", "Brindavana", "Ishavana"];
+
 export default function BrochureModal({
   isOpen,
   onClose,
   brochureUrl = "/assets/project-images/AnantaVana-Brochure.pdf",
   projectName = "VanaTvam Project",
 }: BrochureModalProps) {
+  // The project is already known from the page the modal was opened on, so the
+  // "Project of interest" field is locked to it (matched ignoring case).
+  const lockedProject = PROJECT_OPTIONS.find(
+    (p) => p.toLowerCase() === projectName.trim().toLowerCase()
+  );
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -389,9 +396,11 @@ export default function BrochureModal({
                     </label>
                     <select
                       id="modal-project"
-                      name="project"
+                      name={lockedProject ? undefined : "project"}
                       required
-                      defaultValue={projectName}
+                      defaultValue={lockedProject ?? projectName}
+                      disabled={!!lockedProject}
+                      aria-disabled={!!lockedProject}
                       style={{
                         width: "100%",
                         minHeight: "48px",
@@ -404,13 +413,15 @@ export default function BrochureModal({
                         fontFamily: "inherit",
                         fontSize: "0.92rem",
                         outline: "none",
-                        cursor: "pointer",
+                        cursor: lockedProject ? "not-allowed" : "pointer",
+                        opacity: lockedProject ? 0.75 : 1,
+                        ...(lockedProject ? { background: "#F1F3EF" } : {}),
                       }}
                     >
-                      <option value="AnantaVana">
+                      <option value="Anantavana">
                         Anantavana (Kabini · 34 Acres)
                       </option>
-                      <option value="MadhuVana">
+                      <option value="Madhuvana">
                         Madhuvana (Maddur · 17 Acres)
                       </option>
                       <option value="Brindavana">
@@ -420,6 +431,9 @@ export default function BrochureModal({
                         Ishavana (Kaveri Riverfront)
                       </option>
                     </select>
+                    {lockedProject && (
+                      <input type="hidden" name="project" value={lockedProject} />
+                    )}
                   </div>
 
                   <motion.button

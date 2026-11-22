@@ -289,7 +289,7 @@ export default function Contact() {
                           Office Address
                         </strong>
                         <span style={{ color: "#5A685E", fontSize: "0.92rem", lineHeight: 1.6 }}>
-                          #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase (Behind Radhakrishna Hospital), Bengaluru – 560085
+                          #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase (Behind Radhakrishna Hospital), Bangalore – 560085
                         </span>
                       </div>
                     </div>
@@ -349,7 +349,7 @@ export default function Contact() {
                   }}
                 >
                   <iframe
-                    title="Google Maps showing VanaTvam Head Office in Girinagar Bengaluru"
+                    title="Google Maps showing VanaTvam Head Office in Girinagar Bangalore"
                     src="https://www.google.com/maps?q=12.9410767,77.5454691&z=17&output=embed"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -382,7 +382,7 @@ export default function Contact() {
                         VanaTvam Head Office
                       </strong>
                       <span style={{ display: "block", fontSize: "0.8rem", color: "rgba(255,255,255,0.75)", marginTop: "2px" }}>
-                        Girinagar 1st Phase, Bengaluru
+                        Girinagar 1st Phase, Bangalore
                       </span>
                     </div>
                     <a
@@ -784,7 +784,7 @@ export default function Contact() {
                 },
                 {
                   number: "03",
-                  question: "How far are the project sites from Bengaluru?",
+                  question: "How far are the project sites from Bangalore?",
                   answer:
                     "Madhuvana is ~80 km (Maddur), Anantavana is near Kabini (~210 km), Ishavana is near Shivanasamudra (~130 km), and Brindavana is near Pavagada (~150 km).",
                 },

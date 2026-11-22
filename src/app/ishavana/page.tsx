@@ -582,7 +582,7 @@ export default function Ishavana() {
                
              </div>
              <div className="ishavana-idea-copy">
-               <Kicker>A premium Kaveri riverfront farm community by Vanatvam</Kicker>
+               <Kicker>A premium Kaveri riverfront farm community by VanaTvam</Kicker>
                <Words
                  text="Where the river becomes part of everyday life"
                  style={{
@@ -607,7 +607,7 @@ export default function Ishavana() {
                 
                  <Reveal delay={0.1}>
                    <p style={{ margin: 0 }}>
-                     Nestled along the sacred Kaveri river in Dhanagere, near the magnificent Shivanasamudra Falls, Ishavana (aka Eeshavana)  is envisioned as a nature-first community where architecture listens to the land, landscapes remain alive, and every home enjoys the calm rhythm of rural Karnataka.
+                     Nestled along the sacred Kaveri river in Dhanagere, near the magnificent Shivanasamudra Falls, Ishavana is envisioned as a nature-first community where architecture listens to the land, landscapes remain alive, and every home enjoys the calm rhythm of rural Karnataka.
                    </p>
                  </Reveal>
                  <Reveal delay={0.2}>
@@ -624,11 +624,16 @@ export default function Ishavana() {
                <Reveal delay={0.25}>
                  <div className="ishavana-pills" style={{ marginTop: "18px" }}>
                    {[
-                     "Sacred Kaveri Riverfront",
-                     "close to shivanasamudra",
-                     "Nature-First Architecture",
-                   ].map((item) => (
-                     <span key={item} className="ishavana-pill">{item}</span>
+                     { label: "Sacred Kaveri Riverfront", Icon: Waves },
+                     { label: "Close To Shivanasamudra", Icon: MapPin },
+                     { label: "Nature-First Architecture", Icon: Leaf },
+                   ].map(({ label, Icon }) => (
+                     <span key={label} className="ishavana-pill">
+                       <span className="ishavana-pill-icon" aria-hidden="true">
+                         <Icon size={15} strokeWidth={2} />
+                       </span>
+                       {label}
+                     </span>
                    ))}
                  </div>
                </Reveal>
@@ -684,6 +689,7 @@ export default function Ishavana() {
                 {
                   value: "Only 35 Plots ",
                   label: "Low Density Community Living.",
+                  oneLine: true,
                 },
                 {
                   value: "8,000+",
@@ -726,6 +732,7 @@ export default function Ishavana() {
                   </div>
 
                   <div
+                    className={s.oneLine ? "ishavana-stat-oneline" : undefined}
                     style={{
                       color: "rgba(255, 255, 255, 0.82)",
                       fontFamily: "var(--font-sans)",
@@ -1055,7 +1062,6 @@ export default function Ishavana() {
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.05em;
-            text-transform: uppercase;
           }
           .av-nearby-time {
             font-size: 0.74rem;
@@ -1080,9 +1086,9 @@ export default function Ishavana() {
           }
           .av-nearby-map iframe {
             position: absolute;
-            inset: 0;
+            inset: -220px 0 0 0; /* pushes Google's own info card out of view; the custom button is used instead */
             width: 100% !important;
-            height: 100% !important;
+            height: calc(100% + 220px) !important;
             aspect-ratio: auto !important;
             border: 0;
           }
@@ -1317,7 +1323,7 @@ export default function Ishavana() {
     icon: Mountain,
   },
   {
-    name: "Mysuru",
+    name: "Mysore",
     desc: "Royal heritage & cultural attractions",
     km: 68,
     time: "~1.5 hrs",
@@ -1387,7 +1393,7 @@ export default function Ishavana() {
 
               <iframe
                 title="Google Maps showing Ishavana at Shivanasamudra"
-                src="https://www.google.com/maps?q=12.1648,77.1082&z=12&output=embed"
+                src="https://www.google.com/maps?q=Ishavana,+Dhanagere,+Karnataka+571440&ll=12.214165,77.134584&z=13&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
@@ -1395,7 +1401,7 @@ export default function Ishavana() {
 
               <a
                 className="av-nearby-map-link"
-                href="https://maps.app.goo.gl/Q5DGmjzsUQefhZJ67"
+                href="https://www.google.com/maps/search/?api=1&query=Ishavana%2C%20Dhanagere%2C%20Karnataka%20571440"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -2060,7 +2066,7 @@ export default function Ishavana() {
                     Shivanasamudra, Karnataka
                     <br />
                     <a
-                      href="https://maps.app.goo.gl/Q5DGmjzsUQefhZJ67"
+                      href="https://www.google.com/maps/search/?api=1&query=Ishavana%2C%20Dhanagere%2C%20Karnataka%20571440"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -2070,7 +2076,7 @@ export default function Ishavana() {
                         display: "inline-block",
                       }}
                     >
-                      https://maps.app.goo.gl/Q5DGmjzsUQefhZJ67
+                      Open Ishavana Location in Google Maps ↗
                     </a>
                   </>
                 ),
@@ -2079,7 +2085,7 @@ export default function Ishavana() {
                 number: "02",
                 question: "What is Ishavana at Dhanagere?",
                 answer:
-                  "Ishavana is a premium riverfront farm community by Vanatvam, set along the banks of the Kaveri River near Shivanasamudra. It is envisioned as a low-density retreat that brings together private farm plots, planned common spaces, bio-pool, and direct Kaveri frontage for those seeking a quiet escape in nature.",
+                  "Ishavana is a premium riverfront farm community by VanaTvam, set along the banks of the Kaveri River near Shivanasamudra. It is envisioned as a low-density retreat that brings together private farm plots, planned common spaces, bio-pool, and direct Kaveri frontage for those seeking a quiet escape in nature.",
               },
           
 {
@@ -2267,6 +2273,13 @@ export default function Ishavana() {
           text-transform: uppercase;
         }
 
+        @media (min-width: 1100px) {
+          .ishavana-stat-oneline {
+            max-width: none !important;
+            white-space: nowrap;
+          }
+        }
+
         .ishavana-stat-label {
           margin: 7px 0 0;
           color: var(--ishavana-muted);
@@ -2328,12 +2341,38 @@ export default function Ishavana() {
 
         .ishavana-pill {
           display: inline-flex;
-          padding: 10px 15px;
-          border: 1px solid rgba(18, 34, 23, 0.12);
+          align-items: center;
+          gap: 9px;
+          padding: 8px 16px 8px 8px;
+          border: 1px solid rgba(198, 162, 101, 0.45);
           border-radius: 99px;
           color: var(--ishavana-forest);
-          background: rgba(255, 255, 255, 0.66);
+          background: rgba(255, 255, 255, 0.8);
           font-size: 0.82rem;
+          font-weight: 600;
+          transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+        }
+
+        .ishavana-pill-icon {
+          width: 28px;
+          height: 28px;
+          flex-shrink: 0;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: rgba(198, 162, 101, 0.2);
+          color: #9A7536;
+        }
+
+        .ishavana-pill:hover {
+          transform: translateY(-2px);
+          border-color: var(--accent-gold);
+          box-shadow: 0 10px 24px rgba(18, 34, 23, 0.12);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ishavana-pill { transition: none; }
+          .ishavana-pill:hover { transform: none; }
         }
 
         .ishavana-overview {
@@ -2568,7 +2607,7 @@ export default function Ishavana() {
           }
 
           .ishavana-pill {
-            padding: 8px 14px;
+            padding: 6px 12px 6px 6px;
             font-size: 0.8rem;
           }
 

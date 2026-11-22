@@ -12,7 +12,7 @@ import { preloadHero } from "@/lib/preloadHero";
 
 const STORY_SECTIONS = [
   "For most of human history, we lived close to the land, surrounded by trees, birds and open spaces. It is only in the last century, with rapid urbanisation, that many of us have drifted away from this natural connection. Yet, whenever we step into a forest, walk among trees or spend time in the countryside, something changes. We feel lighter, calmer and more at ease. It feels familiar, almost as if we are returning to something we have always known.",
-  "These thoughts led us to establish Vanatvam in March 2022.",
+  "These thoughts led us to establish VanaTvam in March 2022.",
   "Our dream was never simply to develop farmland. We wanted to nurture living landscapes, encourage biodiversity, revive traditional connections with nature and create communities where people could find space to breathe, reconnect and belong.",
    
 ];
@@ -45,7 +45,7 @@ export default function About() {
             <PortraitSource src="/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp" />
             <img
               {...responsiveImg("/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp")}
-              alt="Vanatvam Vision"
+              alt="VanaTvam Vision"
               fetchPriority="high"
               loading="eager"
               decoding="sync"
@@ -145,7 +145,7 @@ export default function About() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                The Story of Vanatvam —{" "}
+                The Story of VanaTvam —{" "}
                 <span style={{ color: "var(--accent-gold)", fontStyle: "italic" }}>
                   A Personal Journey Back to Nature
                 </span>
@@ -415,26 +415,13 @@ export default function About() {
 
                     <p
                       style={{
-                        fontSize: "1.2rem",
-                        color: "var(--accent-gold)",
-                        fontFamily: "var(--font-serif)",
-                        fontStyle: "italic",
-                        marginBottom: "24px",
-                      }}
-                    >
-                       Deepak Kasthuri founded Vanatvam after nearly three decades in IT, working at Wipro, Infosys and Capgemini. He led international programmes for Fortune 500 clients and won recognition for large-scale delivery. That career taught him how to plan, execute, and hold a standard.
-                    </p>
-
-                    <p
-                      style={{
-                        fontSize: "1.12rem",
-                        color: "rgba(255,255,255,0.85)",
+                        fontSize: "1.05rem",
+                        color: "rgba(255,255,255,0.7)",
                         lineHeight: 1.8,
-                        marginBottom: "18px",
-                        fontWeight: 400,
+                        marginBottom: "32px",
                       }}
                     >
-                      Deepak Kasthuri founded Vanatvam after nearly three decades in IT, working at Wipro, Infosys and Capgemini. He led international programmes for Fortune 500 clients and won recognition for large-scale delivery. That career taught him how to plan, execute, and hold a standard.
+                      Deepak Kasthuri founded VanaTvam after nearly three decades in IT, working at Wipro, Infosys and Capgemini. He led international programmes for Fortune 500 clients and won recognition for large-scale delivery. That career taught him how to plan, execute, and hold a standard.
                     </p>
 
                     <p
@@ -455,7 +442,7 @@ export default function About() {
                                       marginBottom: "32px",
                                     }}
                                   >
-                                    When Deepak eventually left his corporate career, he brought both halves together: the rigor of running global programmes and the patience of growing something from soil. That combination is Vanatvam’s foundation — natural farm communities that restore biodiversity, reconnect people with land, and bring like-minded people together.
+                                    When Deepak eventually left his corporate career, he brought both halves together: the rigor of running global programmes and the patience of growing something from soil. That combination is VanaTvam’s foundation — natural farm communities that restore biodiversity, reconnect people with land, and bring like-minded people together.
                                   </p>
                     <p
                                     style={{
@@ -466,7 +453,7 @@ export default function About() {
                                     }}
                                   >
 
-      Vaishnavi and Deepak want Vanatvam’s name to mean something: integrity, responsible development, a real commitment to the land and the people on it. For them, this isn’t a business venture. It’s a chance to put their values into something their children’s generation can still walk through.
+      Vaishnavi and Deepak want VanaTvam’s name to mean something: integrity, responsible development, a real commitment to the land and the people on it. For them, this isn’t a business venture. It’s a chance to put their values into something their children’s generation can still walk through.
                                   </p>
 
                     <div
@@ -522,7 +509,7 @@ export default function About() {
                             fontWeight: 600,
                           }}
                         >
-                          Bengaluru, Karnataka
+                          Bangalore, Karnataka
                         </strong>
                       </div>
                     </div>
@@ -629,7 +616,7 @@ export default function About() {
             >
               <motion.img
                 {...responsiveImg("/event-images/award.webp", "(max-width: 768px) 92vw, 46vw")}
-                alt="Vanatvam's nature-led landscape and green surroundings"
+                alt="VanaTvam's nature-led landscape and green surroundings"
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 style={{

@@ -623,7 +623,7 @@ WHO WE ARE
     marginBottom: "16px",
   }}
 >
-  Vana means forest, Tvam means you — the forest isn't separate from us, we're part of it. Vanatvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka: organic, biodiverse, and built to be lived in, not just owned.
+  Vana means forest, Tvam means you — the forest isn't separate from us, we're part of it. VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka: VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka : organic, biodiverse and built to be lived in, not just owned. organic, biodiverse, and built to be lived in, not just owned.
 </p>
 
 <p
@@ -634,7 +634,7 @@ WHO WE ARE
     marginBottom: "16px",
   }}
 >
-  Our biodiversity-led farm communities are located along the resource-rich Bengaluru–Mysuru–Chamarajanagar corridor, nestled within the Kaveri River belt of Karnataka.
+  Our biodiversity-led farm communities are located along the resource-rich Bangalore–Mysore–Chamarajanagar corridor, nestled within the Kaveri River belt of Karnataka.
 </p>
 
 <p
@@ -645,7 +645,7 @@ WHO WE ARE
     marginBottom: "24px",
   }}
 >
-  At Vanatvam, we follow six core principles that guide the planning, development, and evolution of every project.
+  At VanaTvam, we follow six core principles that guide the planning, development, and evolution of every project.
 </p>
 
 
@@ -773,7 +773,7 @@ WHO WE ARE
           {
             num: "01 / Strategic Locations",
             title: "Along the Bangalore–Mysore Corridor",
-            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Ishavana (Near Shivanasamudra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
+            desc: "Located amidst stunning natural settings in Madhuvana (Near Maddur), Anantavana (Near Kabini), Ishavana (Near Shivanasamudra), and Brindavana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
           },
           {
             num: "02 / Biodiversity by Design",
@@ -783,7 +783,7 @@ WHO WE ARE
           {
             num: "03 / Natural and Organic",
             title: "Grown naturally, no compromise",
-            desc: "Everything we grow is organic, full stop — not a certification to chase, but the discipline Vanatvam is built on. We stay on the land season after season, adapting to local soil and climate rather than planting once and walking away.",
+            desc: "Everything we grow is organic, full stop — not a certification to chase, but the discipline VanaTvam is built on. We stay on the land season after season, adapting to local soil and climate rather than planting once and walking away.",
           },
           {
             num: "04 / Integration Of Sacred Groves",
@@ -793,7 +793,7 @@ WHO WE ARE
           {
             num: "05 /Features to Enrich Experience",
             title: "Shared amenities to Enrich Experience.",
-            desc: "Cottages, ponds, gazebos, tree houses — laid out in an architect-led master plan and shared across the community. Features like these are built to enrich the experience and invite people to keep returning to Vanatvam communities.",
+            desc: "Cottages, ponds, gazebos, tree houses — laid out in an architect-led master plan and shared across the community. Features like these are built to enrich the experience and invite people to keep returning to VanaTvam communities.",
           },
           {
             num: "06 /Aesthetically Designed Water Bodies",
@@ -1459,7 +1459,7 @@ WHO WE ARE
                   fontWeight: 400,
                 }}
               >
-             Vanatvam has been honoured with the{" "}
+             VanaTvam has been honoured with the{" "}
                 <strong
                   style={{ color: "var(--bg-dark-forest)", fontWeight: 600 }}
                 >
@@ -1479,7 +1479,7 @@ WHO WE ARE
               >
                 
 By bringing together ecological restoration, India’s cultural heritage, and thoughtfully developed natural farm communities,
-                Vanatvam demonstrates how meaningful nature experiences and environmental stewardship can flourish together for generations to come.
+                VanaTvam demonstrates how meaningful nature experiences and environmental stewardship can flourish together for generations to come.
               </p>
 
                
@@ -1510,7 +1510,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
               >
                 <img
                   {...responsiveImg("/event-images/award.webp", "(max-width: 768px) 92vw, 46vw")}
-                  alt="Vanatvam's natural forest landscape"
+                  alt="VanaTvam's natural forest landscape"
                   loading="lazy"
                   decoding="async"
                   width="800"
@@ -2130,7 +2130,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
         </div>
       </section>
 
-      {/* Premium FAQ Section — Vanatvam */}
+      {/* Premium FAQ Section — VanaTvam */}
       <section
         id="faq-section"
         style={{
@@ -2213,7 +2213,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
                   fontWeight: 400,
                 }}
               >
-                About Vanatvam
+                About VanaTvam
               </span>
             </h2>
           </motion.div>
@@ -2226,7 +2226,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
               {
                 number: "01",
                 question:
-                  "What makes Vanatvam different from other farmland developers?",
+                  "What makes VanaTvam different from other farmland developers?",
                 answer:
                   "VanaTvam creates natural, green spaces where people can experience life closer to nature. Our projects focus on native trees, fruit-bearing plants, bird-friendly habitats and sustainable land care. We create thoughtfully planned farm communities where families can benefit from living close to nature for years to come.",
               },
@@ -2234,14 +2234,14 @@ By bringing together ecological restoration, India’s cultural heritage, and th
                 number: "02",
                 question: "Where can I buy managed farmland near Bangalore?",
                 answer:
-                  "If you are looking to buy farmland near Bangalore, Vanatvam offers nature-focused farm communities in selected locations across Karnataka, including the Mysore and Kaveri regions. Explore our managed farmland near Bangalore to learn about available plots, pricing and site visits. You can also enquire about farmland near Bangalore and Mysore. ",
+                  "If you are looking to buy farmland near Bangalore, VanaTvam offers nature-focused farm communities in selected locations across Karnataka, including the Mysore and Kaveri regions. Explore our managed farmland near Bangalore to learn about available plots, pricing and site visits. You can also enquire about farmland near Bangalore and Mysore. ",
               },
               {
                 number: "03",
                 question:
-                  "What is managed farmland, and how does Vanatvam maintain it?",
+                  "What is managed farmland, and how does VanaTvam maintain it?",
                 answer:
-                  "Managed farmland combines land ownership with organised support for plantation development and ongoing land care, depending on the project. Vanatvam focuses on tree care, soil health and biodiversity. Our managed farmland near Bangalore include hassle free maintenance.",
+                  "Managed farmland combines land ownership with organised support for plantation development and ongoing land care, depending on the project. VanaTvam focuses on tree care, soil health and biodiversity. Our managed farmland near Bangalore includes hassle free maintenance.",
               },
               {
                 number: "04",
@@ -2253,9 +2253,9 @@ By bringing together ecological restoration, India’s cultural heritage, and th
               {
                 number: "05",
                 question:
-                  "How does Vanatvam promote biodiversity and natural farming?",
+                  "How does VanaTvam promote biodiversity and natural farming?",
                 answer:
-                  "Vanatvam focuses on native trees, fruit-bearing plants and flowering species that support birds, bees, butterflies and other wildlife. Inspired by traditional Indian forest gardens, including Nakshatra Vana and Navagraha Vana, our approach encourages biodiversity and a closer connection with nature. For those interested in farmland for sustainable living in Karnataka, our projects bring together natural surroundings and thoughtfully managed green spaces.",
+                  "VanaTvam focuses on native trees, fruit-bearing plants and flowering species that support birds, bees, butterflies and other wildlife. Inspired by traditional Indian forest gardens, including Nakshatra Vana and Navagraha Vana, our approach encourages biodiversity and a closer connection with nature. For those interested in farmland for sustainable living in Karnataka, our projects bring together natural surroundings and thoughtfully managed green spaces.",
               },
             ].map((faq, index) => (
               <motion.details

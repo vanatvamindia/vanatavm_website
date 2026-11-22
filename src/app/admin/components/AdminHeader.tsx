@@ -63,7 +63,7 @@ export default function AdminHeader() {
             </div>
             <div>
               <div style={{ fontSize: '0.98rem', fontWeight: 700, color: '#0F172A', lineHeight: 1.2 }}>
-                Vanatvam CMS
+                VanaTvam CMS
               </div>
               <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
                 Editorial Dashboard

@@ -130,7 +130,7 @@ export async function sendLeadNotificationEmail(rawLead: ContactLeadNotification
             </div>` : ''}
           </div>
           <div class="footer">
-            This is an automated notification from Vanatvam Website Lead Engine.
+            This is an automated notification from VanaTvam Website Lead Engine.
           </div>
         </div>
       </body>
@@ -138,7 +138,7 @@ export async function sendLeadNotificationEmail(rawLead: ContactLeadNotification
   `;
 
   const info = await transporter.sendMail({
-    from: `"Vanatvam Leads" <${fromEmail}>`,
+    from: `"VanaTvam Leads" <${fromEmail}>`,
     to: receiverEmail,
     replyTo: rawLead.email,
     subject: `New Lead from ${rawLead.name}${rawLead.project ? ` - ${rawLead.project}` : ''}`,

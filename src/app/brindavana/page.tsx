@@ -24,6 +24,9 @@ import {
   Trees,
   Users,
   Waves,
+  Landmark,
+  Hourglass,
+  Sprout,
 } from "lucide-react";
 import { responsiveImg } from "@/lib/responsiveImage";
 import PortraitSource from "@/components/ui/PortraitSource";
@@ -513,7 +516,7 @@ export default function Brindavana() {
                 
               </div>
               <div className="ishavana-idea-copy">
-                <Kicker>The BrindaVana Story</Kicker>
+                <Kicker>The Brindavana Story</Kicker>
                 <Words
                   text="Brindavana — A Journey of Persistence"
                   style={{
@@ -567,7 +570,7 @@ export default function Brindavana() {
 
                   <Reveal delay={0.35}>
                     <p style={{ margin: 0 }}>
-                      What began as a commitment to their ancestral village has become an important part of Vanatvam’s journey in ecological restoration, showing that meaningful change begins when we challenge what others believe is impossible.
+                      What began as a commitment to their ancestral village has become an important part of VanaTvam’s journey in ecological restoration, showing that meaningful change begins when we challenge what others believe is impossible.
                     </p>
                   </Reveal>
                 </div>
@@ -575,11 +578,16 @@ export default function Brindavana() {
                 <Reveal delay={0.25}>
                   <div className="ishavana-pills" style={{ marginTop: "18px" }}>
                     {[
-                      "200+ Years Ancestral Heritage",
-                      "20 Years of Persistence",
-                      "Ecological Restoration",
-                    ].map((item) => (
-                      <span key={item} className="ishavana-pill">{item}</span>
+                      { label: "200+ Years Ancestral Heritage", Icon: Landmark },
+                      { label: "20 Years of Persistence", Icon: Hourglass },
+                      { label: "Ecological Restoration", Icon: Sprout },
+                    ].map(({ label, Icon }) => (
+                      <span key={label} className="ishavana-pill">
+                        <span className="ishavana-pill-icon" aria-hidden="true">
+                          <Icon size={15} strokeWidth={2} />
+                        </span>
+                        {label}
+                      </span>
                     ))}
                   </div>
                 </Reveal>
@@ -950,7 +958,6 @@ export default function Brindavana() {
               font-size: 0.72rem;
               font-weight: 700;
               letter-spacing: 0.05em;
-              text-transform: uppercase;
             }
             .av-nearby-time {
               font-size: 0.74rem;
@@ -975,9 +982,9 @@ export default function Brindavana() {
             }
             .av-nearby-map iframe {
               position: absolute;
-              inset: 0;
+              inset: -220px 0 0 0; /* pushes Google's own info card out of view; the custom button is used instead */
               width: 100% !important;
-              height: 100% !important;
+              height: calc(100% + 220px) !important;
               aspect-ratio: auto !important;
               border: 0;
             }
@@ -1191,7 +1198,7 @@ export default function Brindavana() {
                     icon: Mountain,
                   },
                   {
-                    name: "Bengaluru Airport (KIA)",
+                    name: "Bangalore Airport (KIA)",
                     desc: "Direct airport access via highway",
                     km: 120,
                     time: "~2 hrs",
@@ -1206,7 +1213,7 @@ export default function Brindavana() {
                   },
                  
                   {
-                    name: "Bengaluru City",
+                    name: "Bangalore City",
                     desc: "Capital city connection",
                     km: 150,
                     time: "~3.15 hrs",
@@ -1262,7 +1269,7 @@ export default function Brindavana() {
 
                 <iframe
                   title="Google Maps showing Brindavana near Pavagada"
-                  src="https://www.google.com/maps?q=14.0991,77.2798&z=12&output=embed"
+                  src="https://www.google.com/maps?q=BrindaVana,+Venkatapura,+Karnataka+561202&ll=14.0185785,77.3347778&z=13&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -1270,7 +1277,7 @@ export default function Brindavana() {
 
                 <a
                   className="av-nearby-map-link"
-                  href="https://maps.app.goo.gl/YgfMVxp9gAxqbcvZ7"
+                  href="https://www.google.com/maps/search/?api=1&query=BrindaVana%2C%20Venkatapura%2C%20Karnataka%20561202"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1462,7 +1469,7 @@ export default function Brindavana() {
                     fontWeight: 400,
                   }}
                 >
-                  BrindaVana.
+                  Brindavana.
                 </span>
                 <br />A place to belong.
               </h2>
@@ -1516,7 +1523,7 @@ export default function Brindavana() {
                       color: "#183023",
                     }}
                   >
-                    BrindaVana at Pavagada
+                    Brindavana at Pavagada
                   </div>
                   <div
                     style={{
@@ -1932,10 +1939,10 @@ export default function Brindavana() {
                   question: "Where is Brindavana located?",
                   answer: (
                     <>
-                      Krishnapura, Pavagada Taluk, Karnataka  Strategically positioned amid the industrial growth of Madakasira, the automobile hub of Penukonda, and the thriving commercial centre of Hindupur, Pavagada is emerging as a promising destination for the future.
+                      Krishnapura, Pavagada Taluk, Karnataka. Strategically positioned amid the industrial growth of Madakasira, the automobile hub of Penukonda, and the thriving commercial centre of Hindupur, Pavagada is emerging as a promising destination for the future.
                       <br />
                       <a
-                        href="https://maps.app.goo.gl/YgfMVxp9gAxqbcvZ7"
+                        href="https://www.google.com/maps/search/?api=1&query=BrindaVana%2C%20Venkatapura%2C%20Karnataka%20561202"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -1952,9 +1959,9 @@ export default function Brindavana() {
                 },
                {
   number: "02",
-  question: "What is Brindavana by Vanatvam?",
+  question: "What is Brindavana by VanaTvam?",
   answer:
-    "Brindavana is a 30-acre sustainable natural farmland community developed by Vanatvam in Pavagada, Karnataka. It is an ongoing journey of transforming challenging agricultural land into a thriving natural ecosystem through agroforestry, soil improvement, responsible water management and biodiversity-focused planting.\n\nMore than just managed farmland, Brindavana represents a commitment to nurturing the land and creating a meaningful connection between people, nature and traditional farming practices.",
+    "Brindavana is a 30-acre sustainable natural farmland community developed by VanaTvam in Pavagada, Karnataka. It is an ongoing journey of transforming challenging agricultural land into a thriving natural ecosystem through agroforestry, soil improvement, responsible water management and biodiversity-focused planting.\n\nMore than just managed farmland, Brindavana represents a commitment to nurturing the land and creating a meaningful connection between people, nature and traditional farming practices.",
 },
 {
   number: "03",
@@ -1963,18 +1970,18 @@ export default function Brindavana() {
     <>
       Brindavana stands apart because of its journey of ecological restoration. Located in the challenging, semi-arid landscape of Pavagada, the project has required years of learning, experimentation and perseverance to establish tree cover and improve the land.
       {"\n\n"}
-      Vanatvam follows a nature-conscious approach that respects local soil conditions, water availability and climate. Brindavana demonstrates that sustainable farming and ecological restoration are built through patience, knowledge and consistent care.
+      VanaTvam follows a nature-conscious approach that respects local soil conditions, water availability and climate. Brindavana demonstrates that sustainable farming and ecological restoration are built through patience, knowledge and consistent care.
     </>
   ),
 },
 {
   number: "04",
-  question: "How does Vanatvam develop farmland in challenging conditions?",
+  question: "How does VanaTvam develop farmland in challenging conditions?",
   answer:
-    "Vanatvam follows an adaptive approach to sustainable farmland development. At Brindavana, the team has undertaken repeated planting efforts, studied local soil and water conditions, and refined its methods based on experience.\n\nThe focus is on improving soil health, supporting beneficial microbial activity, selecting suitable vegetation and adopting responsible water-management practices. The objective is long-term ecological improvement rather than quick or artificial greening.",
+    "VanaTvam follows an adaptive approach to sustainable farmland development. At Brindavana, the team has undertaken repeated planting efforts, studied local soil and water conditions, and refined its methods based on experience.\n\nThe focus is on improving soil health, supporting beneficial microbial activity, selecting suitable vegetation and adopting responsible water-management practices. The objective is long-term ecological improvement rather than quick or artificial greening.",
 },
 {
-  number: "06",
+  number: "05",
   question: "Does Brindavana follow organic and natural farming practices?",
   answer:
     "Yes. Brindavana follows natural and organic farming principles without the use of synthetic chemical fertilisers or chemical pesticides. Our approach focuses on nurturing soil health, conserving water, promoting biodiversity and maintaining a healthy ecological balance. We believe in working with nature to create a thriving environment where trees, plants, birds, insects and other living organisms can flourish together.",
@@ -2143,12 +2150,38 @@ export default function Brindavana() {
 
         .ishavana-pill {
           display: inline-flex;
-          padding: 10px 15px;
-          border: 1px solid rgba(18, 34, 23, 0.12);
+          align-items: center;
+          gap: 9px;
+          padding: 8px 16px 8px 8px;
+          border: 1px solid rgba(198, 162, 101, 0.45);
           border-radius: 99px;
           color: var(--ishavana-forest);
-          background: rgba(255, 255, 255, 0.66);
+          background: rgba(255, 255, 255, 0.8);
           font-size: 0.82rem;
+          font-weight: 600;
+          transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+        }
+
+        .ishavana-pill-icon {
+          width: 28px;
+          height: 28px;
+          flex-shrink: 0;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: rgba(198, 162, 101, 0.2);
+          color: #9A7536;
+        }
+
+        .ishavana-pill:hover {
+          transform: translateY(-2px);
+          border-color: var(--accent-gold);
+          box-shadow: 0 10px 24px rgba(18, 34, 23, 0.12);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ishavana-pill { transition: none; }
+          .ishavana-pill:hover { transform: none; }
         }
 
         @media (max-width: 900px) {
@@ -2171,7 +2204,7 @@ export default function Brindavana() {
           }
 
           .ishavana-pill {
-            padding: 8px 14px;
+            padding: 6px 12px 6px 6px;
             font-size: 0.8rem;
           }
         }

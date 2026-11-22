@@ -85,7 +85,7 @@ export default function AdminLoginPage() {
               letterSpacing: '-0.02em',
             }}
           >
-            Vanatvam CMS
+            VanaTvam CMS
           </h1>
           <p style={{ color: '#64748B', fontSize: '0.88rem', margin: 0 }}>
             Sign in with your admin credentials

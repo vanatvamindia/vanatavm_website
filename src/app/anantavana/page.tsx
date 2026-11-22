@@ -787,7 +787,7 @@ export default function Anantavana() {
             }}
           >
             <div style={{ flex: "1.1 1 420px" }}>
-              <Kicker>The AnantaVana</Kicker>
+              <Kicker>The Anantavana</Kicker>
               <Words
                 text="Kabini – The land of spectacular landscapes."
                 style={{
@@ -811,12 +811,12 @@ export default function Anantavana() {
               >
                 <Reveal delay={0.1}>
                   <p style={{ margin: 0 }}>
-                    The rustle of leaves blowing in the wind, the deep silence of the forest, the chirping of birds and the calmness of River Kabini, all whisper the breathtaking beauty of this most wonderful land. Everyone, from a wildlife enthusiast to the nature lover, and the average citizen have a reason to love Kabini, known as one of the country’s richest biodiversity spots.
+                    The rustle of leaves blowing in the wind, the deep silence of the forest, the chirping of birds and the calmness of River Kabini, all whisper the breathtaking beauty of this most wonderful land. Everyone, from a wildlife enthusiast to the nature lover, and the average citizen has a reason to love Kabini, known as one of the country’s richest biodiversity spots.
                   </p>
                 </Reveal>
                 <Reveal delay={0.2}>
                   <p style={{ margin: 0 }}>
-                    AnantaVana is a sustainable natural re-forestation project in Kabini for nature lovers. Here, VanaTvam in association with Indus Herbs has developed a niche community of land owners who understand, appreciate, and consciously participate in sustaining the unique biosphere of Kabini. This limited edition project is a personal nature retreat that one can plug into to recharge the body and spirit! 
+                    Anantavana is a sustainable natural re-forestation project in Kabini for nature lovers. Here, VanaTvam in association with Indus Herbs has developed a niche community of land owners who understand, appreciate, and consciously participate in sustaining the unique biosphere of Kabini. This limited edition project is a personal nature retreat that one can plug into to recharge the body and spirit! 
                   </p>
                 </Reveal>
                 <Reveal delay={0.3}>
@@ -830,7 +830,7 @@ export default function Anantavana() {
                 </Reveal>
                 <Reveal delay={0.3}>
                   <p style={{ margin: 0 }}>
-                    At its heart, AnantaVana is about more than a place to stay.
+                    At its heart, Anantavana is about more than a place to stay.
                     It is about conscious community, natural farming and a
                     deeper appreciation of the living landscape.
                   </p>
@@ -841,7 +841,7 @@ export default function Anantavana() {
                     diverse mammals, adding to the natural character of the
                     setting. This regional biodiversity is part of the larger
                     landscape story, rather than a verified species count for
-                    the AnantaVana property itself.
+                    the Anantavana property itself.
                   </p>
                 </Reveal>
               </div>
@@ -874,7 +874,7 @@ export default function Anantavana() {
               >
                 <img
                   {...responsiveImg("/assets/project-images/Ananthavana/golden-treehouse-garden-retreat-1.webp", "(max-width: 768px) 92vw, 44vw")}
-                  alt="Native forest landscape at AnantaVana"
+                  alt="Native forest landscape at Anantavana"
                   loading="lazy"
                   decoding="async"
                   width={800}
@@ -1191,7 +1191,7 @@ export default function Anantavana() {
         >
           <img
             src="/assets/images/c-1.webp"
-            alt="AnantaVana Concept Master Plan Layout"
+            alt="Anantavana Concept Master Plan Layout"
             loading="lazy"
             decoding="async"
             width={1400}
@@ -1226,7 +1226,7 @@ export default function Anantavana() {
             width: "100%",
           }}
         >
-          Ananthavana Gallery{" "}
+          Anantavana Gallery{" "}
           <ArrowUpRight size={18} strokeWidth={2} aria-hidden="true" />
         </a>
       </motion.div>
@@ -1370,7 +1370,6 @@ export default function Anantavana() {
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.05em;
-            text-transform: uppercase;
           }
           .av-nearby-time {
             font-size: 0.74rem;
@@ -1395,9 +1394,9 @@ export default function Anantavana() {
           }
           .av-nearby-map iframe {
             position: absolute;
-            inset: 0;
+            inset: -220px 0 0 0; /* pushes Google's own info card out of view; the custom button is used instead */
             width: 100% !important;
-            height: 100% !important;
+            height: calc(100% + 220px) !important;
             aspect-ratio: auto !important;
             border: 0;
           }
@@ -1689,13 +1688,13 @@ export default function Anantavana() {
               <div className="av-nearby-map-header">
                 <span className="dot" aria-hidden="true" />
                 <span style={{ fontSize: "0.82rem", fontWeight: 600, letterSpacing: "0.03em" }}>
-                  AnantaVana Location
+                  Anantavana Location
                 </span>
               </div>
 
               <iframe
-                title="Google Maps showing AnantaVana near Kabini"
-                src="https://www.google.com/maps?q=11.9128648,76.3000445&z=13&output=embed"
+                title="Google Maps showing Anantavana near Kabini"
+                src="https://www.google.com/maps?q=AnantaVana,+N+Begur+Rd,+Katwalu,+Begurjungle,+Karnataka+571116&ll=11.9128648,76.3000445&z=13&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
@@ -1703,7 +1702,7 @@ export default function Anantavana() {
 
               <a
                 className="av-nearby-map-link"
-                href="https://maps.app.goo.gl/QT39pF4XsRq3YYHR6"
+                href="https://www.google.com/maps/search/?api=1&query=AnantaVana%2C%20N%20Begur%20Rd%2C%20Katwalu%2C%20Begurjungle%2C%20Karnataka%20571116"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -1728,7 +1727,7 @@ export default function Anantavana() {
                     <MapPin size={22} aria-hidden="true" />
                   </div>
                   <div>
-                    <strong>AnantaVana Sanctuary</strong>
+                    <strong>Anantavana Sanctuary</strong>
                     <span>Near Kabini, Mysore Region, Karnataka</span>
                   </div>
                 </div>
@@ -1895,7 +1894,7 @@ export default function Anantavana() {
                   fontWeight: 400,
                 }}
               >
-                AnantaVana.
+                Anantavana.
               </span>
               <br />A space to live with nature.
             </h2>
@@ -1949,7 +1948,7 @@ export default function Anantavana() {
                     color: "#183023",
                   }}
                 >
-                  AnantaVana at Kabini
+                  Anantavana at Kabini
                 </div>
                 <div
                   style={{
@@ -2032,7 +2031,7 @@ export default function Anantavana() {
                   margin: "0 0 10px",
                 }}
               >
-                Enquire About AnantaVana.
+                Enquire About Anantavana.
               </h3>
 
               <p
@@ -2247,7 +2246,7 @@ export default function Anantavana() {
                 cursor: "pointer",
               }}
             >
-              Request AnantaVana Details
+              Request Anantavana Details
               <ArrowRight className="size-5" />
             </motion.button>
 
@@ -2268,7 +2267,7 @@ export default function Anantavana() {
         </div>
       </section>
 
-      {/* Premium FAQ Section — Vanatvam */}
+      {/* Premium FAQ Section — VanaTvam */}
       <section
         id="faq-section"
         style={{
@@ -2351,7 +2350,7 @@ export default function Anantavana() {
                   fontWeight: 400,
                 }}
               >
-                About AnantaVana
+                About Anantavana
               </span>
             </h2>
           </motion.div>
@@ -2363,13 +2362,13 @@ export default function Anantavana() {
             {[
               {
                 number: "01",
-                question: "Where is AnantaVana located?",
+                question: "Where is Anantavana located?",
                 answer: (
                   <>
                     N Begur Rd, Katwalu, Begurjungle, Karnataka 571116
                     <br />
                     <a
-                      href="https://maps.app.goo.gl/QT39pF4XsRq3YYHR6"
+                      href="https://www.google.com/maps/search/?api=1&query=AnantaVana%2C%20N%20Begur%20Rd%2C%20Katwalu%2C%20Begurjungle%2C%20Karnataka%20571116"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -2379,29 +2378,29 @@ export default function Anantavana() {
                         display: "inline-block",
                       }}
                     >
-                      https://maps.app.goo.gl/QT39pF4XsRq3YYHR6
+                      Open Anantavana Location in Google Maps ↗
                     </a>
                   </>
                 ),
               },
               {
                 number: "02",
-                question: "What is AnantaVana at Kabini?",
+                question: "What is Anantavana at Kabini?",
                 answer:
-                  "AnantaVana is a nature-oriented managed farmland community by Vanatvam, envisioned as a forest-inspired retreat rooted in sustainable land management, biodiversity, and a deeper connection with nature. Designed to offer a peaceful escape into the natural world, the community brings together organic farming, green landscapes, and nature-conscious living. The project features 10000+ trees of 200+ native and rare varieties, internal roads, common areas, theme-parks, water bodies, and a cottage.",
+                  "Anantavana is a nature-oriented managed farmland community by VanaTvam, envisioned as a forest-inspired retreat rooted in sustainable land management, biodiversity, and a deeper connection with nature. Designed to offer a peaceful escape into the natural world, the community brings together organic farming, green landscapes, and nature-conscious living. The project features 10000+ trees of 200+ native and rare varieties, internal roads, common areas, theme-parks, water bodies, and a cottage.",
               },
               {
                 number: "03",
                 question:
-                  "What are the available plot sizes at AnantaVana Managed Farmland near Kabini?",
+                  "What are the available plot sizes at Anantavana Managed Farmland near Kabini?",
                 answer: (
                   <>
-                    Plot sizes at AnantaVana, a natural managed farmland
-                    community by Vanatvam near Kabini, Karnataka, start from{" "}
+                    Plot sizes at Anantavana, a natural managed farmland
+                    community by VanaTvam near Kabini, Karnataka, start from{" "}
                     <strong>12,000 sq. ft.</strong> Designed for nature-inspired
-                    living and organic farming, AnantaVana offers a peaceful,
+                    living and organic farming, Anantavana offers a peaceful,
                     forest-style retreat surrounded by natural landscapes. Contact
-                    the Vanatvam team for the latest farmland plot availability,
+                    the VanaTvam team for the latest farmland plot availability,
                     exact plot measurements, and pricing.
                   </>
                 ),
@@ -2409,22 +2408,22 @@ export default function Anantavana() {
               {
                 number: "04",
                 question:
-                  "What makes AnantaVana a unique managed farmland community near Kabini?",
+                  "What makes Anantavana a unique managed farmland community near Kabini?",
                 answer:
-                  "AnantaVana by Vanatvam is envisioned as a nature-inspired farmland community that combines organic farming, biodiversity, and forest-style retreat living. Beyond agricultural plots, the proposed master plan includes common spaces, theme-park areas, and a water body, creating opportunities to connect with nature. Contact the Vanatvam team to learn more about the project and confirm which features are completed or proposed.",
+                  "Anantavana by VanaTvam is envisioned as a nature-inspired farmland community that combines organic farming, biodiversity, and forest-style retreat living. Beyond agricultural plots, the proposed master plan includes common spaces, theme-park areas, and a water body, creating opportunities to connect with nature. Contact the VanaTvam team to learn more about the project and confirm which features are completed or proposed.",
               },
               {
                 number: "05",
-                question: "What amenities are planned at AnantaVana?",
+                question: "What amenities are planned at Anantavana?",
                 answer:
                   "The project brief highlights over 20% of land reserved for common spaces, tree-lined roads and native landscapes, natural ponds and biodiversity spaces, pergolas, heritage cottages and mud houses, a tree house, herbal gardens inspired by ancient wisdom, and fire-camp and outdoor tent spaces.",
               },
               {
                 number: "06",
                 question:
-                  "Will I earn guaranteed income from my AnantaVana plot?",
+                  "Will I earn guaranteed income from my Anantavana plot?",
                 answer:
-                  "Anantavana is in Eco Sensitive zone (ESZ) and governed by the ESZ norms. No commercial activity is permitted within the ESZ. Consider the land for its ownership and nature-oriented experience rather than assuming assured returns.",
+                  "Anantavana is in Eco-Sensitive zone (ESZ) and governed by the ESZ norms. No commercial activity is permitted within the ESZ. Consider the land for its ownership and nature-oriented experience rather than assuming assured returns.",
               },
             ].map((faq, index) => (
               <motion.details
@@ -2518,7 +2517,7 @@ export default function Anantavana() {
       <BrochureModal
         isOpen={isBrochureOpen}
         onClose={() => setIsBrochureOpen(false)}
-        projectName="AnantaVana"
+        projectName="Anantavana"
         brochureUrl="/assets/project-images/AnantaVana-Brochure.pdf"
       />
 

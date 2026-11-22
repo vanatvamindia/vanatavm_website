@@ -301,7 +301,7 @@ function FloatingOrb({
 const galleryImages = [
   {
     src: "/assets/project-images/Maduvana/tropical-garden-pond-oasis.webp",
-    alt: "Tropical Garden Pond Oasis at MadhuVana",
+    alt: "Tropical Garden Pond Oasis at Madhuvana",
   },
   {
     src: "/assets/project-images/Maduvana/Serene Tropical Garden Pond Retreat.webp",
@@ -476,7 +476,7 @@ export default function Madhuvana() {
                 >
                   <img
                     {...responsiveImg("/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp", "(max-width: 768px) 155vw, 70vw")}
-                    alt="A view of the MadhuVana landscape"
+                    alt="A view of the Madhuvana landscape"
                     loading="lazy"
                     decoding="async"
                     width={800}
@@ -530,7 +530,7 @@ export default function Madhuvana() {
                 
               </div>
               <div className="ishavana-idea-copy">
-                <Kicker>The MadhuVana idea</Kicker>
+                <Kicker>The Madhuvana idea</Kicker>
                 <Words
                   text="Ancient forest wisdom meets modern living."
                   style={{
@@ -554,28 +554,33 @@ export default function Madhuvana() {
                 >
                   <Reveal delay={0.1}>
                     <p style={{ margin: 0 }}>
-                     MadhuVana is a joint offering from VanaTvam and Indus Herbs who were chosen to develop Madhuvana as Indus Herbs have extensive experience in designing and developing eco-landscaping, afforestation, and themed herbal gardens. MadhuVana is spread across 17 acres and has over 5000 Trees and plants, Ponds, Gazebos, Walk Ways, perimeter fencing. The project has a common area with Cottages with Kitchenette, Landscaped garden, Car Parking, and a Dining area among others. We offer complementary stays at our eco-friendly cottages for the community owners to experience the beauty of nature while they decide to build their own farm houses.
+                     Madhuvana is a joint offering from VanaTvam and Indus Herbs who were chosen to develop Madhuvana as Indus Herbs have extensive experience in designing and developing eco-landscaping, afforestation, and themed herbal gardens. Madhuvana is spread across 17 acres and has over 5000 Trees and plants, Ponds, Gazebos, Walk Ways, perimeter fencing. The project has a common area with Cottages with Kitchenette, Landscaped garden, Car Parking, and a Dining area among others. We offer complementary stays at our eco-friendly cottages for the community owners to experience the beauty of nature while they decide to build their own farm houses.
                     </p>
                   </Reveal>
                   <Reveal delay={0.2}>
                     <p style={{ margin: 0 }}>
-                     Located off the 10-lane Bangalore and Mysore highway MadhuVanThis offering is envisioned a is just about 20 Km from Maddur and Mandya and is surrounded by River Kaveri and interlaced with Vishweshwaraiah Canals  MadhuVana is offered as quarter-acre farm plots with various trees and Herbal plants in each plot and we will also plant vegetables and fruit trees which will be grown using 100% Natural and Organic  methods. as a “ Natural, Sustainable Farm Community” meaning we are building a strong community that believes in a common goal and shares common views. This means that your neighbours are people who think and live like you! Come, be a part of this awesome community!
+                     Located off the 10-lane Bangalore and Mysore highway MadhuVanThis offering is envisioned a is just about 20 km from Maddur and Mandya and is surrounded by River Kaveri and interlaced with Vishweshwaraiah Canals  Madhuvana is offered as quarter-acre farm plots with various trees and Herbal plants in each plot and we will also plant vegetables and fruit trees which will be grown using 100% Natural and Organic  methods. as a “ Natural, Sustainable Farm Community” meaning we are building a strong community that believes in a common goal and shares common views. This means that your neighbours are people who think and live like you! Come, be a part of this awesome community!
                     </p>
                   </Reveal>
                   <Reveal delay={0.3}>
                     <p style={{ margin: 0 }}>
-                      From fruit-bearing orchards and herbal gardens to sacred groves and shared spaces, MadhuVana brings nature and community into the same frame.
+                      From fruit-bearing orchards and herbal gardens to sacred groves and shared spaces, Madhuvana brings nature and community into the same frame.
                     </p>
                   </Reveal>
                 </div>
                 <Reveal delay={0.25}>
-                  <div className="ishavana-pills" style={{ marginTop: "18px" }}>
+                  <div className="ishavana-pills ishavana-pills--fit" style={{ marginTop: "18px" }}>
                     {[
-                      "17-Acre Natural Farm Community",
-                      "Sacred Vanas & Herbal Gardens",
-                      "Near Bangalore-Mysore Highway",
-                    ].map((item) => (
-                      <span key={item} className="ishavana-pill">{item}</span>
+                      { label: "17-Acre Natural Farm Community", Icon: Trees },
+                      { label: "Sacred Vanas & Herbal Gardens", Icon: Flower2 },
+                      { label: "Near Bangalore-Mysore Highway", Icon: Compass },
+                    ].map(({ label, Icon }) => (
+                      <span key={label} className="ishavana-pill">
+                        <span className="ishavana-pill-icon" aria-hidden="true">
+                          <Icon size={15} strokeWidth={2} />
+                        </span>
+                        {label}
+                      </span>
                     ))}
                   </div>
                 </Reveal>
@@ -823,7 +828,7 @@ export default function Madhuvana() {
                 >
                   <img
                     src="/assets/project-images/Maduvana/mv-masterplan1.webp"
-                    alt="MadhuVana Concept Master Plan Layout"
+                    alt="Madhuvana Concept Master Plan Layout"
                     loading="lazy"
                     decoding="async"
                     width={1400}
@@ -1004,7 +1009,6 @@ export default function Madhuvana() {
               font-size: 0.72rem;
               font-weight: 700;
               letter-spacing: 0.05em;
-              text-transform: uppercase;
             }
             .av-nearby-time {
               font-size: 0.74rem;
@@ -1029,9 +1033,9 @@ export default function Madhuvana() {
             }
             .av-nearby-map iframe {
               position: absolute;
-              inset: 0;
+              inset: -220px 0 0 0; /* pushes Google's own info card out of view; the custom button is used instead */
               width: 100% !important;
-              height: 100% !important;
+              height: calc(100% + 220px) !important;
               aspect-ratio: auto !important;
               border: 0;
             }
@@ -1261,15 +1265,15 @@ export default function Madhuvana() {
                   {
                     name: "Historic Mysore",
                     desc: "Palace city & cultural hub",
-                    km: 80,
-                    time: "~1.15 hr",
+                    km: 60,
+                    time: "~1 hr",
                     icon: Trees,
                   },
                   {
-                    name: "Bengaluru City",
+                    name: "Bangalore City",
                     desc: "Capital city connection",
-                    km: 220,
-                    time: "~4 hrs",
+                    km: 80,
+                    time: "~1.5 hrs",
                     icon: Ship,
                   },
                 ].map(({ name, desc, km, time, icon: Icon }, i) => (
@@ -1316,13 +1320,13 @@ export default function Madhuvana() {
                 <div className="av-nearby-map-header">
                   <span className="dot" aria-hidden="true" />
                   <span style={{ fontSize: "0.82rem", fontWeight: 600, letterSpacing: "0.03em" }}>
-                    MadhuVana Location
+                    Madhuvana Location
                   </span>
                 </div>
 
                 <iframe
-                  title="Google Maps showing MadhuVana near Maddur"
-                  src="https://www.google.com/maps?q=12.66328,76.937561&z=14&output=embed"
+                  title="Google Maps showing Madhuvana near Maddur"
+                  src="https://www.google.com/maps?q=Madhuvana,+V.Ballekere,+Karnataka+571419&ll=12.66328,76.937561&z=13&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -1330,7 +1334,7 @@ export default function Madhuvana() {
 
                 <a
                   className="av-nearby-map-link"
-                  href="https://www.google.com/maps/search/?api=1&query=12.66328,76.937561"
+                  href="https://www.google.com/maps/search/?api=1&query=Madhuvana%2C%20V.Ballekere%2C%20Karnataka%20571419"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1355,7 +1359,7 @@ export default function Madhuvana() {
                       <MapPin size={22} aria-hidden="true" />
                     </div>
                     <div>
-                      <strong>MadhuVana Farm Community</strong>
+                      <strong>Madhuvana Farm Community</strong>
                       <span>Near Maddur, Mandya District, Karnataka</span>
                     </div>
                   </div>
@@ -1522,7 +1526,7 @@ export default function Madhuvana() {
                     fontWeight: 400,
                   }}
                 >
-                  MadhuVana.
+                  Madhuvana.
                 </span>
                 <br />A place to belong.
               </h2>
@@ -1576,7 +1580,7 @@ export default function Madhuvana() {
                       color: "#183023",
                     }}
                   >
-                    MadhuVana at Maddur
+                    Madhuvana at Maddur
                   </div>
                   <div
                     style={{
@@ -1658,7 +1662,7 @@ export default function Madhuvana() {
                     margin: "0 0 10px",
                   }}
                 >
-                  Enquire About MadhuVana.
+                  Enquire About Madhuvana.
                 </h3>
 
                 <p
@@ -1873,7 +1877,7 @@ export default function Madhuvana() {
                   cursor: "pointer",
                 }}
               >
-                Request MadhuVana Details
+                Request Madhuvana Details
                 <ArrowRight className="size-5" />
               </motion.button>
 
@@ -1894,7 +1898,7 @@ export default function Madhuvana() {
           </div>
         </section>
 
-        {/* Premium FAQ Section — MadhuVana */}
+        {/* Premium FAQ Section — Madhuvana */}
         <section
           id="faq-section"
           style={{
@@ -1977,7 +1981,7 @@ export default function Madhuvana() {
                     fontWeight: 400,
                   }}
                 >
-                  About MadhuVana
+                  About Madhuvana
                 </span>
               </h2>
             </motion.div>
@@ -1989,13 +1993,13 @@ export default function Madhuvana() {
               {[
                 {
                   number: "01",
-                  question: "Where is MadhuVana located?",
+                  question: "Where is Madhuvana located?",
                   answer: (
                     <>
                  V.Ballekere, Karnataka 571419  
                       <br />
                       <a
-                        href="https://www.google.com/maps/search/?api=1&query=12.66328,76.937561"
+                        href="https://www.google.com/maps/search/?api=1&query=Madhuvana%2C%20V.Ballekere%2C%20Karnataka%20571419"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -2005,44 +2009,44 @@ export default function Madhuvana() {
                           display: "inline-block",
                         }}
                       >
-                        Open MadhuVana Location in Google Maps ↗
+                        Open Madhuvana Location in Google Maps ↗
                       </a>
                     </>
                   ),
                 },
                 {
   number: "02",
-  question: "What is MadhuVana by Vanatvam?",
+  question: "What is Madhuvana by VanaTvam?",
   answer:
-    "MadhuVana is a 17-acre managed natural farmland community developed by Vanatvam. Envisioned as a sustainable farm community, it brings together organic farming, native trees, biodiversity, herbal gardens and thoughtfully designed common spaces. It offers individuals and families an opportunity to own farmland and reconnect with nature.",
+    "Madhuvana is a 17-acre managed natural farmland community developed by VanaTvam. Envisioned as a sustainable farm community, it brings together organic farming, native trees, biodiversity, herbal gardens and thoughtfully designed common spaces. It offers individuals and families an opportunity to own farmland and reconnect with nature.",
 },
 {
   number: "03",
-  question: "How far is MadhuVana from Bangalore and Mysore?",
+  question: "How far is Madhuvana from Bangalore and Mysore?",
   answer: (
     <>
-      MadhuVana enjoys convenient road connectivity along the Bengaluru–Mysuru corridor.
+      Madhuvana enjoys convenient road connectivity along the Bangalore–Mysore corridor.
       {"\n\n"}
       Approximate distances from the project are:
       <ul>
-        <li>Bengaluru: 80 km</li>
-        <li>Mysuru: 60 km</li>
+        <li>Bangalore: 80 km</li>
+        <li>Mysore: 60 km</li>
       </ul>
-      These approximate distances make MadhuVana an accessible farmland destination for weekend visits and nature getaways from both Bengaluru and Mysuru.
+      These approximate distances make Madhuvana an accessible farmland destination for weekend visits and nature getaways from both Bangalore and Mysore.
     </>
   ),
 },
 {
   number: "04",
-  question: "What makes MadhuVana a unique managed farmland community in Karnataka?",
+  question: "What makes Madhuvana a unique managed farmland community in Karnataka?",
   answer:
-    "MadhuVana goes beyond conventional farmland development by bringing together agriculture, biodiversity and community living. Spread across 17 acres, the project is envisioned with over 200 native and rare tree varieties, sacred groves, herbal gardens, water bodies and nature-inspired common spaces. The focus is on creating a living ecosystem that supports birds, butterflies, bees and other wildlife while allowing farm owners to experience the joys of nurturing their own land.",
+    "Madhuvana goes beyond conventional farmland development by bringing together agriculture, biodiversity and community living. Spread across 17 acres, the project is envisioned with over 200 native and rare tree varieties, sacred groves, herbal gardens, water bodies and nature-inspired common spaces. The focus is on creating a living ecosystem that supports birds, butterflies, bees and other wildlife while allowing farm owners to experience the joys of nurturing their own land.",
 },
 {
   number: "05",
-  question: "Is MadhuVana suitable for weekend farmhouse living near Bangalore?",
+  question: "Is Madhuvana suitable for weekend farmhouse living near Bangalore?",
   answer:
-    "Yes. MadhuVana is envisioned as a natural farm community near Maddur, Karnataka, offering an ideal setting for families looking to spend quality time away from the bustle of city life. Surrounded by green landscapes, fruit-bearing trees and thoughtfully planned natural spaces, it offers an opportunity to reconnect with nature, enjoy outdoor activities and experience the joys of farm living With convenient connectivity to Bengaluru and Mysuru, MadhuVana makes a wonderful choice for those seeking a peaceful weekend retreat and a closer connection with the land. We offer complementary stays in eco friendly cottages for the community owners to experience Madhuvana.",
+    "Yes. Madhuvana is envisioned as a natural farm community near Maddur, Karnataka, offering an ideal setting for families looking to spend quality time away from the bustle of city life. Surrounded by green landscapes, fruit-bearing trees and thoughtfully planned natural spaces, it offers an opportunity to reconnect with nature, enjoy outdoor activities and experience the joys of farm living with convenient connectivity to Bangalore and Mysore, Madhuvana makes a wonderful choice for those seeking a peaceful weekend retreat and a closer connection with the land. We offer complementary stays in eco friendly cottages for the community owners to experience Madhuvana.",
 },
               ].map((faq, index) => (
                 <motion.details
@@ -2136,7 +2140,7 @@ export default function Madhuvana() {
       <BrochureModal
         isOpen={isBrochureOpen}
         onClose={() => setIsBrochureOpen(false)}
-        projectName="MadhuVana"
+        projectName="Madhuvana"
         brochureUrl="/assets/project-images/MadhuVana-Brochure.pdf"
       />
 
@@ -2204,14 +2208,62 @@ export default function Madhuvana() {
           margin-top: 26px;
         }
 
+        @media (min-width: 1100px) {
+          .ishavana-pills--fit {
+            flex-wrap: nowrap;
+            gap: 8px;
+            margin-right: calc(-1 * clamp(48px, 6vw, 100px));
+          }
+          .ishavana-pills--fit .ishavana-pill {
+            white-space: nowrap;
+            gap: 7px;
+            padding: 5px 12px 5px 5px;
+            font-size: 0.74rem;
+          }
+          .ishavana-pills--fit .ishavana-pill-icon {
+            width: 22px;
+            height: 22px;
+          }
+          .ishavana-pills--fit .ishavana-pill-icon svg {
+            width: 13px;
+            height: 13px;
+          }
+        }
+
         .ishavana-pill {
           display: inline-flex;
-          padding: 10px 15px;
-          border: 1px solid rgba(18, 34, 23, 0.12);
+          align-items: center;
+          gap: 9px;
+          padding: 8px 16px 8px 8px;
+          border: 1px solid rgba(198, 162, 101, 0.45);
           border-radius: 99px;
           color: var(--ishavana-forest);
-          background: rgba(255, 255, 255, 0.66);
+          background: rgba(255, 255, 255, 0.8);
           font-size: 0.82rem;
+          font-weight: 600;
+          transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+        }
+
+        .ishavana-pill-icon {
+          width: 28px;
+          height: 28px;
+          flex-shrink: 0;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: rgba(198, 162, 101, 0.2);
+          color: #9A7536;
+        }
+
+        .ishavana-pill:hover {
+          transform: translateY(-2px);
+          border-color: var(--accent-gold);
+          box-shadow: 0 10px 24px rgba(18, 34, 23, 0.12);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ishavana-pill { transition: none; }
+          .ishavana-pill:hover { transform: none; }
         }
 
         @media (max-width: 900px) {
@@ -2234,7 +2286,7 @@ export default function Madhuvana() {
           }
 
           .ishavana-pill {
-            padding: 8px 14px;
+            padding: 6px 12px 6px 6px;
             font-size: 0.8rem;
           }
         }

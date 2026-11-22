@@ -286,7 +286,7 @@ export default function Investment() {
             <PortraitSource src="/assets/images/Investment.webp" />
             <img
               {...responsiveImg('/assets/images/Investment.webp')}
-              alt="Alternative Investment Opportunities with Vanatvam"
+              alt="Alternative Investment Opportunities with VanaTvam"
               fetchPriority="high"
               loading="eager"
               decoding="sync"
@@ -298,7 +298,7 @@ export default function Investment() {
               position: 'absolute',
               inset: 0,
               background:
-                'linear-gradient(180deg, rgba(18, 34, 23, 0.65) 0%, rgba(18, 34, 23, 0.88) 70%, #122217 100%)',
+                'linear-gradient(180deg, rgba(18, 34, 23, 0.12) 0%, rgba(18, 34, 23, 0.22) 60%, rgba(18, 34, 23, 0.55) 100%)',
             }}
           />
         </motion.div>
@@ -376,7 +376,7 @@ export default function Investment() {
               margin: '0 0 40px',
             })}
           >
-            Explore curated investment opportunities in nature-first development with Vanatvam.
+            Explore curated investment opportunities in nature-first development with VanaTvam.
           </p>
 
           <div
@@ -1011,7 +1011,7 @@ export default function Investment() {
             </div>
           </motion.div>
 
-          {/* Full Narrative Banner: The Vanatvam Model */}
+          {/* Full Narrative Banner: The VanaTvam Model */}
           <motion.div
             className="inv-narrative-banner"
             initial={{ opacity: 0, y: 30 }}
@@ -1054,7 +1054,7 @@ export default function Investment() {
                   textTransform: 'uppercase',
                 }}
               >
-                The Vanatvam Model
+                The VanaTvam Model
               </span>
             </div>
 
@@ -1082,7 +1082,7 @@ export default function Investment() {
                 marginBottom: '20px',
               }}
             >
-              Vanatvam offers the curated opportunities to invest in land for nature-first projects,
+              VanaTvam offers the curated opportunities to invest in land for nature-first projects,
               where planning starts with the land, its ecology and its community, and returns follow
               long-term stewardship.
             </p>
@@ -1097,7 +1097,7 @@ export default function Investment() {
                 marginBottom: '36px',
               }}
             >
-              Vanatvam will develop the land parcels into Nature led projects and distribute the
+              VanaTvam will develop the land parcels into Nature led projects and distribute the
               profits amongst its investors. Please reach out for further details by filling the details
               below if you are interested to know more.
             </p>
@@ -1228,7 +1228,7 @@ export default function Investment() {
                   justifyContent: 'space-between',
                 }}
               >
-                <span>~ ₹10 Lakh</span>
+                <span>~ ₹ 10 Lakh</span>
                 <Coins size={28} style={{ color: 'var(--accent-gold)', opacity: 0.8 }} />
               </div>
 
@@ -1423,7 +1423,7 @@ export default function Investment() {
                     margin: 0,
                   }}
                 >
-                  Vanatvam acquires strategic, ecologically rich land parcels near key corridors in Karnataka. By combining architect-led master planning, organic soil revitalization, and community infrastructure, the underlying land value appreciates significantly. Investors participate directly in this value creation and receive profit distributions upon project completion.
+                  VanaTvam acquires strategic, ecologically rich land parcels near key corridors in Karnataka. By combining architect-led master planning, organic soil revitalization, and community infrastructure, the underlying land value appreciates significantly. Investors participate directly in this value creation and receive profit distributions upon project completion.
                 </p>
               </div>
 
@@ -1488,7 +1488,7 @@ export default function Investment() {
                       Turnkey Management
                     </h4>
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.92rem', margin: 0, lineHeight: 1.6 }}>
-                      Vanatvam handles all on-ground operations including legal approvals, soil enrichment, water body creation, and ongoing estate upkeep.
+                      VanaTvam handles all on-ground operations including legal approvals, soil enrichment, water body creation, and ongoing estate upkeep.
                     </p>
                   </div>
                 </div>
@@ -1728,7 +1728,7 @@ export default function Investment() {
                       marginBottom: '24px',
                     }}
                   >
-                    We have received your details. A Vanatvam investment advisor will reach out to schedule your initial discussion.
+                    We have received your details. A VanaTvam investment advisor will reach out to schedule your initial discussion.
                   </p>
                   <button
                     onClick={() => {
@@ -2020,7 +2020,7 @@ export default function Investment() {
               }}
             >
               <strong style={{ color: 'var(--accent-gold)' }}>Disclaimer: </strong>
-              Land investments carry risk, and returns are not guaranteed. This page is for
+              Land investments carry risk and returns are not guaranteed. This page is for
               information only and is not investment advice. Please consult a qualified financial
               advisor before you decide.
             </p>

@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const blog = await getBlogById(id);
-  if (!blog) return { title: 'Vanatvam | Post Not Found' };
+  if (!blog) return { title: 'VanaTvam | Post Not Found' };
   return {
     title: blog.title,
     description: blog.excerpt,
@@ -89,11 +89,11 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
         <header
           style={{
             position: 'relative',
-            minHeight: 'clamp(460px, 58vh, 600px)',
+            minHeight: 'clamp(340px, 42vh, 440px)',
             display: 'flex',
             alignItems: 'flex-end',
-            paddingTop: 'clamp(150px, 18vh, 190px)',
-            paddingBottom: 'clamp(55px, 8vh, 75px)',
+            paddingTop: 'clamp(120px, 14vh, 150px)',
+            paddingBottom: 'clamp(36px, 5vh, 50px)',
             backgroundColor: '#0D1A10',
             overflow: 'hidden',
           }}
@@ -379,7 +379,7 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                       >
                         <img
                           src={normalizeBlogImagePath(block.src)}
-                          alt={block.alt || 'Vanatvam blog visual'}
+                          alt={block.alt || 'VanaTvam blog visual'}
                           style={{
                             width: '100%',
                             height: 'auto',

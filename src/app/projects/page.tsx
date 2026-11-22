@@ -19,7 +19,7 @@ export default function Projects() {
   const [filter, setFilter] = useState('all');
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState({
-    name: 'AnantaVana',
+    name: 'Anantavana',
     brochureUrl: '/assets/project-images/AnantaVana-Brochure.pdf',
   });
 
@@ -122,7 +122,7 @@ export default function Projects() {
               <RevealText immediate delay={0.1} style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>Natural communities.</RevealText>
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.3rem', maxWidth: '640px', lineHeight: 1.6, textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
-             In Bangalore Mysore Chamarajanagar corridor. Where nature heritage and culture come together.
+             In Bangalore Mysore Chamarajanagar corridor.<br />Where nature heritage and culture come together.
             </p>
           </div>
         </div>

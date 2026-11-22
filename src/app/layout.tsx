@@ -9,10 +9,10 @@ import AttributionCapture from "@/app/components/AttributionCapture";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vanatvam.com"),
   title: {
-    default: "Vanatvam | Sustainable Managed Farmland & Nature Communities",
-    template: "%s | Vanatvam"
+    default: "VanaTvam | Sustainable Managed Farmland & Nature Communities",
+    template: "%s | VanaTvam"
   },
-  description: "Vanatvam creates sustainable managed farmland, native forest ecosystems, and nature communities across Karnataka & near Bangalore. Discover Brindavana, Madhuvana, Anantavana, and Ishavana.",
+  description: "VanaTvam creates sustainable managed farmland, native forest ecosystems, and nature communities across Karnataka & near Bangalore. Discover Brindavana, Madhuvana, Anantavana, and Ishavana.",
   keywords: [
     "Managed Farmland Bangalore", "Managed Farmland Karnataka", "Sustainable Farmland Karnataka",
     "Farm Plots Near Bangalore", "Agricultural Land Investment Karnataka", "Eco Friendly Farm Communities",
@@ -21,21 +21,18 @@ export const metadata: Metadata = {
     "Nature Communities Bangalore", "Weekend Farm Near Bangalore", "Farmhouse Plots Karnataka",
     "Brindavana Pavagada", "Madhuvana Maddur", "Anantavana Kabini", "Ishavana Kaveri Riverfront",
   ],
-  authors: [{ name: "Vanatvam Private Limited" }],
-  // Homepage canonical (the homepage is a client component, so it can't export its own).
-  // Every other route sets its own `alternates`, which overrides this.
-  alternates: { canonical: "/" },
+  authors: [{ name: "VanaTvam Private Limited" }],
   openGraph: {
-    title: "Vanatvam | Sustainable Managed Farmland",
-    description: "Experience living ecosystems with Vanatvam's sustainable managed farmlands in Karnataka.",
+    title: "VanaTvam | Sustainable Managed Farmland",
+    description: "Experience living ecosystems with VanaTvam's sustainable managed farmlands in Karnataka.",
     url: "https://www.vanatvam.com",
-    siteName: "Vanatvam",
+    siteName: "VanaTvam",
     images: [
       {
         url: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp",
         width: 1200,
         height: 630,
-        alt: "Vanatvam Nature Communities",
+        alt: "VanaTvam Nature Communities",
       },
     ],
     locale: "en_IN",
@@ -53,7 +50,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Vanatvam | Sustainable Managed Farmland",
+    title: "VanaTvam | Sustainable Managed Farmland",
     card: "summary_large_image",
   },
   icons: {
@@ -76,16 +73,16 @@ export const viewport: Viewport = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  name: "Vanatvam Private Limited",
+  name: "VanaTvam Private Limited",
   url: "https://www.vanatvam.com/",
   logo: "https://www.vanatvam.com/assets/images/logos/vanatvam.webp",
-  description: "Vanatvam Private Limited is a Bengaluru-based company developing Natural Sustainable Farm Communities across Karnataka.",
+  description: "VanaTvam Private Limited is a Bangalore-based company developing Natural Sustainable Farm Communities across Karnataka.",
   telephone: "+91 80 4709 5111",
   email: "info@vanatvam.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "#5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase",
-    addressLocality: "Bengaluru",
+    addressLocality: "Bangalore",
     addressRegion: "Karnataka",
     postalCode: "560085",
     addressCountry: "IN",

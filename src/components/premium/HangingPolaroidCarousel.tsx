@@ -296,7 +296,7 @@ export default function HangingPolaroidCarousel({
             >
               <img
                 {...responsiveImg(selectedItem.img, '(max-width: 768px) 100vw, 70vw')}
-                alt={selectedItem.alt || selectedItem.title || 'Vanatvam moment'}
+                alt={selectedItem.alt || selectedItem.title || 'VanaTvam moment'}
                 className="max-h-[85vh] max-w-[92vw] rounded-sm object-contain shadow-2xl"
               />
               {(selectedItem.title || selectedItem.caption) && (
@@ -473,7 +473,7 @@ function ClampedPolaroid({
             <button
               type="button"
               className="block h-full w-full cursor-zoom-in"
-              aria-label={`View larger: ${item.alt || item.title || item.caption || 'Vanatvam moment'}`}
+              aria-label={`View larger: ${item.alt || item.title || item.caption || 'VanaTvam moment'}`}
               onClick={(event) => {
                 event.stopPropagation();
                 onImageClick();
@@ -481,7 +481,7 @@ function ClampedPolaroid({
             >
               <img
                 {...responsiveImg(item.img, '(max-width: 768px) 92vw, 26vw')}
-                alt={item.alt || 'Vanatvam moment'}
+                alt={item.alt || 'VanaTvam moment'}
                 className="block h-full w-full pointer-events-none select-none object-cover transition-transform duration-500 ease-out hover:scale-104"
               />
             </button>

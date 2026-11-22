@@ -89,7 +89,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
             <PortraitSource src={HERO_IMG} />
             <img
               {...responsiveImg(HERO_IMG)}
-              alt="Vanatvam articles on natural farming and forest living"
+              alt="VanaTvam articles on natural farming and forest living"
               fetchPriority="high"
               loading="eager"
               decoding="sync"
@@ -136,7 +136,7 @@ export default function BlogClient({ initialBlogs }: BlogClientProps) {
                 textTransform: 'uppercase',
               }}
             >
-              Vanatvam Articles
+              VanaTvam Articles
             </span>
           </div>
 
