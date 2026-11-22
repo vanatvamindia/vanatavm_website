@@ -1,3 +1,5 @@
+import { attributionLines, type LeadAttribution } from '@/lib/leadAttribution';
+
 const DC = process.env.ZOHO_BIGIN_DC || 'in';
 const ACCOUNTS_BASE = `https://accounts.zoho.${DC}`;
 const API_BASE = `https://www.zohoapis.${DC}`;
@@ -43,7 +45,7 @@ async function getAccessToken(): Promise<string> {
   return cachedToken.accessToken;
 }
 
-type LeadInput = {
+type LeadInput = LeadAttribution & {
   name: string;
   phone: string;
   email: string;
@@ -70,6 +72,7 @@ export async function createBiginContact(lead: LeadInput): Promise<void> {
     lead.project ? `Project: ${lead.project}` : null,
     lead.date ? `Preferred Date: ${lead.date}` : null,
     lead.message ? `Message: ${lead.message}` : null,
+    ...attributionLines(lead),
   ].filter(Boolean);
 
   // Upsert so a repeat lead (same email or phone already in Bigin) updates

@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/madhuvana',
     '/anantavana',
     '/ishavana',
+    '/book-a-visit',
     '/privacy-policy',
     '/terms',
     '/blog/redefining-farmland-ownership',

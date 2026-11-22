@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useLeadForm } from "@/lib/useLeadForm";
+import LeadFormStatus from "@/components/LeadFormStatus";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Link from "@/components/ui/AppLink";
@@ -149,6 +151,7 @@ if (typeof window !== "undefined") {
 }
 
 export default function Home() {
+  const lead = useLeadForm("home-form");
   preloadHero(heroSlides[0].img);
   const lenisRef = useLenis();
   const [activeSlide, setActiveSlide] = useState(0);
@@ -770,7 +773,7 @@ WHO WE ARE
           {
             num: "01 / Strategic Locations",
             title: "Along the Bangalore–Mysore Corridor",
-            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Eeshavana (Near Shivanasamudra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
+            desc: "Located amidst stunning natural settings in MadhuVana (Near Maddur), AnantaVana (Near Kabini), Ishavana (Near Shivanasamudra), and BrindaVana (Near Pavagada). Places worth owning, not just visiting, each selected after rigorous due diligence.",
           },
           {
             num: "02 / Biodiversity by Design",
@@ -1178,6 +1181,7 @@ WHO WE ARE
                     >
                       <div style={{ marginBottom: "12px" }}>
                         <span
+                          className="project-showcase-badge"
                           style={{
                             display: "inline-block",
                             background: "rgba(18, 32, 22, 0.82)",
@@ -1199,6 +1203,7 @@ WHO WE ARE
                       </div>
 
                       <h3
+                        className="project-showcase-name"
                         style={{
                           color: "#FFFFFF",
                           fontFamily: "'Cinzel', var(--font-serif), Georgia, serif",
@@ -1828,8 +1833,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
               delay: 0.12,
               ease: [0.22, 1, 0.36, 1],
             }}
-            action="/api/contact"
-            method="POST"
+            onSubmit={lead.onSubmit}
             suppressHydrationWarning
             style={{
               position: "relative",
@@ -2078,6 +2082,7 @@ By bringing together ecological restoration, India’s cultural heritage, and th
             {/* Submit button */}
             <motion.button
               type="submit"
+              disabled={lead.status === "submitting"}
               suppressHydrationWarning
               whileHover={{
                 y: -2,
@@ -2107,6 +2112,8 @@ By bringing together ecological restoration, India’s cultural heritage, and th
               Send an enquiry
               <ArrowRight className="size-5" />
             </motion.button>
+
+            <LeadFormStatus status={lead.status} />
 
             <p
               style={{

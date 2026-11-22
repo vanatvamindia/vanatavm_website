@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { getAttribution } from "@/lib/attribution";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import Magnetic from "@/components/premium/Magnetic";
@@ -143,6 +144,8 @@ export default function Contact() {
       date: formData.get("date"),
       message: formData.get("message"),
       source: "contact",
+      page: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {
@@ -220,7 +223,7 @@ export default function Contact() {
                     HEADQUARTERS
                   </span>
 
-                  <h2
+                  <h1
                     style={{
                       fontFamily: "var(--font-serif)",
                       fontSize: "clamp(2rem, 3vw, 2.5rem)",
@@ -230,7 +233,7 @@ export default function Contact() {
                     }}
                   >
                     Visit Our Office
-                  </h2>
+                  </h1>
 
                   <p
                     style={{

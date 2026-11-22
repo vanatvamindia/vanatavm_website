@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { getBlogs, getBlogById, getAllBlogIds } from '@/data/blogs';
 import { resolvePostImage, normalizeBlogImagePath } from '@/sanity/image';
 import TableOfContents from '../components/TableOfContents';
+import { SITE_URL } from '@/lib/seo';
 
 export const revalidate = 60;
 
@@ -21,8 +22,18 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const blog = await getBlogById(id);
   if (!blog) return { title: 'Vanatvam | Post Not Found' };
   return {
-    title: `Vanatvam | ${blog.title}`,
+    title: blog.title,
     description: blog.excerpt,
+    alternates: { canonical: `${SITE_URL}/blog/${blog.id}` },
+    openGraph: {
+      title: blog.title,
+      description: blog.excerpt,
+      url: `${SITE_URL}/blog/${blog.id}`,
+      siteName: 'Vanatvam',
+      locale: 'en_IN',
+      type: 'article',
+      images: [{ url: resolvePostImage(blog), alt: blog.title }],
+    },
   };
 }
 

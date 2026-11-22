@@ -2,7 +2,13 @@
   "slate": [
     {
       "name": "nextjs",
-      "source": "C:\\dev\\Vanatvam\\website"
+      "source": "C:\\dev\\vanatvam\\vanatvam_website"
+    }
+  ],
+  "appsail": [
+    {
+      "source": "..\\vanatvam_appsail",
+      "name": "vanatvam-web"
     }
   ]
 }

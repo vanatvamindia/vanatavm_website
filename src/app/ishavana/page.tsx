@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useLeadForm } from "@/lib/useLeadForm";
+import LeadFormStatus from "@/components/LeadFormStatus";
 import { motion, useReducedMotion } from "framer-motion";
 import { riseStyle } from "@/lib/rise";
 import Navigation from "@/app/components/Navigation";
@@ -366,6 +368,7 @@ const galleryImages = [
 ];
 
 export default function Ishavana() {
+  const lead = useLeadForm("ishavana-form");
   preloadHero("/assets/project-images/Esahavana/EV.webp");
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const reduce = useReducedMotion() ?? false;
@@ -1663,8 +1666,7 @@ export default function Ishavana() {
               delay: 0.12,
               ease: [0.22, 1, 0.36, 1],
             }}
-            action="/api/contact"
-            method="POST"
+            onSubmit={lead.onSubmit}
             style={{
               position: "relative",
               background: "linear-gradient(145deg, #F9FBF9 0%, #F3F7F4 100%)",
@@ -1910,6 +1912,7 @@ export default function Ishavana() {
             {/* Submit button */}
             <motion.button
               type="submit"
+              disabled={lead.status === "submitting"}
               whileHover={{
                 y: -2,
                 boxShadow: "0 12px 26px rgba(116,53,31,0.25)",
@@ -1938,6 +1941,8 @@ export default function Ishavana() {
               Request Ishavana Details
               <ArrowRight className="size-5" />
             </motion.button>
+
+            <LeadFormStatus status={lead.status} />
 
             <p
               style={{

@@ -3,6 +3,12 @@ import React from 'react';
 export const metadata = {
   title: 'Admin CMS | Vanatvam',
   description: 'Manage Vanatvam Blogs & Content',
+  // Keep the CMS out of search results (overrides the site-wide index/follow default).
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
+  },
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

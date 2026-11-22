@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { getAttribution } from '@/lib/attribution';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import RevealText from '@/components/premium/RevealText';
@@ -28,6 +29,8 @@ export default function BookAVisit() {
       project: formData.get('project'),
       message: formData.get('message'),
       source: 'book-a-visit',
+      page: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {

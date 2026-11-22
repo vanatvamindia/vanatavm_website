@@ -2315,6 +2315,26 @@ ul {
   }
 }
 
+/* Phones: size the project name and badge by screen width, not rem. A larger system font size
+   (common on Samsung phones) scales rem up and made names like "MADHUVANA" run past the card
+   edge, where the card clipped them. Wrapping is only a last resort. */
+@media (max-width: 600px) {
+  .project-showcase-name {
+    font-size: clamp(1.45rem, 7.2vw, 2.1rem) !important;
+    letter-spacing: 0.04em !important;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .project-showcase-badge {
+    font-size: clamp(0.62rem, 2.9vw, 0.78rem) !important;
+    letter-spacing: 0.1em !important;
+    padding: 7px 14px !important;
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
 @media (max-width: 640px) {
   .container {
     padding: 0 20px;

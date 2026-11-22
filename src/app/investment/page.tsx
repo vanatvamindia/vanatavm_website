@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { getAttribution } from '@/lib/attribution';
 import {
   Info,
   ArrowRight,
@@ -94,6 +95,8 @@ export default function Investment() {
           phone: formData.phone,
           email: formData.email,
           source: 'investment',
+          page: window.location.pathname,
+          ...getAttribution(),
         }),
       });
       if (!res.ok) throw new Error('Submission failed');

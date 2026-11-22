@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getAttribution } from "@/lib/attribution";
 import { X, Leaf, Download, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export type BrochureModalProps = {
@@ -32,6 +33,8 @@ export default function BrochureModal({
       project: formData.get("project") || projectName,
       message: `Requested ${projectName} Brochure download.`,
       source: "brochure",
+      page: window.location.pathname,
+      ...getAttribution(),
     };
 
     try {

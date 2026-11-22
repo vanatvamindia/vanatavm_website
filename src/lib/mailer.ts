@@ -1,6 +1,25 @@
 import nodemailer from 'nodemailer';
+import { attributionLines, type LeadAttribution } from '@/lib/leadAttribution';
 
-export interface ContactLeadNotification {
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+/** HTML-safe copy of a lead: every value comes from a public form, so none may reach the email as markup. */
+function escapeLead(lead: ContactLeadNotification): ContactLeadNotification {
+  const safe: Record<string, unknown> = { ...lead };
+  for (const key of Object.keys(safe)) {
+    const value = safe[key];
+    if (typeof value === 'string') safe[key] = escapeHtml(value);
+  }
+  return safe as unknown as ContactLeadNotification;
+}
+
+export interface ContactLeadNotification extends LeadAttribution {
   name: string;
   phone: string;
   email: string;
@@ -11,7 +30,10 @@ export interface ContactLeadNotification {
   submittedAt?: string;
 }
 
-export async function sendLeadNotificationEmail(lead: ContactLeadNotification) {
+export async function sendLeadNotificationEmail(rawLead: ContactLeadNotification) {
+  // `lead` (escaped) is for the HTML body only; `rawLead` is used for the subject, reply-to and plain text.
+  const lead = escapeLead(rawLead);
+  const attributionRows = attributionLines(rawLead);
   const host = process.env.SMTP_HOST;
   const port = parseInt(process.env.SMTP_PORT || '587', 10);
   const user = process.env.SMTP_USER;
@@ -92,6 +114,11 @@ export async function sendLeadNotificationEmail(lead: ContactLeadNotification) {
               <div class="label">Source Form</div>
               <div class="value">${lead.source || 'Website Contact Form'}</div>
             </div>
+            ${attributionRows.length ? `
+            <div class="field">
+              <div class="label">Where They Came From</div>
+              <div class="value" style="font-size: 14px; line-height: 1.6;">${attributionRows.map(escapeHtml).join('<br>')}</div>
+            </div>` : ''}
             <div class="field">
               <div class="label">Timestamp</div>
               <div class="value">${submittedTime} IST</div>
@@ -113,9 +140,9 @@ export async function sendLeadNotificationEmail(lead: ContactLeadNotification) {
   const info = await transporter.sendMail({
     from: `"Vanatvam Leads" <${fromEmail}>`,
     to: receiverEmail,
-    replyTo: lead.email,
-    subject: `New Lead from ${lead.name}${lead.project ? ` - ${lead.project}` : ''}`,
-    text: `New Lead Details:\n\nName: ${lead.name}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nProject: ${lead.project || 'General'}\nPreferred Date: ${lead.date || 'N/A'}\nSource: ${lead.source || 'Website'}\nMessage: ${lead.message || 'N/A'}\nSubmitted: ${submittedTime}`,
+    replyTo: rawLead.email,
+    subject: `New Lead from ${rawLead.name}${rawLead.project ? ` - ${rawLead.project}` : ''}`,
+    text: `New Lead Details:\n\nName: ${rawLead.name}\nPhone: ${rawLead.phone}\nEmail: ${rawLead.email}\nProject: ${rawLead.project || 'General'}\nPreferred Date: ${rawLead.date || 'N/A'}\nSource: ${rawLead.source || 'Website'}\nMessage: ${rawLead.message || 'N/A'}\n${attributionRows.length ? `\nWhere they came from:\n${attributionRows.join('\n')}\n\n` : ''}Submitted: ${submittedTime}`,
     html: htmlContent,
   });
 

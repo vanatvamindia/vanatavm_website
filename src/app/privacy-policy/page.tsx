@@ -1,6 +1,12 @@
 import { riseStyle } from '@/lib/rise';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  path: '/privacy-policy',
+  description: 'How Vanatvam collects, uses and protects your personal information.',
+});
 
 export default function PrivacyPolicy() {
   return (

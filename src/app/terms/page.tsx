@@ -1,6 +1,12 @@
 import { riseStyle } from '@/lib/rise';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  path: '/terms',
+  description: 'Terms and conditions for using the Vanatvam website and services.',
+});
 
 export default function TermsAndConditions() {
   return (

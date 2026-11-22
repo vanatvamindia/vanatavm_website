@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { writeClient } from '@/sanity/client';
 import { createBiginContact } from '@/lib/zohoBigin';
 import { sendLeadNotificationEmail } from '@/lib/mailer';
+import { attributionFromBody } from '@/lib/leadAttribution';
 
 export async function POST(req: Request) {
   let body: Record<string, unknown>;
@@ -18,6 +19,7 @@ export async function POST(req: Request) {
   const date = typeof body.date === 'string' ? body.date.trim() : '';
   const message = typeof body.message === 'string' ? body.message.trim() : '';
   const source = typeof body.source === 'string' ? body.source.trim() : 'contact';
+  const attribution = attributionFromBody(body);
 
   if (!name || !phone || !email) {
     return NextResponse.json(
@@ -38,6 +40,7 @@ export async function POST(req: Request) {
       preferredDate: date || undefined,
       message: message || undefined,
       source,
+      ...attribution,
       submittedAt: new Date().toISOString(),
     });
     leadId = lead._id;
@@ -52,7 +55,7 @@ export async function POST(req: Request) {
   // Best-effort push to Zoho Bigin CRM. The lead is already safely stored in
   // Sanity above, so a Bigin failure is logged but does not fail the request.
   try {
-    await createBiginContact({ name, phone, email, project, date, message, source });
+    await createBiginContact({ name, phone, email, project, date, message, source, ...attribution });
   } catch (error) {
     console.error('Failed to push lead to Zoho Bigin:', error);
   }
@@ -67,6 +70,7 @@ export async function POST(req: Request) {
       date,
       message,
       source,
+      ...attribution,
       submittedAt: new Date().toISOString(),
     });
   } catch (error) {

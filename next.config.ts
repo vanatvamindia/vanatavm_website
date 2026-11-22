@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Only set for the Catalyst AppSail build (NEXT_OUTPUT=standalone); Slate/OpenNext builds are unaffected.
+  ...(process.env.NEXT_OUTPUT === "standalone" ? { output: "standalone" as const } : {}),
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
