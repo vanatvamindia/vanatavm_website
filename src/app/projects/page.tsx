@@ -30,7 +30,7 @@ export default function Projects() {
       name: 'BRINDAVANA',
       logo: '/assets/images/Project-Logos/1.webp',
       location: 'PAVAGADA · 30 ACRES',
-      desc: 'Our first project demonstrating ecological restoration. What began as largely barren land has evolved into a thriving green ecosystem with over 3000+ mature trees.',
+      desc: 'Our first project demonstrating ecological restoration. What began as largely barren land has evolved into a thriving green ecosystem with 3,000+ mature trees across 50+ native varieties.',
       img: '/assets/project-images/Brindavana/brindavanaaa.webp',
       brochure: null,
        
@@ -43,8 +43,8 @@ export default function Projects() {
       category: 'water',
       name: 'MADHUVANA',
       logo: '/assets/images/Project-Logos/2.webp',
-      location: 'MADDUR - 17 Acres',
-      desc: 'A pristine channel bound ecosystem built around 200+ rare & endangered tree species. Features sacred groves like Vinayaka Vana, and cozy cottages designed for peaceful living for our community owners.',
+      location: 'MADDUR · 17 ACRES',
+      desc: 'A pristine channel-bound ecosystem built around 200+ rare & endangered tree species. Features sacred groves like Vinayaka Vana, and cozy cottages designed for peaceful living for our community owners.',
       img: '/assets/project-images/Maduvana/hero.webp',
       brochure: '/assets/project-images/MadhuVana-Brochure.pdf',
        
@@ -71,7 +71,7 @@ export default function Projects() {
       category: 'riverfront',
       name: 'ISHAVANA',
       logo: '/assets/images/Project-Logos/4.webp',
-      location: 'Shivanasamudra - 10 Acres',
+      location: 'SHIVANASAMUDRA · 10 ACRES',
       desc: 'Our premier riverfront community set along the banks of the sacred Kaveri river. Designed around the deep relationship between people, riparian ecology, and water.',
       img: '/assets/project-images/Esahavana/EV.webp',
       brochure: '/assets/project-images/Eeshavana-Brochure.pdf',

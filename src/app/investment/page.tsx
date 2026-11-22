@@ -566,8 +566,8 @@ export default function Investment() {
                   fontWeight: 300,
                 }}
               >
-                Diversify your investment portfolio during uncertain times. Spreading capital across
-                different asset classes is one of the oldest ways to protect it when markets turn.
+                Spreading capital across different asset classes is one of the oldest ways to protect
+                it when markets turn.
               </p>
 
               <div
@@ -1097,9 +1097,9 @@ export default function Investment() {
                 marginBottom: '36px',
               }}
             >
-              VanaTvam will develop the land parcels into Nature led projects and distribute the
-              profits amongst its investors. Please reach out for further details by filling the details
-              below if you are interested to know more.
+              VanaTvam will develop the land parcels into nature-led projects and distribute the
+              profits among its investors. Please reach out for further details by filling in the
+              details below if you would like to know more.
             </p>
 
             <Magnetic strength={0.2}>

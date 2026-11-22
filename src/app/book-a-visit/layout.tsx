@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   path: "/book-a-visit",
   description:
-    "Schedule a private guided tour of Vanatvam's sustainable managed farmlands in Karnataka. Pick your community and our team will arrange the date.",
+    "Schedule a private guided tour of VanaTvam's sustainable managed farmlands in Karnataka. Pick your community and our team will arrange the date.",
 });
 
 export default function Layout({ children }: { children: ReactNode }) {

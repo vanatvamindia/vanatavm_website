@@ -589,7 +589,7 @@ export default function Anantavana() {
     { label: "Location", value: "Near Kabini, Karnataka" },
     { label: "Total Area", value: "34 Acres" },
     { label: "Ecosystem Type", value: "Wildlife Corridor Buffer" },
-    { label: "Green Cover", value: "82%+ Native Canopy" },
+    { label: "Green Cover", value: "80%+ Native Canopy" },
   ];
 
   const galleryItems = [
@@ -733,7 +733,7 @@ export default function Anantavana() {
               className="hero-tagline vt-rise"
               style={riseStyle(0.4, { y: "30px" })}
             >
-              An Extensive Eco Conservation project to restore Bio Diversity.
+              An extensive eco-conservation project to restore biodiversity.
             </p>
 
             <div
@@ -816,7 +816,7 @@ export default function Anantavana() {
                 </Reveal>
                 <Reveal delay={0.2}>
                   <p style={{ margin: 0 }}>
-                    Anantavana is a sustainable natural re-forestation project in Kabini for nature lovers. Here, VanaTvam in association with Indus Herbs has developed a niche community of land owners who understand, appreciate, and consciously participate in sustaining the unique biosphere of Kabini. This limited edition project is a personal nature retreat that one can plug into to recharge the body and spirit! 
+                    Anantavana is a sustainable natural reforestation project in Kabini for nature lovers. Here, VanaTvam in association with Indus Herbs has developed a niche community of land owners who understand, appreciate, and consciously participate in sustaining the unique biosphere of Kabini. This limited edition project is a personal nature retreat that one can plug into to recharge the body and spirit! 
                   </p>
                 </Reveal>
                 <Reveal delay={0.3}>
@@ -959,14 +959,14 @@ export default function Anantavana() {
                 label: "Project area",
               },
               {
-                value: "70%",
+                value: "80%+",
                 suffix: "*",
                 label: "Forest cover",
               },
               {
-                value: "200+",
+                value: "250+",
                 suffix: "*",
-                label: "Native trees",
+                label: "Native tree varieties",
               },
             ].map((s, i) => (
               <motion.div
@@ -1136,32 +1136,32 @@ export default function Anantavana() {
         items={[
           {
             id: "entrance",
-            name: "A-Entrance Gateway",
+            name: "A – Entrance Gateway",
             img: "/assets/project-images/Ananthavana/Enterance.webp",
           },
           {
             id: "herbal",
-            name: "B-Herbal & Healing Flora",
+            name: "B – Herbal & Healing Flora",
             img: "/assets/project-images/Ananthavana/Herbal.webp",
           },
           {
             id: "cottage",
-            name: "C-Community Cottage",
+            name: "C – Community Cottage",
             img: "/assets/project-images/Ananthavana/Common.webp",
           },
           {
             id: "ponds",
-            name: "D-Natural Ponds",
+            name: "D – Natural Ponds",
             img: "/assets/project-images/Ananthavana/NaturalPonds.webp",
           },
           {
             id: "tree-house",
-            name: "E-Tree House Deck",
+            name: "E – Tree House Deck",
             img: "/assets/project-images/Ananthavana/av-tree-house.webp",
           },
           {
             id: "roads",
-            name: "F-Broad Internal Roads",
+            name: "F – Broad Internal Roads",
             img: "/assets/project-images/Ananthavana/Tree-Lined.webp",
           },
         ]}
@@ -2387,12 +2387,12 @@ export default function Anantavana() {
                 number: "02",
                 question: "What is Anantavana at Kabini?",
                 answer:
-                  "Anantavana is a nature-oriented managed farmland community by VanaTvam, envisioned as a forest-inspired retreat rooted in sustainable land management, biodiversity, and a deeper connection with nature. Designed to offer a peaceful escape into the natural world, the community brings together organic farming, green landscapes, and nature-conscious living. The project features 10000+ trees of 200+ native and rare varieties, internal roads, common areas, theme-parks, water bodies, and a cottage.",
+                  "Anantavana is a nature-oriented managed farmland community by VanaTvam, envisioned as a forest-inspired retreat rooted in sustainable land management, biodiversity, and a deeper connection with nature. Designed to offer a peaceful escape into the natural world, the community brings together organic farming, green landscapes, and nature-conscious living. The project features 10,000+ trees of 250+ native and rare varieties, internal roads, common areas, themed gardens, water bodies, and a cottage.",
               },
               {
                 number: "03",
                 question:
-                  "What are the available plot sizes at Anantavana Managed Farmland near Kabini?",
+                  "What are the available plot sizes at Anantavana managed farmland near Kabini?",
                 answer: (
                   <>
                     Plot sizes at Anantavana, a natural managed farmland
@@ -2410,7 +2410,7 @@ export default function Anantavana() {
                 question:
                   "What makes Anantavana a unique managed farmland community near Kabini?",
                 answer:
-                  "Anantavana by VanaTvam is envisioned as a nature-inspired farmland community that combines organic farming, biodiversity, and forest-style retreat living. Beyond agricultural plots, the proposed master plan includes common spaces, theme-park areas, and a water body, creating opportunities to connect with nature. Contact the VanaTvam team to learn more about the project and confirm which features are completed or proposed.",
+                  "Anantavana by VanaTvam is envisioned as a nature-inspired farmland community that combines organic farming, biodiversity, and forest-style retreat living. Beyond agricultural plots, the proposed master plan includes common spaces, themed garden areas, and a water body, creating opportunities to connect with nature. Contact the VanaTvam team to learn more about the project and confirm which features are completed or proposed.",
               },
               {
                 number: "05",
@@ -2423,7 +2423,7 @@ export default function Anantavana() {
                 question:
                   "Will I earn guaranteed income from my Anantavana plot?",
                 answer:
-                  "Anantavana is in Eco-Sensitive zone (ESZ) and governed by the ESZ norms. No commercial activity is permitted within the ESZ. Consider the land for its ownership and nature-oriented experience rather than assuming assured returns.",
+                  "Anantavana is in an Eco-Sensitive Zone (ESZ) and is governed by the ESZ norms. No commercial activity is permitted within the ESZ. Consider the land for its ownership and nature-oriented experience rather than assuming assured returns.",
               },
             ].map((faq, index) => (
               <motion.details

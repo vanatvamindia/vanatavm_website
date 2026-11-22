@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: blog.title,
       description: blog.excerpt,
       url: `${SITE_URL}/blog/${blog.id}`,
-      siteName: 'Vanatvam',
+      siteName: 'VanaTvam',
       locale: 'en_IN',
       type: 'article',
       images: [{ url: resolvePostImage(blog), alt: blog.title }],

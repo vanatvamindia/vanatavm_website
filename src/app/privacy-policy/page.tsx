@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   path: '/privacy-policy',
-  description: 'How Vanatvam collects, uses and protects your personal information.',
+  description: 'How VanaTvam collects, uses and protects your personal information.',
 });
 
 export default function PrivacyPolicy() {
@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--bg-dark-forest)', marginTop: '20px', marginBottom: '40px', lineHeight: 1.15 }}>Privacy Policy</h1>
             
             <div className="legal-content" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-dark)' }}>
-              <p style={{ marginBottom: '20px' }}>Last Updated: October 2026</p>
+              <p style={{ marginBottom: '20px' }}>Last Updated: November 2026</p>
               
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>1. Introduction</h3>
               <p style={{ marginBottom: '20px' }}>
@@ -32,28 +32,35 @@ export default function PrivacyPolicy() {
                 We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
               </p>
               <ul style={{ marginBottom: '20px', paddingLeft: '20px' }}>
-                <li style={{ marginBottom: '10px' }}><strong>Identity Data</strong> includes first name, last name, username or similar identifier, title, and date of birth.</li>
-                <li style={{ marginBottom: '10px' }}><strong>Contact Data</strong> includes billing address, delivery address, email address and telephone numbers.</li>
-                <li style={{ marginBottom: '10px' }}><strong>Usage Data</strong> includes information about how you use our website, products and services.</li>
-                <li style={{ marginBottom: '10px' }}><strong>Marketing and Communications Data</strong> includes your preferences in receiving marketing from us and our third parties and your communication preferences.</li>
+                <li style={{ marginBottom: '10px' }}><strong>Contact Data</strong> includes your name, phone number and email address.</li>
+                <li style={{ marginBottom: '10px' }}><strong>Enquiry Data</strong> includes the project you are interested in, your preferred visit date, and any message you send us.</li>
+                <li style={{ marginBottom: '10px' }}><strong>Usage Data</strong> includes the pages you visit, the website you came from, and any campaign tags in the link you clicked.</li>
               </ul>
 
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>3. How We Use Your Personal Data</h3>
               <p style={{ marginBottom: '20px' }}>
-                We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
+                We use your personal data to:
               </p>
               <ul style={{ marginBottom: '20px', paddingLeft: '20px' }}>
-                <li style={{ marginBottom: '10px' }}>Where we need to perform the contract we are about to enter into or have entered into with you (e.g. regarding a farmland purchase inquiry).</li>
-                <li style={{ marginBottom: '10px' }}>Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.</li>
-                <li style={{ marginBottom: '10px' }}>Where we need to comply with a legal or regulatory obligation.</li>
+                <li style={{ marginBottom: '10px' }}>Respond to your enquiry, arrange site visits, and send you the information you ask for.</li>
+                <li style={{ marginBottom: '10px' }}>Understand which pages and campaigns bring us enquiries, so we can improve our website.</li>
+                <li style={{ marginBottom: '10px' }}>Meet our legal and regulatory obligations.</li>
               </ul>
-
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>4. Data Security</h3>
               <p style={{ marginBottom: '20px' }}>
-                We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorized way, altered or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know.
+                We do not sell your personal data.
               </p>
 
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>5. Contact Us</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>4. Third Parties and Cookies</h3>
+              <p style={{ marginBottom: '20px' }}>
+                We store enquiries using trusted service providers (Sanity for records and Zoho for managing follow-ups). Our website also uses a Meta (Facebook) Pixel to measure our advertising, and embeds Google Maps and YouTube, which may set their own cookies. You can control cookies in your browser settings. To ask us to correct or delete your details, email info@vanatvam.com.
+              </p>
+
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>5. Data Security</h3>
+              <p style={{ marginBottom: '20px' }}>
+                We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know.
+              </p>
+
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>6. Contact Us</h3>
               <p style={{ marginBottom: '20px' }}>
                 If you have any questions about this privacy policy, please contact us at:<br /><br />
                 <strong>VanaTvam Private Limited</strong><br />

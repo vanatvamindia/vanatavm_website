@@ -394,7 +394,7 @@ export default function Madhuvana() {
                 className="hero-tagline vt-rise"
                 style={riseStyle(0.4, { y: "30px" })}
               >
-                A dense water-forest ecosystem built around 250+ native trees.
+                A dense water-forest ecosystem built around 5,000+ trees of 200+ native varieties.
               </p>
 
               <div
@@ -546,12 +546,12 @@ export default function Madhuvana() {
                 >
                   <Reveal delay={0.1}>
                     <p style={{ margin: 0 }}>
-                      Madhuvana is a joint offering from VanaTvam and Indus Herbs who were chosen to develop Madhuvana as Indus Herbs have extensive experience in designing and developing eco-landscaping, afforestation, and themed herbal gardens. Madhuvana is spread across 17 acres and has over 5000 Trees and plants, Ponds, Gazebos, Walk Ways, perimeter fencing. The project has a common area with Cottages with Kitchenette, Landscaped garden, Car Parking, and a Dining area among others. We offer complementary stays at our eco-friendly cottages for the community owners to experience the beauty of nature while they decide to build their own farm houses.
+                      Madhuvana is a joint project by VanaTvam and Indus Herbs. Indus Herbs brings long experience in eco-landscaping, afforestation, and themed herbal gardens. Spread across 17 acres, Madhuvana has 5,000+ trees and plants, ponds, gazebos, walkways, and perimeter fencing. Shared facilities include cottages with kitchenettes, a landscaped garden, car parking, and a dining area. Community owners can stay in our eco-friendly cottages free of charge while they decide whether to build their own farmhouse.
                     </p>
                   </Reveal>
                   <Reveal delay={0.2}>
                     <p style={{ margin: 0 }}>
-                      Located off the 10-lane Bangalore–Mysore highway, MadhuVana is just about 20 km from Maddur and Mandya, interlaced with the Vishweshwaraiah Channel. Madhuvana is offered as quarter-acre farm plots, with various trees and herbal plants in each plot — we will also plant vegetables and fruit trees, grown using 100% natural and organic methods. This offering is envisioned as a "Natural, Sustainable Farm Community," meaning we are building a strong community that believes in a common goal and shares common views. This means your neighbours are people who think and live like you! Come, be a part of this awesome community!
+                      Madhuvana lies just off the 10-lane Bangalore–Mysore highway, about 20 km from Maddur and Mandya, alongside the Visweshwaraiah Canal. It is offered as farm plots starting from 8,000 sq. ft., each with a variety of trees and herbal plants. We will also plant vegetables and fruit trees, grown using 100% natural and organic methods. Madhuvana is envisioned as a Natural Sustainable Farm Community: a group of landowners who share a common goal and a love of the land, and who care for it together.
                     </p>
                   </Reveal>
                   <Reveal delay={0.3}>
@@ -638,7 +638,7 @@ export default function Madhuvana() {
                 },
                 {
                   value: "200+",
-                  label: "Native & rare trees",
+                  label: "Native & rare tree varieties",
                 },
               ].map((s, i) => (
                 <motion.div
@@ -784,13 +784,13 @@ export default function Madhuvana() {
                 eyebrow="Master Plan Highlights"
                 title="Common Amenities (A – G)"
                 items={[
-                  { id: "kitchen-dining", name: "A-Entrance", img: "/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp" },
-                  { id: "ashoka-vana", name: "B-Children's Pool", img: "/assets/project-images/Maduvana/tropical-garden-pond-oasis.webp" },
-                  { id: "event-space", name: "C-Vinayaka Vana", img: "/assets/project-images/Maduvana/aerial-spiral-garden-in-bloom.webp" },
-                  { id: "gateway", name: "D-Gazebo", img: "/assets/project-images/Maduvana/gazebo.webp" },
-                  { id: "tree-house", name: "E-Tree House Deck", img: "/assets/project-images/Maduvana/mv-tree-house.webp" },
-                  { id: "cottages", name: "F-Cottage", img: "/assets/project-images/Maduvana/cottege.webp" },
-                  { id: "pond", name: "G-Pond", img: "/assets/project-images/Maduvana/pond.webp" },
+                  { id: "kitchen-dining", name: "A – Entrance", img: "/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp" },
+                  { id: "ashoka-vana", name: "B – Children's Pool", img: "/assets/project-images/Maduvana/tropical-garden-pond-oasis.webp" },
+                  { id: "event-space", name: "C – Vinayaka Vana", img: "/assets/project-images/Maduvana/aerial-spiral-garden-in-bloom.webp" },
+                  { id: "gateway", name: "D – Gazebo", img: "/assets/project-images/Maduvana/gazebo.webp" },
+                  { id: "tree-house", name: "E – Tree House Deck", img: "/assets/project-images/Maduvana/mv-tree-house.webp" },
+                  { id: "cottages", name: "F – Cottage", img: "/assets/project-images/Maduvana/cottege.webp" },
+                  { id: "pond", name: "G – Pond", img: "/assets/project-images/Maduvana/pond.webp" },
                   // { id: "kitchen-dining", name: "Kitchen & Dining", img: "/assets/project-images/Maduvana/hero.webp" },
                   // { id: "vinayaka-vana", name: "Vinayaka & Shivapanchayatha Vana", img: "/assets/project-images/Maduvana/a114d324-c066-402d-8ebe-32f8f8a65bc4.webp" },
                 ]}
@@ -2038,7 +2038,7 @@ export default function Madhuvana() {
                   number: "05",
                   question: "Is Madhuvana suitable for weekend farmhouse living near Bangalore?",
                   answer:
-                    "Yes. Madhuvana is envisioned as a natural farm community near Maddur, Karnataka, offering an ideal setting for families looking to spend quality time away from the bustle of city life. Surrounded by green landscapes, fruit-bearing trees and thoughtfully planned natural spaces, it offers an opportunity to reconnect with nature, enjoy outdoor activities and experience the joys of farm living with convenient connectivity to Bangalore and Mysore, Madhuvana makes a wonderful choice for those seeking a peaceful weekend retreat and a closer connection with the land. We offer complementary stays in eco friendly cottages for the community owners to experience Madhuvana.",
+                    "Yes. Madhuvana is envisioned as a natural farm community near Maddur, Karnataka, offering an ideal setting for families looking to spend quality time away from the bustle of city life. Surrounded by green landscapes, fruit-bearing trees and thoughtfully planned natural spaces, it offers an opportunity to reconnect with nature, enjoy outdoor activities and experience the joys of farm living. With convenient connectivity to Bangalore and Mysore, Madhuvana makes a wonderful choice for those seeking a peaceful weekend retreat and a closer connection with the land. We offer complimentary stays in eco-friendly cottages for community owners to experience Madhuvana.",
                 },
               ].map((faq, index) => (
                 <motion.details

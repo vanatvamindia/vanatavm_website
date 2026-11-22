@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   path: '/terms',
-  description: 'Terms and conditions for using the Vanatvam website and services.',
+  description: 'Terms and conditions for using the VanaTvam website and services.',
 });
 
 export default function TermsAndConditions() {

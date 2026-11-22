@@ -111,13 +111,13 @@ const heroSlides = [
   {
     id: "anantavana",
     name: "ANANTAVANA",
-    tagline: "An Extensive Eco Conservation project to restore Bio Diversity.",
+    tagline: "An extensive eco-conservation project to restore biodiversity.",
     img: "/assets/project-images/Ananthavana/hero-image-2.webp",
   },
   {
     id: "madhuvana",
     name: "MADHUVANA",
-    tagline: "A dense water-forest ecosystem built around 250+ native trees.",
+    tagline: "A dense water-forest ecosystem built around 5,000+ trees of 200+ native varieties.",
     img: "/assets/project-images/Maduvana/hero.webp",
   },
   {
@@ -613,7 +613,7 @@ export default function Home() {
                   marginBottom: "16px",
                 }}
               >
-                Vana means forest, Tvam means you — the forest isn't separate from us, we're part of it. VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka: organic, biodiverse and built to be lived in, not just owned.
+                Vana means forest, Tvam means you — the forest isn't separate from us, we're part of it. VanaTvam was born during the pandemic, out of realising how far we'd drifted from that balance. We create Natural Sustainable Farm Communities across Karnataka: organic, biodiverse, and built to be lived in, not just owned.
               </p>
 
               <p
@@ -745,7 +745,7 @@ export default function Home() {
                   margin: 0,
                 }}
               >
-                Every decision on every piece of land we touch comes back to six core  principles — ensuring that as the landscape matures, experiences take root and people become true stewards of the place.
+                Every decision on every piece of land we touch comes back to six core principles — ensuring that as the landscape matures, experiences take root and people become true stewards of the place.
               </motion.p>
             </div>
 
@@ -776,19 +776,19 @@ export default function Home() {
                   desc: "Everything we grow is organic, full stop — not a certification to chase, but the discipline VanaTvam is built on. We stay on the land season after season, adapting to local soil and climate rather than planting once and walking away.",
                 },
                 {
-                  num: "04 / Integration Of Sacred Groves",
+                  num: "04 / Integration of Sacred Groves",
                   title: "Vedic forest science, woven into the land",
                   desc: "Our communities are woven with conceptual Vanas — Nakshatra, Navagraha, Saraswathi and more — a tradition documented in the Vanyashastra Samhita, where each grove has a specific composition of trees and a specific purpose. ",
                 },
                 {
-                  num: "05 /Features to Enrich Experience",
-                  title: "Shared amenities to Enrich Experience.",
+                  num: "05 / Features to Enrich Experience",
+                  title: "Shared amenities that enrich the experience.",
                   desc: "Cottages, ponds, gazebos, tree houses — laid out in an architect-led master plan and shared across the community. Features like these are built to enrich the experience and invite people to keep returning to VanaTvam communities.",
                 },
                 {
-                  num: "06 /Aesthetically Designed Water Bodies",
-                  title: "Well designed water bodies create a calming effect. ",
-                  desc: "Every community is designed around its relationship with water — ponds and groves that purify groundwater and keep it healthy, shaping how a place feels as much as how it functions. The aesthetically designed water bodies enable visitors to reflect and feel a calming effect ",
+                  num: "06 / Aesthetically Designed Water Bodies",
+                  title: "Well-designed water bodies create a calming effect.",
+                  desc: "Every community is designed around its relationship with water — ponds and groves that purify groundwater and keep it healthy, shaping how a place feels as much as how it functions. The aesthetically designed water bodies enable visitors to reflect and feel a calming effect.",
                 },
               ].map((card, i) => (
                 <motion.div
@@ -1096,7 +1096,7 @@ export default function Home() {
                 {
                   id: "ishavana",
                   name: "ISHAVANA",
-                  badge: "Shivanasamudra ·10 Acres",
+                  badge: "SHIVANASAMUDRA · 10 ACRES",
                   img: "/assets/project-images/Esahavana/EV.webp",
 
                 },
@@ -2231,14 +2231,14 @@ export default function Home() {
                 question:
                   "What is managed farmland, and how does VanaTvam maintain it?",
                 answer:
-                  "Managed farmland combines land ownership with organised support for plantation development and ongoing land care, depending on the project. VanaTvam focuses on tree care, soil health and biodiversity. Our managed farmland near Bangalore includes hassle free maintenance.",
+                  "Managed farmland combines land ownership with organised support for plantation development and ongoing land care, depending on the project. VanaTvam focuses on tree care, soil health and biodiversity. Our managed farmland near Bangalore includes hassle-free maintenance.",
               },
               {
                 number: "04",
                 question:
                   "Can I build a farmhouse on agricultural land in Karnataka?",
                 answer:
-                  "Building a farmhouse depends on the property's legal status, applicable land-use rules and local building regulations. If you plan to buy agricultural land in Karnataka or are considering whether agricultural land can be used to build a farmhouse in Karnataka, Under Section 95 of the Karnataka Land Revenue Act, 1964, agricultural land may be used for a limited farmhouse (not exceeding 10% of the holding).",
+                  "Building a farmhouse depends on the property's legal status, applicable land-use rules and local building regulations. If you plan to buy agricultural land in Karnataka and want to build a farmhouse on it, note that under Section 95 of the Karnataka Land Revenue Act, 1964, agricultural land may be used for a limited farmhouse (not exceeding 10% of the holding).",
               },
               {
                 number: "05",

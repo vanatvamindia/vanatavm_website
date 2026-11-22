@@ -272,9 +272,9 @@ const overview = [
   {
     number: "01",
     eyebrow: "SPACE",
-    title: "20 planned plots",
+    title: "30 planned plots",
     description:
-      "The concept plan shows 20 plots, with plot sizes starting from 8,000 sq. ft. Final dimensions and availability should be confirmed with the project team.",
+      "The concept plan shows 30 plots, with plot sizes starting from 8,000 sq. ft. Final dimensions and availability should be confirmed with the project team.",
   },
   {
     number: "02",
@@ -343,7 +343,7 @@ const amenities = [
 
 const stats = [
   { value: "10", unit: "acres", label: "Community area" },
-  { value: "20", unit: "plots", label: "In the concept plan" },
+  { value: "30", unit: "plots", label: "In the concept plan" },
   { value: "8,000+", unit: "sq. ft.", label: "Plot sizes" },
   { value: "Kaveri", unit: "riverfront", label: "Setting" },
 ];
@@ -687,7 +687,7 @@ export default function Ishavana() {
                   label: "Community area",
                 },
                 {
-                  value: "Only 35 Plots ",
+                  value: "Only 30 Plots",
                   label: "Low Density Community Living.",
                   oneLine: true,
                 },
@@ -789,7 +789,7 @@ export default function Ishavana() {
       lineHeight: 1.75,
     }}
   >
-    Explore the 12 river side plots along with shared community spaces, bio-pool, riverside promenade, and internal road beside the Kaveri River.
+    Explore the 30 farm plots along with shared community spaces, bio-pool, riverside promenade, and internal road beside the Kaveri River.
   </p>
 </Reveal>
             </div>
@@ -1607,7 +1607,7 @@ export default function Ishavana() {
                 margin: "0 0 36px",
               }}
             >
-           Discover 12 exclusive riverfront farm plots along the serene Kaveri River near Shivanasamudra. Build your retreat surrounded by native greenery, riverside walkways, bio-pool, and a conscious community. Schedule a site visit or connect with our team to learn more.            </p>
+           Discover 30 exclusive farm plots beside the serene Kaveri River near Shivanasamudra. Build your retreat surrounded by native greenery, riverside walkways, bio-pool, and a conscious community. Schedule a site visit or connect with our team to learn more.            </p>
 
             {/* Decorative signature */}
             <div
@@ -2094,7 +2094,7 @@ export default function Ishavana() {
   answer: (
     <span>
       Plot sizes at Ishavana start from{" "}
-      <strong>8,000+ sq. ft.</strong>, with 12 exclusive farm plots in the
+      <strong>8,000+ sq. ft.</strong>, with 30 exclusive farm plots in the
       master plan arranged to preserve privacy and natural landscape views.
     </span>
   ),

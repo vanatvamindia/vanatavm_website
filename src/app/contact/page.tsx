@@ -403,7 +403,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Right Column: Premium Inquiry & Site Visit Form */}
+              {/* Right Column: Premium Enquiry & Site Visit Form */}
               <div className="vt-rise" style={riseStyle(0.1, { y: "24px" })}>
                 <form
                   onSubmit={handleSubmit}
@@ -443,7 +443,7 @@ export default function Contact() {
                         marginBottom: "10px",
                       }}
                     >
-                      BOOK A SITE VISIT &amp; INQUIRY
+                      BOOK A SITE VISIT &amp; ENQUIRY
                     </span>
 
                     <h2
@@ -491,7 +491,7 @@ export default function Contact() {
                         Thank You!
                       </h3>
                       <p style={{ color: "#5A685E", margin: 0, lineHeight: 1.7 }}>
-                        Your inquiry request has been received. Our team will contact you shortly to confirm visit details.
+                        Your enquiry request has been received. Our team will contact you shortly to confirm visit details.
                       </p>
                     </div>
                   ) : (
@@ -708,7 +708,7 @@ export default function Contact() {
                           cursor: "pointer",
                         }}
                       >
-                        {submitting ? "Sending Request..." : "Submit Inquiry Request"}
+                        {submitting ? "Sending Request..." : "Submit Enquiry Request"}
                         <ArrowRight size={18} />
                       </motion.button>
 
@@ -721,7 +721,7 @@ export default function Contact() {
                           lineHeight: 1.6,
                         }}
                       >
-                        Your details are private and will only be used to answer your inquiry.
+                        Your details are private and will only be used to answer your enquiry.
                       </p>
                     </div>
                     </>
@@ -774,7 +774,7 @@ export default function Contact() {
                   number: "01",
                   question: "How do I book a private site visit?",
                   answer:
-                    "Fill out the inquiry form above, call us at (080) 4709-5111, or message us on WhatsApp. Our relationship manager will confirm your date, time, and travel directions.",
+                    "Fill out the enquiry form above, call us at +91 80 4709 5111, or message us on WhatsApp. Our relationship manager will confirm your date, time, and travel directions.",
                 },
                 {
                   number: "02",

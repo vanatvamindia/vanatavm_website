@@ -649,8 +649,8 @@ export default function Brindavana() {
                   label: "Sq. ft. farm parcels",
                 },
                 {
-                  value: "50 +",
-                  label: "Native trees",
+                  value: "50+",
+                  label: "Native tree varieties",
                 },
               ].map((s, i) => (
                 <motion.div
