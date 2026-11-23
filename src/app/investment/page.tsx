@@ -1829,6 +1829,10 @@ export default function Investment() {
                       <input
                         id="phone"
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        pattern="[0-9+ \-]{10,15}"
+                        title="Enter a valid phone number, for example +91 98765 43210"
                         required
                         placeholder="+91 98765 43210"
                         value={formData.phone}

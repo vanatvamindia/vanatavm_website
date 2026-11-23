@@ -126,7 +126,7 @@ export default function BookAVisit() {
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label>Phone Number</label>
-                  <input type="tel" name="phone" className="form-control" placeholder="+91 98765 43210" required />
+                  <input type="tel" inputMode="tel" autoComplete="tel" pattern="[0-9+ \-]{10,15}" title="Enter a valid phone number, for example +91 98765 43210" name="phone" className="form-control" placeholder="+91 98765 43210" required />
                 </div>
               </div>
               <div className="form-group" style={{ marginBottom: '25px' }}>

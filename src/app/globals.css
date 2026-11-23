@@ -4653,3 +4653,16 @@ iframe[id*="kenytChatWindow"].k-hide {
     border-radius: 14px !important;
   }
 }
+
+/* Keyboard focus: always visible, even where inline styles remove the default outline. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-gold) !important;
+  outline-offset: 2px !important;
+}

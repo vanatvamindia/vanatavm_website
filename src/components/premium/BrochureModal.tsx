@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAttribution } from "@/lib/attribution";
 import { X, Leaf, Download, CheckCircle2 } from "lucide-react";
@@ -27,10 +27,57 @@ export default function BrochureModal({
   );
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
+
+  // Dialog behaviour: move focus in, close on Escape, keep Tab inside, restore focus on close.
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const focusables = () =>
+      Array.from(
+        dialogRef.current?.querySelectorAll<HTMLElement>(
+          'button, [href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])'
+        ) ?? []
+      ).filter((el) => !el.hasAttribute("disabled"));
+    const t = window.setTimeout(() => {
+      (dialogRef.current?.querySelector<HTMLElement>("input, select") ?? focusables()[0])?.focus();
+    }, 50);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onCloseRef.current();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      window.clearTimeout(t);
+      document.removeEventListener("keydown", onKey);
+      previous?.focus?.();
+      setError("");
+    };
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+    setError("");
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -45,14 +92,23 @@ export default function BrochureModal({
     };
 
     try {
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), 15000);
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
+      window.clearTimeout(timer);
       if (!res.ok) throw new Error("Lead save failed");
     } catch (err) {
       console.error("Failed to record lead:", err);
+      setError(
+        "We couldn't save your details, so the brochure hasn't downloaded. Please check your connection and try again, or call or WhatsApp us."
+      );
+      setSubmitting(false);
+      return;
     }
 
     setSubmitting(false);
@@ -73,7 +129,7 @@ export default function BrochureModal({
     setTimeout(() => {
       setSubmitted(false);
       onClose();
-    }, 1800);
+    }, 3000);
   };
 
   return (
@@ -107,6 +163,10 @@ export default function BrochureModal({
 
           {/* Modal Container */}
           <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="brochure-modal-title"
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
@@ -164,6 +224,8 @@ export default function BrochureModal({
 
             {submitted ? (
               <motion.div
+                role="status"
+                aria-live="polite"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 style={{
@@ -228,6 +290,7 @@ export default function BrochureModal({
                   </div>
 
                   <h3
+                    id="brochure-modal-title"
                     style={{
                       fontFamily: "var(--font-serif)",
                       fontSize: "clamp(1.8rem, 3vw, 2.2rem)",
@@ -320,6 +383,10 @@ export default function BrochureModal({
                       id="modal-phone"
                       name="phone"
                       type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      pattern="[0-9+ \-]{10,15}"
+                      title="Enter a valid phone number, for example 98765 43210"
                       placeholder="Enter your phone number"
                       required
                       style={{
@@ -468,6 +535,24 @@ export default function BrochureModal({
                       </>
                     )}
                   </motion.button>
+                  {error && (
+                    <p
+                      role="alert"
+                      style={{
+                        margin: 0,
+                        padding: "12px 14px",
+                        borderRadius: "10px",
+                        background: "#FBEAE7",
+                        border: "1px solid #F0C4BD",
+                        color: "#9B2C1F",
+                        fontSize: "0.88rem",
+                        lineHeight: 1.5,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {error}
+                    </p>
+                  )}
                 </form>
               </>
             )}

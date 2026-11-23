@@ -91,8 +91,13 @@ export default function Navigation() {
   // Lock body scroll while the mobile drawer is open
   useEffect(() => {
     document.body.style.overflow = isDrawerOpen ? "hidden" : "";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsDrawerOpen(false);
+    };
+    if (isDrawerOpen) document.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
     };
   }, [isDrawerOpen]);
 
@@ -294,21 +299,14 @@ export default function Navigation() {
 
           {/* Mobile menu toggle */}
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <motion.div
+            <motion.button
+              type="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.94 }}
               className={`menu-toggle-btn ${isDrawerOpen ? "open" : ""}`}
               onClick={() => setIsDrawerOpen((open) => !open)}
               aria-label="Toggle navigation menu"
               aria-expanded={isDrawerOpen}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  setIsDrawerOpen((open) => !open);
-                }
-              }}
               style={{
                 cursor: "pointer",
                 display: "none", // shown via CSS media query on mobile
@@ -329,7 +327,7 @@ export default function Navigation() {
               <span />
               <span />
               <span />
-            </motion.div>
+            </motion.button>
           </div>
         </div>
       </motion.header>

@@ -15,6 +15,7 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [today] = useState(() => new Date().toISOString().slice(0, 10));
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,11 +36,15 @@ export default function Contact() {
     };
 
     try {
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), 15000);
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
+      window.clearTimeout(timer);
       if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
     } catch (err) {
@@ -62,7 +67,7 @@ export default function Contact() {
         <section
           style={{
              
-            padding: "clamp(120px, 20vh, 350px) 0",
+            padding: "clamp(80px, 12vh, 160px) 0",
             background: "#FFFFFF",
           }}
         >
@@ -384,6 +389,7 @@ export default function Contact() {
                     <>
                     {error && (
                       <p
+                        role="alert"
                         style={{
                           margin: "0 0 16px",
                           padding: "12px 16px",
@@ -406,10 +412,11 @@ export default function Contact() {
                     >
                       {/* Name */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                        <label style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
+                        <label htmlFor="contact-name" style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
                           Full Name *
                         </label>
                         <input
+                          id="contact-name"
                           type="text"
                           name="name"
                           placeholder="Enter your full name"
@@ -431,11 +438,16 @@ export default function Contact() {
 
                       {/* Phone */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                        <label style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
+                        <label htmlFor="contact-phone" style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
                           Phone Number *
                         </label>
                         <input
+                          id="contact-phone"
                           type="tel"
+                          inputMode="tel"
+                          autoComplete="tel"
+                          pattern="[0-9+ \-]{10,15}"
+                          title="Enter a valid phone number, for example +91 98765 43210"
                           name="phone"
                           placeholder="+91 98765 43210"
                           required
@@ -456,10 +468,11 @@ export default function Contact() {
 
                       {/* Email */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                        <label style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
+                        <label htmlFor="contact-email" style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
                           Email Address *
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
                           name="email"
                           placeholder="yourname@domain.com"
@@ -481,10 +494,11 @@ export default function Contact() {
 
                       {/* Project Select */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                        <label style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
+                        <label htmlFor="contact-project" style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
                           Interested Project *
                         </label>
                         <select
+                          id="contact-project"
                           name="project"
                           required
                           defaultValue=""
@@ -522,11 +536,13 @@ export default function Contact() {
 
                       {/* Preferred Visit Date */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                        <label style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
+                        <label htmlFor="contact-date" style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
                           Preferred Visit Date (Optional)
                         </label>
                         <input
+                          id="contact-date"
                           type="date"
+                          min={today}
                           name="date"
                           style={{
                             width: "100%",
@@ -545,10 +561,11 @@ export default function Contact() {
 
                       {/* Message */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                        <label style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
+                        <label htmlFor="contact-message" style={{ color: "#35483A", fontSize: "0.88rem", fontWeight: 600 }}>
                           Message / Specific Questions
                         </label>
                         <textarea
+                          id="contact-message"
                           name="message"
                           rows={4}
                           placeholder="Tell us about your requirements or preferred visit dates..."
@@ -594,7 +611,7 @@ export default function Contact() {
                           cursor: "pointer",
                         }}
                       >
-                        {submitting ? "Sending Request..." : "Submit Enquiry Request"}
+                        {submitting ? "Sending Request..." : "Request Visit Details"}
                         <ArrowRight size={18} />
                       </motion.button>
 
