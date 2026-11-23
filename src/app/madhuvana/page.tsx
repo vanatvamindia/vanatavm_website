@@ -1249,7 +1249,7 @@ export default function Madhuvana() {
                   },
                   {
                     name: "Visweshwaraiah Canal",
-                    desc: "Scenic riverfront & water channels",
+                    desc: "Scenic riverfront & water canals",
                     km: 1,
                     time: "~1 mins",
                     icon: Waves,

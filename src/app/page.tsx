@@ -1500,7 +1500,7 @@ export default function Home() {
               >
                 <img
                   {...responsiveImg("/event-images/award.webp", "(max-width: 768px) 92vw, 46vw")}
-                  alt="VanaTvam's natural forest landscape"
+                  alt="VanaTvam receiving the FKCCI Award in Tourism and Hospitality 2026 from the Federation of Karnataka Chambers of Commerce and Industry"
                   loading="lazy"
                   decoding="async"
                   width="800"

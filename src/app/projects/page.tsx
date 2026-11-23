@@ -1,18 +1,18 @@
 'use client';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
-import Link from '@/components/ui/AppLink';
-import RevealText from '@/components/premium/RevealText';
-import { riseStyle } from '@/lib/rise';
-import Magnetic from '@/components/premium/Magnetic';
-import TiltCard from '@/components/premium/TiltCard';
-import ProjectTunnel from '@/components/premium/ProjectTunnel';
+import Navigation from '@/app/components/Navigation';
 import BrochureModal from '@/components/premium/LazyBrochureModal';
-import { responsiveImg } from '@/lib/responsiveImage';
+import Magnetic from '@/components/premium/Magnetic';
+import ProjectTunnel from '@/components/premium/ProjectTunnel';
+import RevealText from '@/components/premium/RevealText';
+import TiltCard from '@/components/premium/TiltCard';
+import Link from '@/components/ui/AppLink';
 import PortraitSource from '@/components/ui/PortraitSource';
 import { preloadHero } from '@/lib/preloadHero';
+import { responsiveImg } from '@/lib/responsiveImage';
+import { riseStyle } from '@/lib/rise';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function Projects() {
   preloadHero('/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp');
@@ -24,60 +24,68 @@ export default function Projects() {
   });
 
   const projects = [
-     {
+    {
       id: 'brindavana',
       category: 'completed',
       name: 'BRINDAVANA',
       logo: '/assets/images/Project-Logos/1.webp',
       location: 'PAVAGADA · 30 ACRES',
+      highlight: 'Restored ecosystem',
+      driveFromBlr: '170 km · ~3.5 hrs from BLR',
       desc: 'Our first project demonstrating ecological restoration. What began as largely barren land has evolved into a thriving green ecosystem with 3,000+ mature trees across 50+ native varieties.',
       img: '/assets/project-images/Brindavana/brindavanaaa.webp',
-      brochure: null,
-       
+      brochure: '/assets/project-images/Brindavana-Brochure.pdf',
+
       badgeBg: 'var(--bg-dark-forest)',
-       
+
     },
 
-     {
+    {
       id: 'madhuvana',
       category: 'water',
       name: 'MADHUVANA',
       logo: '/assets/images/Project-Logos/2.webp',
       location: 'MADDUR · 17 ACRES',
-      desc: 'A pristine channel-bound ecosystem built around 200+ rare & endangered tree species. Features sacred groves like Vinayaka Vana, and cozy cottages designed for peaceful living for our community owners.',
+      highlight: 'The Living Canal',
+      driveFromBlr: '80 km · ~1.75 hrs from BLR',
+      desc: 'A pristine canal-bound ecosystem built around 200+ rare & endangered tree species. Features sacred groves like Vinayaka Vana, and cozy cottages designed for peaceful living for our community owners.',
       img: '/assets/project-images/Maduvana/hero.webp',
       brochure: '/assets/project-images/MadhuVana-Brochure.pdf',
-       
+
       badgeBg: 'var(--accent-gold)',
-     
+
     },
-     
+
     {
       id: 'anantavana',
       category: 'wildlife',
       name: 'ANANTAVANA',
       logo: '/assets/images/Project-Logos/3.webp',
       location: 'NEAR KABINI · 34 ACRES',
+      highlight: 'Kabini boating & safari',
+      driveFromBlr: '217 km · ~4.5 hrs from BLR',
       desc: 'A nature-rich ecosystem nestled in Kabini’s thriving biodiversity belt, surrounded by pristine forests and abundant wildlife. A peaceful forest community offering thoughtfully planned farm parcels where life unfolds closer to nature.',
       img: '/assets/project-images/Ananthavana/hero-image-2.webp',
       brochure: '/assets/project-images/AnantaVana-Brochure.pdf',
-       
+
       badgeBg: '#2D6A4F',
-       
+
     },
-    
+
     {
       id: 'ishavana',
       category: 'riverfront',
       name: 'ISHAVANA',
       logo: '/assets/images/Project-Logos/4.webp',
       location: 'SHIVANASAMUDRA · 10 ACRES',
+      highlight: 'Riverfront · near Shivanasamudra',
+      driveFromBlr: '120 km · ~2.5 hrs from BLR',
       desc: 'Our premier riverfront community set along the banks of the sacred Kaveri river. Designed around the deep relationship between people, riparian ecology, and water.',
       img: '/assets/project-images/Esahavana/EV.webp',
       brochure: '/assets/project-images/Eeshavana-Brochure.pdf',
-      
+
       badgeBg: '#1B4965',
-       
+
     },
   ];
 
@@ -118,11 +126,11 @@ export default function Projects() {
         <div className="container relative" style={{ zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', paddingTop: '80px' }}>
           <div className="vt-rise" style={riseStyle(0, { y: '30px' })}>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(3.5rem, 6.5vw, 6rem)', color: '#FFF', lineHeight: 0.95, marginBottom: '24px', letterSpacing: '-0.02em', textShadow: '0 4px 24px rgba(0,0,0,0.5)' }}>
-              <RevealText immediate>Explore our</RevealText><br/>
+              <RevealText immediate>Explore our</RevealText><br />
               <RevealText immediate delay={0.1} style={{ fontStyle: 'italic', color: 'var(--accent-gold)' }}>Natural communities.</RevealText>
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.3rem', maxWidth: '640px', lineHeight: 1.6, textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
-             In Bangalore Mysore Chamarajanagar corridor.<br />Where nature heritage and culture come together.
+              In Bangalore Mysore Chamarajanagar corridor.<br />Where nature heritage and culture come together.
             </p>
           </div>
         </div>
@@ -141,7 +149,7 @@ export default function Projects() {
           >
             <AnimatePresence mode="popLayout">
               {filteredProjects.map(proj => (
-                <motion.div 
+                <motion.div
                   key={proj.id}
                   layout
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -152,8 +160,8 @@ export default function Projects() {
                   style={{ background: '#FFF', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', border: '1px solid rgba(0,0,0,0.03)' }}
                 >
                   <TiltCard max={4} style={{ position: 'relative', height: '280px', overflow: 'hidden' }}>
-                    <motion.img 
-                      whileHover={{ scale: 1.05 }} 
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.6, ease: 'easeOut' }}
                       {...responsiveImg(proj.img, '(max-width: 768px) 130vw, 100vw')} alt={proj.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
@@ -161,7 +169,7 @@ export default function Projects() {
                   </TiltCard>
                   <div style={{ padding: '28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <span style={{ color: 'var(--accent-gold)', fontSize: '0.85rem', letterSpacing: '0.15em', fontWeight: 600, marginBottom: '4px', display: 'block', textTransform: 'uppercase' }}>{proj.location}</span>
-                    
+
                     {proj.logo ? (
                       <div
                         className="project-card-logo-container"
@@ -195,9 +203,14 @@ export default function Projects() {
                       <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: 'var(--bg-dark-forest)', margin: '4px 0 10px 0' }}>{proj.name}</h3>
                     )}
 
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '16px', padding: '12px 14px', background: 'var(--bg-cream)', borderRadius: '12px', borderLeft: '3px solid var(--accent-gold)' }}>
+                      <span style={{ color: 'var(--bg-dark-forest)', fontWeight: 700, fontSize: '0.95rem', lineHeight: 1.3 }}>{proj.highlight}</span>
+                      <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 500 }}>🚗 {proj.driveFromBlr}</span>
+                    </div>
+
                     <p style={{ color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px', flex: 1 }}>{proj.desc}</p>
-                    
-                   
+
+
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       <Magnetic strength={0.15} style={{ display: 'block', width: '100%' }}>
