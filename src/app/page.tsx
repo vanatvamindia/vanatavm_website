@@ -1056,17 +1056,17 @@ export default function Home() {
               {[
 
                 {
-                  id: "anantavana",
-                  name: "ANANTAVANA",
-                  badge: "NEAR KABINI · 34 ACRES",
-                  img: "/assets/project-images/Ananthavana/hero-image-2.webp",
-
-                },
-                {
                   id: "ishavana",
                   name: "ISHAVANA",
                   badge: "SHIVANASAMUDRA · 10 ACRES",
                   img: "/assets/project-images/Esahavana/EV.webp",
+
+                },
+                {
+                  id: "anantavana",
+                  name: "ANANTAVANA",
+                  badge: "NEAR KABINI · 34 ACRES",
+                  img: "/assets/project-images/Ananthavana/hero-image-2.webp",
 
                 },
                 {

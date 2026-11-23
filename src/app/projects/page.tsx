@@ -82,7 +82,7 @@ export default function Projects() {
       driveFromBlr: '120 km · ~2.5 hrs from BLR',
       desc: 'Our premier riverfront community set along the banks of the sacred Kaveri river. Designed around the deep relationship between people, riparian ecology, and water.',
       img: '/assets/project-images/Esahavana/EV.webp',
-      brochure: '/assets/project-images/Eeshavana-Brochure.pdf',
+      brochure: '/assets/project-images/Ishavana-Brochure.pdf',
 
       badgeBg: '#1B4965',
 

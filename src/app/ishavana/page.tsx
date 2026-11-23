@@ -2008,7 +2008,7 @@ export default function Ishavana() {
         isOpen={isBrochureOpen}
         onClose={() => setIsBrochureOpen(false)}
         projectName="Ishavana"
-        brochureUrl="/assets/project-images/Eeshavana-Brochure.pdf"
+        brochureUrl="/assets/project-images/Ishavana-Brochure.pdf"
       />
 
       <Footer />

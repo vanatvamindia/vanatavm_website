@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { getAttribution } from '@/lib/attribution';
-import { Info, ArrowRight, ArrowUpRight, ShieldCheck, TrendingUp, Clock, Coins, Globe, TrendingDown, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ShieldCheck, TrendingUp, Clock, Coins, Globe, TrendingDown, CheckCircle2 } from 'lucide-react';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import RevealText from '@/components/premium/RevealText';
@@ -1227,7 +1227,6 @@ export default function Investment() {
                   }}
                 >
                   <span>Minimum Investment Threshold</span>
-                  <Info size={15} style={{ opacity: 0.7, color: 'var(--accent-gold)' }} />
                 </div>
               </div>
             </motion.div>
@@ -1283,7 +1282,6 @@ export default function Investment() {
                   }}
                 >
                   <span>Indicative Return Range (p.a.)</span>
-                  <Info size={15} style={{ opacity: 0.7, color: 'var(--accent-gold)' }} />
                 </div>
               </div>
             </motion.div>
@@ -1339,7 +1337,6 @@ export default function Investment() {
                   }}
                 >
                   <span>Proposed Investment Tenure</span>
-                  <Info size={15} style={{ opacity: 0.7, color: 'var(--accent-gold)' }} />
                 </div>
               </div>
             </motion.div>
