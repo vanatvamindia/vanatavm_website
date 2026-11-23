@@ -4,14 +4,12 @@ import LeadFormStatus from "@/components/LeadFormStatus";
 import AutoScrollRow from "@/components/premium/AutoScrollRow";
 import Counter from "@/components/premium/Counter";
 import Magnetic from "@/components/premium/Magnetic";
-import { useLenis } from "@/components/premium/SmoothScroll";
 import VideoTestimonials from "@/components/premium/VideoTestimonials";
 import Link from "@/components/ui/AppLink";
 import PortraitSource from "@/components/ui/PortraitSource";
 import { preloadHero } from "@/lib/preloadHero";
 import { responsiveImg } from "@/lib/responsiveImage";
 import { useLeadForm } from "@/lib/useLeadForm";
-import type { Variants } from "framer-motion";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
@@ -143,7 +141,6 @@ if (typeof window !== "undefined") {
 export default function Home() {
   const lead = useLeadForm("home-form");
   preloadHero(heroSlides[0].img);
-  const lenisRef = useLenis();
   const [activeSlide, setActiveSlide] = useState(0);
   const [slideChanged, setSlideChanged] = useState(false);
 
@@ -264,34 +261,6 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
   const slide = heroSlides[activeSlide];
-
-  const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (lenisRef?.current) {
-      lenisRef.current.scrollTo("#projects", { offset: -60, duration: 1.6 });
-    } else {
-      document
-        .getElementById("projects")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const fadeIn: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" as const },
-    },
-  };
-
-  const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
 
   return (
     <>

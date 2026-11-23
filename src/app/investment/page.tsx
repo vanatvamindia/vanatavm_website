@@ -2,26 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getAttribution } from '@/lib/attribution';
-import {
-  Info,
-  ArrowRight,
-  ArrowUpRight,
-  ShieldCheck,
-  TrendingUp,
-  Clock,
-  Coins,
-  Quote,
-  Sparkles,
-  Globe,
-  TrendingDown,
-  CheckCircle2,
-  Building2,
-  Leaf,
-  Lock,
-} from 'lucide-react';
+import { Info, ArrowRight, ArrowUpRight, ShieldCheck, TrendingUp, Clock, Coins, Globe, TrendingDown, CheckCircle2 } from 'lucide-react';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';
 import RevealText from '@/components/premium/RevealText';

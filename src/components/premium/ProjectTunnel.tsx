@@ -291,7 +291,6 @@ export default function ProjectTunnel({ items }: { items: ProjectItem[] }) {
   );
   const titleX = useTransform(pointerX, [-1, 1], [-10, 10]);
   const titleY = useTransform(pointerY, [-1, 1], [-7, 7]);
-  const promptOpacity = useTransform(smoothProgress, [0, 0.12], [1, 0]);
 
   if (!items.length) return null;
 

@@ -307,7 +307,7 @@ export default function Footer() {
           display: flex;
           align-items: stretch;
         }
-        /* 30% dark layer (brightness taggistundi) + soft fade for readability */
+        /* 30% dark layer (brightness) + soft fade for readability */
         .vt-footer::before {
           content: "";
           position: absolute;

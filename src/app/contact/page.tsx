@@ -1,134 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { getAttribution } from "@/lib/attribution";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import Magnetic from "@/components/premium/Magnetic";
 import { riseStyle } from "@/lib/rise";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  ArrowRight,
-  ArrowUpRight,
-  MessageSquare,
-  Building2,
-  Calendar,
-  Send,
-} from "lucide-react";
-
-const EASE = [0.2, 0.9, 0.2, 1] as const;
-const TITLE = "CONTACT US";
+import { MapPin, Phone, Mail, Clock, ArrowRight, ArrowUpRight, MessageSquare } from "lucide-react";
 const GOLD = "var(--accent-gold)";
 const FOREST = "#122217";
 
-/* ---------- Fireflies (canvas) ---------- */
-function Fireflies({ still }: { still: boolean }) {
-  const ref = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = ref.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-    let w = 0,
-      h = 0,
-      raf = 0;
-    type F = {
-      x: number;
-      y: number;
-      r: number;
-      v: number;
-      amp: number;
-      ph: number;
-      fq: number;
-      o: number;
-      amber: boolean;
-    };
-    let flies: F[] = [];
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      flies = Array.from({ length: 60 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.8 + Math.random() * 1.8,
-        v: 0.12 + Math.random() * 0.38,
-        amp: 5 + Math.random() * 20,
-        ph: Math.random() * 6.28,
-        fq: 0.0008 + Math.random() * 0.0014,
-        o: 0.35 + Math.random() * 0.55,
-        amber: Math.random() > 0.58,
-      }));
-    };
-
-    const draw = (t: number) => {
-      ctx.clearRect(0, 0, w, h);
-      flies.forEach((f) => {
-        const pulse = 0.55 + Math.sin(t * 0.0015 + f.ph) * 0.25;
-        const dx = Math.sin(t * f.fq + f.ph) * f.amp;
-        const c = f.amber ? "255,194,105" : "183,222,153";
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(${c},${f.o * pulse})`;
-        ctx.shadowColor = `rgba(${c},0.9)`;
-        ctx.shadowBlur = f.r * 7;
-        ctx.arc(f.x + dx, f.y, f.r, 0, Math.PI * 2);
-        ctx.fill();
-        if (!still) {
-          f.y -= f.v;
-          if (f.y < -f.r) {
-            f.y = h + f.r;
-            f.x = Math.random() * w;
-          }
-        }
-      });
-      ctx.shadowBlur = 0;
-      if (!still) raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    draw(0);
-    if (!still) raf = requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, [still]);
-
-  return (
-    <canvas
-      ref={ref}
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 1,
-        pointerEvents: "none",
-        opacity: 0.8,
-      }}
-    />
-  );
-}
-
 export default function Contact() {
-  const reduce = useReducedMotion() ?? false;
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const enter = (delay: number, duration = 0.8) =>
-    reduce ? { duration: 0 } : { duration, delay, ease: EASE };
-  const from = (y: number) => (reduce ? false : { opacity: 0, y });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

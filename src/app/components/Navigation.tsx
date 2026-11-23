@@ -50,7 +50,6 @@ const TOP_ZONE = 80;
 
 export default function Navigation() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
   const [hidden, setHidden] = useState<boolean>(false);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   const lastScrollY = useRef<number>(0);
@@ -61,7 +60,6 @@ export default function Navigation() {
 
     const handleScroll = () => {
       const currentY = window.scrollY;
-      setScrolled(currentY > 30);
 
       const delta = currentY - lastScrollY.current;
 
@@ -104,8 +102,6 @@ export default function Navigation() {
   }, [pathname]);
 
   const closeDrawer = () => setIsDrawerOpen(false);
-
-  const barColor = scrolled || isDrawerOpen ? "#183023" : "#FFFFFF";
 
   return (
     <>

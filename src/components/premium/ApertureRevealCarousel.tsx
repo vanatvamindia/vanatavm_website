@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from '@/components/ui/AppLink';
-import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { responsiveImg } from '@/lib/responsiveImage';
 
 export interface ApertureSlide {
@@ -38,13 +38,12 @@ export default function ApertureRevealCarousel({
   onSlideChange,
   className = '',
   height = 'h-screen min-h-[640px]',
-  badgeLabel = 'Living Ecosystems Across Karnataka',
 }: ApertureRevealCarouselProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [incomingIdx, setIncomingIdx] = useState<number | null>(null);
   const [isRevealing, setIsRevealing] = useState(false);
   const [clickOrigin, setClickOrigin] = useState<ClickOrigin>({ x: 50, y: 50 });
-  const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [, setDirection] = useState<'next' | 'prev'>('next');
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -151,7 +150,6 @@ export default function ApertureRevealCarousel({
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
     setMousePos({ x: e.clientX, y: e.clientY });
 
     // Determine left or right side of slider

@@ -24,119 +24,11 @@ import {
   Trees,
   Waves
 } from "lucide-react";
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useState, type CSSProperties, type ReactNode } from "react";
 
 const EASE = [0.2, 0.9, 0.2, 1] as const;
-const TITLE = "MADHUVANA";
 const GOLD = "var(--accent-gold)";
 const FOREST = "#122217";
-
-const amenityHotspots: { id: string; top: string; left: string; title: string }[] = [
-  { id: 'A', top: '5%', left: '44%', title: 'Entrance / Site for School' },
-  { id: 'B', top: '14%', left: '44%', title: 'Theme park' },
-  { id: 'C', top: '27%', left: '44%', title: 'Mud House' },
-  { id: 'D', top: '32%', left: '44%', title: 'Cottage' },
-  { id: 'E', top: '37%', left: '44%', title: 'Pond' },
-  { id: 'F', top: '42%', left: '44%', title: 'Tree House' },
-  { id: 'G', top: '71%', left: '44%', title: 'Road & Circular Garden' },
-  { id: 'H', top: '79%', left: '44%', title: 'Natural Pond' },
-];
-
-
-/* ---------- Fireflies (canvas) ---------- */
-function Fireflies({ still }: { still: boolean }) {
-  const ref = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = ref.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-    let w = 0,
-      h = 0,
-      raf = 0;
-    type F = {
-      x: number;
-      y: number;
-      r: number;
-      v: number;
-      amp: number;
-      ph: number;
-      fq: number;
-      o: number;
-      amber: boolean;
-    };
-    let flies: F[] = [];
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      flies = Array.from({ length: 60 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.8 + Math.random() * 1.8,
-        v: 0.12 + Math.random() * 0.38,
-        amp: 5 + Math.random() * 20,
-        ph: Math.random() * 6.28,
-        fq: 0.0008 + Math.random() * 0.0014,
-        o: 0.35 + Math.random() * 0.55,
-        amber: Math.random() > 0.58,
-      }));
-    };
-
-    const draw = (t: number) => {
-      ctx.clearRect(0, 0, w, h);
-      flies.forEach((f) => {
-        const pulse = 0.55 + Math.sin(t * 0.0015 + f.ph) * 0.25;
-        const dx = Math.sin(t * f.fq + f.ph) * f.amp;
-        const c = f.amber ? "255,194,105" : "183,222,153";
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(${c},${f.o * pulse})`;
-        ctx.shadowColor = `rgba(${c},0.9)`;
-        ctx.shadowBlur = f.r * 7;
-        ctx.arc(f.x + dx, f.y, f.r, 0, Math.PI * 2);
-        ctx.fill();
-        if (!still) {
-          f.y -= f.v;
-          if (f.y < -f.r) {
-            f.y = h + f.r;
-            f.x = Math.random() * w;
-          }
-        }
-      });
-      ctx.shadowBlur = 0;
-      if (!still) raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    draw(0);
-    if (!still) raf = requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, [still]);
-
-  return (
-    <canvas
-      ref={ref}
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 1,
-        pointerEvents: "none",
-        opacity: 0.8,
-      }}
-    />
-  );
-}
 
 /* ---------- Reusable animation helpers ---------- */
 function Words({
@@ -290,33 +182,11 @@ function FloatingOrb({
   );
 }
 
-const galleryImages = [
-  {
-    src: "/assets/project-images/Maduvana/tropical-garden-pond-oasis.webp",
-    alt: "Tropical Garden Pond Oasis at Madhuvana",
-  },
-  {
-    src: "/assets/project-images/Maduvana/Serene Tropical Garden Pond Retreat.webp",
-    alt: "Serene Tropical Garden Pond Retreat",
-  },
-  {
-    src: "/assets/project-images/Maduvana/sunlit-terracotta-cottage-and-lush-garden.webp",
-    alt: "Sunlit Terracotta Cottage and Lush Garden",
-  },
-  {
-    src: "/assets/project-images/Maduvana/rustic-tropical-garden-gateway.webp",
-    alt: "Rustic Tropical Garden Gateway",
-  },
-];
-
 export default function Madhuvana() {
   const lead = useLeadForm("madhuvana-form");
   preloadHero("/assets/project-images/Maduvana/hero.webp");
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const reduce = useReducedMotion() ?? false;
-  const enter = (delay: number, duration = 0.8) =>
-    reduce ? { duration: 0 } : { duration, delay, ease: EASE };
-  const from = (y: number) => (reduce ? false : { opacity: 0, y });
 
   return (
     <>

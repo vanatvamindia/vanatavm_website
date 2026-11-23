@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAttribution } from "@/lib/attribution";
-import { X, Leaf, Download, ArrowRight, CheckCircle2 } from "lucide-react";
+import { X, Leaf, Download, CheckCircle2 } from "lucide-react";
 
 export type BrochureModalProps = {
   isOpen: boolean;

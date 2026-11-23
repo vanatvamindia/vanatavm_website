@@ -16,7 +16,7 @@ import { useState } from 'react';
 
 export default function Projects() {
   preloadHero('/assets/project-images/Brindavana/tropical-garden-pathway-tunnel.webp');
-  const [filter, setFilter] = useState('all');
+  const [filter] = useState('all');
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState({
     name: 'Anantavana',
@@ -47,7 +47,7 @@ export default function Projects() {
       logo: '/assets/images/Project-Logos/2.webp',
       location: 'MADDUR · 17 ACRES',
       highlight: 'The Living Canal',
-      driveFromBlr: '80 km · ~1.75 hrs from BLR',
+      driveFromBlr: '80 km · ~1.45 hrs from BLR',
       desc: 'A pristine canal-bound ecosystem built around 200+ rare & endangered tree species. Features sacred groves like Vinayaka Vana, and cozy cottages designed for peaceful living for our community owners.',
       img: '/assets/project-images/Maduvana/hero.webp',
       brochure: '/assets/project-images/MadhuVana-Brochure.pdf',
@@ -90,16 +90,6 @@ export default function Projects() {
   ];
 
   const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.category === filter);
-
-  const filters = [
-    { key: 'all', label: 'All Communities' },
-    { key: 'completed', label: 'Completed' },
-    { key: 'water', label: 'Water Forest' },
-    { key: 'wildlife', label: 'Wildlife Corridor' },
-    { key: 'riverfront', label: 'Riverfront' },
-    { key: 'forest', label: 'Mountain & Forest' },
-    { key: 'nature', label: 'Nature Community' },
-  ];
 
   return (
     <>

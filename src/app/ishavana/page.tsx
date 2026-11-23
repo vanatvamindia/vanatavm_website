@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useState, type CSSProperties, type ReactNode } from "react";
 import { useLeadForm } from "@/lib/useLeadForm";
 import LeadFormStatus from "@/components/LeadFormStatus";
 import { motion, useReducedMotion } from "framer-motion";
@@ -8,113 +8,16 @@ import { riseStyle } from "@/lib/rise";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import Link from "@/components/ui/AppLink";
-import Image from "next/image";
 import BrochureModal from "@/components/premium/LazyBrochureModal";
 import StickyMasterPlanGallery from "@/components/premium/StickyMasterPlanGallery";
-import { ArrowRight, ArrowUpRight, Droplets, Leaf, MapPin, Mountain, ShieldCheck, Ship, Sparkles, Trees, Users, Waves, Sprout } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Droplets, Leaf, MapPin, Mountain, ShieldCheck, Ship, Sparkles, Trees, Waves } from "lucide-react";
 import { responsiveImg } from "@/lib/responsiveImage";
 import PortraitSource from "@/components/ui/PortraitSource";
 import { preloadHero } from "@/lib/preloadHero";
 
 const EASE = [0.2, 0.9, 0.2, 1] as const;
-const TITLE = "ISHAVANA";
 const GOLD = "var(--accent-gold)";
 const FOREST = "#122217";
-
-/* ---------- Fireflies (canvas) ---------- */
-function Fireflies({ still }: { still: boolean }) {
-  const ref = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = ref.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-    let w = 0,
-      h = 0,
-      raf = 0;
-    type F = {
-      x: number;
-      y: number;
-      r: number;
-      v: number;
-      amp: number;
-      ph: number;
-      fq: number;
-      o: number;
-      amber: boolean;
-    };
-    let flies: F[] = [];
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      flies = Array.from({ length: 60 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.8 + Math.random() * 1.8,
-        v: 0.12 + Math.random() * 0.38,
-        amp: 5 + Math.random() * 20,
-        ph: Math.random() * 6.28,
-        fq: 0.0008 + Math.random() * 0.0014,
-        o: 0.35 + Math.random() * 0.55,
-        amber: Math.random() > 0.58,
-      }));
-    };
-
-    const draw = (t: number) => {
-      ctx.clearRect(0, 0, w, h);
-      flies.forEach((f) => {
-        const pulse = 0.55 + Math.sin(t * 0.0015 + f.ph) * 0.25;
-        const dx = Math.sin(t * f.fq + f.ph) * f.amp;
-        const c = f.amber ? "255,194,105" : "183,222,153";
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(${c},${f.o * pulse})`;
-        ctx.shadowColor = `rgba(${c},0.9)`;
-        ctx.shadowBlur = f.r * 7;
-        ctx.arc(f.x + dx, f.y, f.r, 0, Math.PI * 2);
-        ctx.fill();
-        if (!still) {
-          f.y -= f.v;
-          if (f.y < -f.r) {
-            f.y = h + f.r;
-            f.x = Math.random() * w;
-          }
-        }
-      });
-      ctx.shadowBlur = 0;
-      if (!still) raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    draw(0);
-    if (!still) raf = requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, [still]);
-
-  return (
-    <canvas
-      ref={ref}
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 1,
-        pointerEvents: "none",
-        opacity: 0.8,
-      }}
-    />
-  );
-}
 
 /* ---------- Reusable animation helpers ---------- */
 function Words({
@@ -268,113 +171,11 @@ function FloatingOrb({
   );
 }
 
-const overview = [
-  {
-    number: "01",
-    eyebrow: "SPACE",
-    title: "30 planned plots",
-    description:
-      "The concept plan shows 30 plots, with plot sizes starting from 8,000 sq. ft. Final dimensions and availability should be confirmed with the project team.",
-  },
-  {
-    number: "02",
-    eyebrow: "COMMUNITY",
-    title: "Shared spaces",
-    description:
-      "Planned common areas are intended to support gathering, play, quiet reflection and time outdoors.",
-  },
-  {
-    number: "03",
-    eyebrow: "LANDSCAPE",
-    title: "A riverfront setting",
-    description:
-      "The design vision prioritises a landscape-led experience. Exact access, boundaries and permitted use must be confirmed during due diligence.",
-  },
-];
-
-const amenities = [
-  {
-    image: "/assets/project-images/Esahavana/Biopool.webp",
-    title: "Bio-pool",
-    description:
-      "A natural-style water feature is proposed as a shared gathering space.",
-  },
-  {
-    image: "/assets/project-images/Esahavana/golden-hour-ganesha-shrine-in-tropical-garden.webp",
-    title: "Temple",
-    description: "A place for quiet reflection within the community plan.",
-  },
-  {
-    image: "/assets/project-images/Esahavana/sunlit-riverside-amphitheatre-retreat.webp",
-    title: "Garden and landscape",
-    description:
-      "Planned green spaces to soften the built environment and create places to pause.",
-  },
-  {
-    image:
-      "/assets/project-images/Esahavana/EV1.webp",
-    title: "Play area",
-    description: "A shared outdoor space intended for children and families.",
-  },
-  {
-    image: "/assets/project-images/Esahavana/Amphithiater.webp",
-    title: "Amphitheatre",
-    description: "A proposed venue for community gatherings and small events.",
-  },
-  {
-    image: "/assets/project-images/Esahavana/ev-river-view-1.webp",
-    title: "Riverside promenade",
-    description:
-      "A planned walking edge, subject to the applicable river buffer and approvals.",
-  },
-  {
-    image: "/assets/project-images/Esahavana/dainind-deck.webp",
-    title: "Riverside dining and sitting decks",
-    description:
-      "Conceptual places to gather outdoors, subject to permissions and final design.",
-  },
-  {
-    image: "/assets/project-images/Esahavana/EV.webp",
-    title: "Car parking and internal roads",
-    description:
-      "Circulation and parking are indicated in the concept master plan.",
-  },
-];
-
-const stats = [
-  { value: "10", unit: "acres", label: "Community area" },
-  { value: "30", unit: "plots", label: "In the concept plan" },
-  { value: "8,000+", unit: "sq. ft.", label: "Plot sizes" },
-  { value: "Kaveri", unit: "riverfront", label: "Setting" },
-];
-
-const galleryImages = [
-  {
-    src: "/assets/project-images/Esahavana/ev-river-view-1.webp",
-    alt: "River landscape near Ishavana",
-  },
-  {
-    src: "/assets/project-images/Esahavana/EV River View 2.webp",
-    alt: "River and green landscape",
-  },
-  {
-    src: "/assets/project-images/Esahavana/EV Arial View 1.webp",
-    alt: "Ishavana riverfront concept visual",
-  },
-  {
-    src: "/assets/project-images/Esahavana/EV Arial View 4.webp",
-    alt: "Ishavana riverfront aerial view",
-  },
-];
-
 export default function Ishavana() {
   const lead = useLeadForm("ishavana-form");
   preloadHero("/assets/project-images/Esahavana/EV.webp");
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const reduce = useReducedMotion() ?? false;
-  const enter = (delay: number, duration = 0.8) =>
-    reduce ? { duration: 0 } : { duration, delay, ease: EASE };
-  const from = (y: number) => (reduce ? false : { opacity: 0, y });
 
   return (
     <>
