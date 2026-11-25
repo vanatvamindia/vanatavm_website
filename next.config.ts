@@ -67,6 +67,7 @@ const nextConfig: NextConfig = {
       { source: "/our-purpose", destination: "/about", permanent: true },
       { source: "/project-eeshavana", destination: "/ishavana", permanent: true },
       { source: "/project-ananta-vana", destination: "/anantavana", permanent: true },
+      { source: "/project-brindavana", destination: "/brindavana", permanent: true },
       {
         source: "/Blogs-content/May%202022/:path*",
         destination: "/Blogs-content/May-2022/:path*",
