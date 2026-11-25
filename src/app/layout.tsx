@@ -1,9 +1,11 @@
+import AttributionCapture from "@/app/components/AttributionCapture";
+import JsonLd from "@/components/JsonLd";
+import { siteGraph } from "@/lib/schema";
+import MarketingShell from "@/app/components/MarketingShell";
+import { cinzel, playfair, plusJakarta } from "@/app/fonts";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
-import { cinzel, playfair, plusJakarta } from "@/app/fonts";
-import MarketingShell from "@/app/components/MarketingShell";
-import AttributionCapture from "@/app/components/AttributionCapture";
 
 
 export const metadata: Metadata = {
@@ -70,30 +72,6 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  name: "VanaTvam Private Limited",
-  url: "https://www.vanatvam.com/",
-  logo: "https://www.vanatvam.com/assets/images/logos/vanatvam.webp",
-  description: "VanaTvam Private Limited is a Bangalore-based company developing Natural Sustainable Farm Communities across Karnataka.",
-  telephone: "+91 80 4709 5111",
-  email: "info@vanatvam.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "#5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase",
-    addressLocality: "Bangalore",
-    addressRegion: "Karnataka",
-    postalCode: "560085",
-    addressCountry: "IN",
-  },
-  identifier: "CIN: U01100KA2022PTC159587",
-  areaServed: {
-    "@type": "AdministrativeArea",
-    name: "Karnataka",
-  },
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -107,10 +85,7 @@ export default function RootLayout({
         {/* Hero images are preloaded by each page via preloadHero() (src/lib/preloadHero.ts),
             so pages don't download the home page's hero. */}
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <JsonLd data={siteGraph()} />
 
         {/* Meta Pixel (ID: 533734545131272) loaded during idle time */}
         <Script

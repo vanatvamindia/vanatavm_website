@@ -1,5 +1,8 @@
 "use client";
 import Navigation from "@/app/components/Navigation";
+import JsonLd from "@/components/JsonLd";
+import { homeFaqs } from "@/data/faqs";
+import { faqPage } from "@/lib/schema";
 import LeadFormStatus from "@/components/LeadFormStatus";
 import AutoScrollRow from "@/components/premium/AutoScrollRow";
 import Counter from "@/components/premium/Counter";
@@ -264,6 +267,7 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd data={faqPage(homeFaqs)} />
       <Navigation />
 
       {/* ORIGINAL HERO SECTION RESTORED */}

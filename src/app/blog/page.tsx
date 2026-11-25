@@ -2,6 +2,8 @@ import React from 'react';
 import { getBlogs } from '@/data/blogs';
 import BlogClient from './components/BlogClient';
 import { pageMetadata } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbs } from '@/lib/schema';
 
 export const metadata = {
   title: 'Blog',
@@ -17,5 +19,10 @@ export const revalidate = 60; // Revalidate every minute
 export default async function BlogPage() {
   const blogs = await getBlogs();
 
-  return <BlogClient initialBlogs={blogs} />;
+  return (
+    <>
+      <JsonLd data={breadcrumbs([{ name: 'Articles', path: '/blog' }])} />
+      <BlogClient initialBlogs={blogs} />
+    </>
+  );
 }

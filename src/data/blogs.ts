@@ -18,6 +18,8 @@ export interface BlogPostItem {
   title: string;
   date: string;
   author: string;
+  /** ISO timestamp from Sanity (_updatedAt); absent for local fallback data. */
+  updatedAt?: string;
   img: string;
   coverImage?: SanityImageSource;
   coverImageUrl?: string;
