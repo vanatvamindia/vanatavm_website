@@ -37,15 +37,15 @@ export default function TermsAndConditions() {
                 By using the Site, you represent and warrant that:
               </p>
               <ul style={{ marginBottom: '20px', paddingLeft: '20px' }}>
-                <li style={{ marginBottom: '10px' }}>All registration information you submit will be true, accurate, current, and complete.</li>
+                <li style={{ marginBottom: '10px' }}>All registration information you submit will be true, accurate, current and complete.</li>
                 <li style={{ marginBottom: '10px' }}>You will maintain the accuracy of such information and promptly update such registration information as necessary.</li>
                 <li style={{ marginBottom: '10px' }}>You have the legal capacity and you agree to comply with these Terms and Conditions.</li>
                 <li style={{ marginBottom: '10px' }}>You will not access the Site through automated or non-human means, whether through a bot, script or otherwise.</li>
               </ul>
 
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>4. Disclaimer Regarding Real Estate / Farmland</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>4. Disclaimer Regarding Our Projects</h3>
               <p style={{ marginBottom: '20px' }}>
-                Information provided on this website regarding managed farmland projects, pricing, area sizes, and project status is for informational purposes only and does not constitute a legal offer. Actual details may vary and are subject to change without prior notice. Final terms of any farmland purchase or lease will be governed exclusively by the physical legal agreements signed between the buyer and VanaTvam Private Limited.
+                Information provided on this website regarding managed farmland projects, pricing, area sizes displayed in the master plan is for informational purposes only and does not constitute a legal offer. Actual details may vary and are subject to change without prior notice. Final terms of any farmland purchase or lease will be governed exclusively by the physical legal agreements signed between the buyer and VanaTvam Private Limited.
               </p>
 
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--bg-dark-forest)', marginTop: '40px', marginBottom: '15px' }}>5. Contact Us</h3>
@@ -54,6 +54,7 @@ export default function TermsAndConditions() {
                 <strong>VanaTvam Private Limited</strong><br />
                 #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase,<br />
                 Bangalore – 560085<br />
+                Phone: +91 80 4709 5111<br />
                 Email: info@vanatvam.com<br />
                 CIN: U01100KA2022PTC159587
               </p>

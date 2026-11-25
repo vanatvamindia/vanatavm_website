@@ -220,8 +220,9 @@ export default function Footer() {
                   }}
                 >
                   <MapPin size={15} style={{ flexShrink: 0, marginTop: "4px" }} aria-hidden="true" />
-                  #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase, (Behind
-                  Radhakrishna Hospital), Bangalore – 560085
+                  #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase,
+                  <br />
+                  (Behind Radhakrishna Hospital), Bangalore – 560085
                 </span>
               </a>
 

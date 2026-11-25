@@ -66,6 +66,7 @@ export default function PrivacyPolicy() {
                 <strong>VanaTvam Private Limited</strong><br />
                 #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase,<br />
                 Bangalore – 560085<br />
+                Phone: +91 80 4709 5111<br />
                 Email: info@vanatvam.com<br />
                 CIN: U01100KA2022PTC159587
               </p>

@@ -33,3 +33,9 @@ dist/
 
 # Zoho Catalyst CLI local project-link state (account-specific)
 .catalystrc
+
+# Local deploy scripts
+*.bat
+scripts/deploy-branch.mjs
+scripts/list-appsail-env.mjs
+scripts/sync-appsail-env.mjs

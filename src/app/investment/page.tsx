@@ -15,42 +15,43 @@ import { responsiveImg } from '@/lib/responsiveImage';
 import { preloadHero } from '@/lib/preloadHero';
 
 /*
- * Indicative land-value trend, in ₹ lakh per acre, for every project.
- * ILLUSTRATIVE: `start` is each project's 2018 starting price. Replace these with verified,
- * sourced figures before relying on them publicly. Every project rises LAND_VALUE_MULTIPLE
- * times between the first and the last year, so the end value is simply start × multiple.
+ * Land-value trend in ₹ per sq ft, one line per project. Each project has a known starting
+ * price and a latest price (month + year); the chart draws a straight line between the two.
+ * `t` is the date as a decimal year (month index / 12, January = 0).
  */
-const LAND_VALUE_YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
-const LAND_VALUE_MULTIPLE = 6.2;
-// Order here is the order of the legend. `from` is the year a project's line begins; `start` is
-// its price per acre (₹ lakh) in that year. Every project grows at the same yearly rate.
+const LV_T_MIN = 2021;
+const LV_T_MAX = 2027;
+const LV_T_TICKS = [2021, 2022, 2023, 2024, 2025, 2026, 2027];
 const landValueProjects = [
-  { name: 'Anantavana', start: 12, from: 2018, color: '#122217', dash: '8 5' },
-  { name: 'Madhuvana', start: 10, from: 2018, color: '#C6A265', dash: undefined },
-  { name: 'Brindavana', start: 11, from: 2018, color: '#2F6B45', dash: undefined },
-  { name: 'Ishavana', start: 20, from: 2022, color: '#8A7A66', dash: '2 6' },
+  { name: 'Brindavana', color: '#2F6B45', dash: undefined, start: { label: 'May 2021', t: 2021 + 4 / 12, price: 20 }, end: { label: 'Jun 2025', t: 2025 + 5 / 12, price: 65 } },
+  { name: 'Madhuvana', color: '#C6A265', dash: undefined, start: { label: 'Aug 2022', t: 2022 + 7 / 12, price: 200 }, end: { label: 'Nov 2026', t: 2026 + 10 / 12, price: 375 } },
+  { name: 'Anantavana', color: '#122217', dash: '8 5', start: { label: 'Jun 2023', t: 2023 + 5 / 12, price: 115 }, end: { label: 'Nov 2026', t: 2026 + 10 / 12, price: 250 } },
+  { name: 'Ishavana', color: '#8A7A66', dash: '2 6', start: { label: 'Jan 2026', t: 2026, price: 525 }, end: { label: 'Nov 2026', t: 2026 + 10 / 12, price: 600 } },
 ];
 
 const LV_X0 = 52;
 const LV_X1 = 540;
 const LV_Y_TOP = 24;
 const LV_Y_BOTTOM = 240;
-const LV_Y_MIN = 10;
-const LV_Y_MAX = 80;
-const LV_Y_TICKS = [10, 20, 30, 40, 50, 60, 70, 80];
-const lvX = (i: number) => LV_X0 + ((LV_X1 - LV_X0) * i) / (LAND_VALUE_YEARS.length - 1);
+const LV_MONTH_TICKS = Array.from({ length: (LV_T_MAX - LV_T_MIN) * 12 + 1 }, (_, m) => LV_T_MIN + m / 12);
+const LV_Y_MIN = 0;
+const LV_Y_MAX = 700;
+const LV_Y_TICKS = [0, 100, 200, 300, 400, 500, 600, 700];
+const lvX = (t: number) => LV_X0 + ((LV_X1 - LV_X0) * (t - LV_T_MIN)) / (LV_T_MAX - LV_T_MIN);
 const lvY = (v: number) => LV_Y_BOTTOM - ((v - LV_Y_MIN) / (LV_Y_MAX - LV_Y_MIN)) * (LV_Y_BOTTOM - LV_Y_TOP);
 
 const landValueSeries = landValueProjects.map((p) => {
-  const firstIndex = LAND_VALUE_YEARS.indexOf(p.from);
-  const yearlyGrowth = Math.pow(LAND_VALUE_MULTIPLE, 1 / (LAND_VALUE_YEARS.length - 1));
-  const points = LAND_VALUE_YEARS.flatMap((_, i) => {
-    if (i < firstIndex) return [];
-    const value = p.start * Math.pow(yearlyGrowth, i - firstIndex);
-    return [{ x: lvX(i), y: lvY(value), value }];
-  });
-  const path = points.map((pt, i) => `${i === 0 ? 'M' : 'L'}${pt.x.toFixed(1)},${pt.y.toFixed(1)}`).join(' ');
-  return { ...p, points, path, end: points[points.length - 1] };
+  const x0 = lvX(p.start.t);
+  const y0 = lvY(p.start.price);
+  const x1 = lvX(p.end.t);
+  const y1 = lvY(p.end.price);
+  return {
+    ...p,
+    path: `M${x0.toFixed(1)},${y0.toFixed(1)} L${x1.toFixed(1)},${y1.toFixed(1)}`,
+    start: { ...p.start, x: x0, y: y0 },
+    end: { ...p.end, x: x1, y: y1 },
+    multiple: p.end.price / p.start.price,
+  };
 });
 
 export default function Investment() {
@@ -885,7 +886,7 @@ export default function Investment() {
                 fontWeight: 500,
               }}
             >
-              Indicative price per acre,{' '}
+              Indicative price per sq ft,{' '}
               <span style={{ color: 'var(--accent-gold)', fontStyle: 'italic', fontWeight: 400 }}>year by year</span>
             </h3>
 
@@ -899,7 +900,7 @@ export default function Investment() {
                 marginBottom: '32px',
               }}
             >
-              How indicative land values across all our project regions have moved from 2018 to 2026.
+              How land values per sq ft have moved in each of our project regions, from the first recorded price to the latest.
             </p>
 
             <div
@@ -922,24 +923,33 @@ export default function Investment() {
                   viewBox="0 0 560 280"
                   width="100%"
                   role="img"
-                  aria-label={`Line chart of indicative land price per acre from ${LAND_VALUE_YEARS[0]} to ${LAND_VALUE_YEARS[LAND_VALUE_YEARS.length - 1]} for ${landValueProjects.map((p) => p.name).join(', ')}, each rising ${LAND_VALUE_MULTIPLE} times`}
+                  aria-label={`Line chart of land price per sq ft: ${landValueProjects.map((p) => `${p.name} from ₹${p.start.price} in ${p.start.label} to ₹${p.end.price} in ${p.end.label}`).join('; ')}`}
                   style={{ display: 'block' }}
                 >
                   {LV_Y_TICKS.map((tick) => (
                     <g key={tick}>
                       <line x1={LV_X0} x2={LV_X1} y1={lvY(tick)} y2={lvY(tick)} stroke="#E3E1DB" strokeWidth="1" />
                       <text x={LV_X0 - 8} y={lvY(tick) + 4} textAnchor="end" fontSize="11" fill="#6B756D">
-                        {`₹${tick}L`}
+                        {tick === 0 ? '₹0' : `₹${tick}`}
                       </text>
                     </g>
                   ))}
-                  {LAND_VALUE_YEARS.map((year, i) =>
-                    i % 2 === 0 ? (
-                      <text key={year} x={lvX(i)} y={LV_Y_BOTTOM + 24} textAnchor="middle" fontSize="11" fill="#6B756D">
-                        {year}
-                      </text>
-                    ) : null
-                  )}
+                  {LV_MONTH_TICKS.map((t, m) => (
+                    <line
+                      key={m}
+                      x1={lvX(t)}
+                      x2={lvX(t)}
+                      y1={LV_Y_BOTTOM}
+                      y2={LV_Y_BOTTOM + (m % 12 === 0 ? 7 : 4)}
+                      stroke="#B9B6AE"
+                      strokeWidth="1"
+                    />
+                  ))}
+                  {LV_T_TICKS.map((year) => (
+                    <text key={year} x={lvX(year)} y={LV_Y_BOTTOM + 24} textAnchor="middle" fontSize="11" fill="#6B756D">
+                      {year}
+                    </text>
+                  ))}
                   {landValueSeries.map((s) => (
                     <g key={s.name}>
                       <path
@@ -951,7 +961,11 @@ export default function Investment() {
                         strokeLinejoin="round"
                         strokeDasharray={s.dash}
                       />
+                      <circle cx={s.start.x} cy={s.start.y} r="3.5" fill="#F9F8F6" stroke={s.color} strokeWidth="2" />
                       <circle cx={s.end.x} cy={s.end.y} r="5" fill={s.color} />
+                      <text x={s.end.x} y={s.end.y - 10} textAnchor="end" fontSize="11" fontWeight="600" fill={s.color}>
+                        {`₹${s.end.price} · ${s.end.label}`}
+                      </text>
                     </g>
                   ))}
                 </svg>
@@ -970,26 +984,24 @@ export default function Investment() {
               </div>
 
               <div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: 'clamp(3.4rem, 7vw, 5.2rem)',
-                    lineHeight: 1,
-                    color: 'var(--accent-gold)',
-                    fontWeight: 500,
-                    marginBottom: '14px',
-                  }}
-                >
-                  {LAND_VALUE_MULTIPLE}×
+                <div style={{ display: 'grid', gap: '14px', marginBottom: '18px' }}>
+                  {landValueSeries.map((s) => (
+                    <div
+                      key={s.name}
+                      style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '16px', borderBottom: '1px solid rgba(18, 34, 23, 0.1)', paddingBottom: '12px' }}
+                    >
+                      <div>
+                        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--bg-dark-forest, #122217)' }}>{s.name}</div>
+                        <div style={{ fontSize: '0.88rem', color: '#5A685E', marginTop: '2px' }}>
+                          ₹{s.start.price} ({s.start.label}) → ₹{s.end.price} ({s.end.label}) per sq ft
+                        </div>
+                      </div>
+                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: 'var(--accent-gold)', whiteSpace: 'nowrap' }}>
+                        {s.multiple.toFixed(1)}×
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p style={{ fontSize: '1.08rem', color: '#33403A', lineHeight: 1.7, margin: '0 0 14px', fontWeight: 300 }}>
-                  Indicative rise in land value per acre across our projects between {LAND_VALUE_YEARS[0]} and{' '}
-                  {LAND_VALUE_YEARS[LAND_VALUE_YEARS.length - 1]}.
-                </p>
-                <p style={{ fontSize: '0.82rem', color: '#5A685E', lineHeight: 1.6, margin: 0 }}>
-                  Indicative figures for illustration. Land values can fall as well as rise, and past performance does
-                  not guarantee future returns.
-                </p>
               </div>
             </div>
           </motion.div>

@@ -61,6 +61,11 @@ const nextConfig: NextConfig = {
         destination: "/about",
         permanent: true,
       },
+      // Old WordPress URLs (vanatvam.com migration). Keep for 6-12 months so Google can re-index.
+      { source: "/contact-us", destination: "/contact", permanent: true },
+      { source: "/project-madhuvana", destination: "/madhuvana", permanent: true },
+      { source: "/our-purpose", destination: "/about", permanent: true },
+      { source: "/project-eeshavana", destination: "/ishavana", permanent: true },
       {
         source: "/Blogs-content/May%202022/:path*",
         destination: "/Blogs-content/May-2022/:path*",
