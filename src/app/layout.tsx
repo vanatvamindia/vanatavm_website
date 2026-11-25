@@ -1,9 +1,9 @@
+import AttributionCapture from "@/app/components/AttributionCapture";
+import MarketingShell from "@/app/components/MarketingShell";
+import { cinzel, playfair, plusJakarta } from "@/app/fonts";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
-import { cinzel, playfair, plusJakarta } from "@/app/fonts";
-import MarketingShell from "@/app/components/MarketingShell";
-import AttributionCapture from "@/app/components/AttributionCapture";
 
 
 export const metadata: Metadata = {
@@ -76,6 +76,7 @@ const structuredData = {
   name: "VanaTvam Private Limited",
   url: "https://www.vanatvam.com/",
   logo: "https://www.vanatvam.com/assets/images/logos/vanatvam.webp",
+  image: "https://www.vanatvam.com/assets/images/logos/vanatvam.webp",
   description: "VanaTvam Private Limited is a Bangalore-based company developing Natural Sustainable Farm Communities across Karnataka.",
   telephone: "+91 80 4709 5111",
   email: "info@vanatvam.com",
@@ -87,11 +88,28 @@ const structuredData = {
     postalCode: "560085",
     addressCountry: "IN",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 12.9410767,
+    longitude: 77.5454691,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "09:30",
+    closes: "18:30",
+  },
   identifier: "CIN: U01100KA2022PTC159587",
   areaServed: {
     "@type": "AdministrativeArea",
     name: "Karnataka",
   },
+  sameAs: [
+    "https://www.instagram.com/vanatvamindia",
+    "https://www.facebook.com/vanatvamfarms",
+    "https://www.youtube.com/@VanaTvam",
+    "https://www.linkedin.com/company/vanatvam-farms",
+  ],
 };
 
 export default function RootLayout({
