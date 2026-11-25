@@ -1,13 +1,32 @@
 import type { ReactNode } from "react";
+import JsonLd from "@/components/JsonLd";
+import { getProject } from "@/data/projects";
+import { brindavanaFaqs } from "@/data/faqs";
 import { pageMetadata } from "@/lib/seo";
+import { breadcrumbs, faqPage, projectPlace } from "@/lib/schema";
+
+const project = getProject("brindavana");
 
 export const metadata = pageMetadata({
-  path: "/brindavana",
-  description:
-    "A reforestation community at Krishnapura, Pavagada, turning dry, thorny land into green shade. Explore Brindavana's plots, plans and brochure.",
-  image: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp",
+  path: project.path,
+  description: project.description,
+  image: project.image,
 });
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return children;
+  return (
+    <>
+      <JsonLd
+        data={[
+          projectPlace(project),
+          breadcrumbs([
+            { name: "Projects", path: "/projects" },
+            { name: project.name, path: project.path },
+          ]),
+          faqPage(brindavanaFaqs),
+        ]}
+      />
+      {children}
+    </>
+  );
 }

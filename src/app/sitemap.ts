@@ -1,44 +1,46 @@
 import { MetadataRoute } from 'next';
+import { getBlogs } from '@/data/blogs';
+import { SITE_URL } from '@/lib/seo';
+import { toIsoDate } from '@/lib/schema';
 
 export const dynamic = 'force-static';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.vanatvam.com';
+const staticRoutes: { path: string; priority: number }[] = [
+  { path: '', priority: 1 },
+  { path: '/about', priority: 0.8 },
+  { path: '/projects', priority: 0.9 },
+  { path: '/ishavana', priority: 0.9 },
+  { path: '/anantavana', priority: 0.9 },
+  { path: '/madhuvana', priority: 0.9 },
+  { path: '/brindavana', priority: 0.9 },
+  { path: '/investment', priority: 0.8 },
+  { path: '/blog', priority: 0.7 },
+  { path: '/contact', priority: 0.6 },
+  { path: '/book-a-visit', priority: 0.6 },
+  { path: '/privacy-policy', priority: 0.2 },
+  { path: '/terms', priority: 0.2 },
+];
 
-  const routes = [
-    '',
-    '/about',
-    '/projects',
-    '/investment',
-    '/blog',
-    '/contact',
-    '/brindavana',
-    '/madhuvana',
-    '/anantavana',
-    '/ishavana',
-    '/book-a-visit',
-    '/privacy-policy',
-    '/terms',
-    '/blog/redefining-farmland-ownership',
-    '/blog/wellness-benefits-nature',
-    '/blog/sustainable-farmland-future',
-    '/blog/madhuvana-sacred-groves',
-    '/blog/the-big-picture-of-vanatvam',
-    '/blog/farmhouse-vs-city-lifestyle',
-    '/blog/easy-way-to-own-a-farmhouse-community',
-    '/blog/going-back-to-our-roots-vedic-forest-science',
-    '/blog/fulfil-your-dream-of-owning-a-farmland',
-    '/blog/essence-of-life-enhanced-in-nature',
-    '/blog/getting-children-out-of-the-virtual-world',
-    '/blog/importance-of-educating-newer-generation-about-farmlands',
-    '/blog/is-farmland-a-wise-investment',
-    '/blog/benefits-of-living-amidst-nature'
-  ];
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Blog URLs come from the same source the blog pages are built from, so the
+  // sitemap can never list a post that returns 404.
+  const blogs = await getBlogs();
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1 : 0.8,
+  const pages: MetadataRoute.Sitemap = staticRoutes.map(({ path, priority }) => ({
+    url: `${SITE_URL}${path}`,
+    changeFrequency: 'monthly',
+    priority,
   }));
+
+  const posts: MetadataRoute.Sitemap = blogs.map((b) => {
+    const iso = toIsoDate(b.updatedAt) ?? toIsoDate(b.date);
+    return {
+      url: `${SITE_URL}/blog/${b.id}`,
+      ...(iso && { lastModified: new Date(iso) }),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    };
+  });
+
+  return [...pages, ...posts];
 }

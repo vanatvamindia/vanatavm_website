@@ -7,6 +7,8 @@ import { getBlogs, getBlogById, getAllBlogIds } from '@/data/blogs';
 import { resolvePostImage, normalizeBlogImagePath } from '@/sanity/image';
 import TableOfContents from '../components/TableOfContents';
 import { SITE_URL } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
+import { blogPosting, breadcrumbs, extractBlogFaqs, faqPage, postAuthorName, toIsoDate } from '@/lib/schema';
 
 export const revalidate = 60;
 
@@ -80,8 +82,32 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
   }, 0);
   const readTimeMinutes = Math.max(2, Math.ceil(totalWords / 200));
 
+  const faqs = extractBlogFaqs(blog.contentBlocks);
+  const isoDate = toIsoDate(blog.date);
+  const authorName = postAuthorName(blog.author);
+
   return (
     <>
+      <JsonLd
+        data={[
+          blogPosting({
+            id: blog.id,
+            title: blog.title,
+            excerpt: blog.excerpt,
+            category: blog.category,
+            date: blog.date,
+            updatedAt: blog.updatedAt,
+            author: blog.author || undefined,
+            imageUrl: resolvePostImage(blog),
+            wordCount: totalWords,
+          }),
+          breadcrumbs([
+            { name: 'Articles', path: '/blog' },
+            { name: blog.title, path: `/blog/${blog.id}` },
+          ]),
+          faqPage(faqs),
+        ]}
+      />
       <Navigation />
 
       <article style={{ background: 'var(--bg-cream, #F9F8F6)', paddingBottom: '100px' }}>
@@ -214,6 +240,23 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                 <span>⏱</span> {readTimeMinutes} min read
               </span>
             </div>
+
+            {/* Byline: visible counterpart of the BlogPosting author/date markup */}
+            <p
+              style={{
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontSize: '0.9rem',
+                margin: '0 0 18px',
+              }}
+            >
+              By {authorName}
+              {blog.date && (
+                <>
+                  {' · '}
+                  {isoDate ? <time dateTime={isoDate}>{blog.date}</time> : blog.date}
+                </>
+              )}
+            </p>
 
             {/* Expansive, Elegant Title */}
             <h1

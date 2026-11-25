@@ -1,13 +1,32 @@
 import type { ReactNode } from "react";
+import JsonLd from "@/components/JsonLd";
+import { getProject } from "@/data/projects";
+import { ishavanaFaqs } from "@/data/faqs";
 import { pageMetadata } from "@/lib/seo";
+import { breadcrumbs, faqPage, projectPlace } from "@/lib/schema";
+
+const project = getProject("ishavana");
 
 export const metadata = pageMetadata({
-  path: "/ishavana",
-  description:
-    "Ishavana (aka Eeshavana): a nature-first Kaveri riverfront community near Shivanasamudra Falls, with homes designed around the land.",
-  image: "/assets/project-images/Esahavana/EV.webp",
+  path: project.path,
+  description: project.description,
+  image: project.image,
 });
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return children;
+  return (
+    <>
+      <JsonLd
+        data={[
+          projectPlace(project),
+          breadcrumbs([
+            { name: "Projects", path: "/projects" },
+            { name: project.name, path: project.path },
+          ]),
+          faqPage(ishavanaFaqs),
+        ]}
+      />
+      {children}
+    </>
+  );
 }

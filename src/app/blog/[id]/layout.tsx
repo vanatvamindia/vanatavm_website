@@ -1,12 +1,5 @@
-export function generateStaticParams() {
-  return [
-    { id: 'redefining-farmland-ownership' },
-    { id: 'wellness-benefits-nature' },
-    { id: 'sustainable-farmland-future' },
-    { id: 'madhuvana-sacred-groves' }
-  ];
-}
+import type { ReactNode } from "react";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return children;
 }
