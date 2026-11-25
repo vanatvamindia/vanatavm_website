@@ -6,7 +6,7 @@
  */
 import { SITE_URL } from "@/lib/seo";
 import type { ContentBlock } from "@/data/blogs";
-import type { Project } from "@/data/projects";
+import { projects, type Project } from "@/data/projects";
 
 const CONTEXT = "https://schema.org";
 
@@ -70,6 +70,26 @@ export function siteGraph() {
         identifier: "CIN: U01100KA2022PTC159587",
         areaServed: { "@type": "AdministrativeArea", name: "Karnataka" },
         sameAs: SOCIAL_PROFILES,
+        knowsAbout: [
+          "Managed farmland",
+          "Natural and organic farming",
+          "Vedic forest science",
+          "Native biodiversity restoration",
+          "Farm communities near Bangalore",
+        ],
+        // What the company offers: one service per community. No prices are published, so none are claimed.
+        makesOffer: projects.map((p) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: `${p.name} managed farmland plots`,
+            serviceType: "Managed farmland community plots",
+            url: `${SITE_URL}${p.path}`,
+            description: p.description,
+            areaServed: { "@type": "Place", name: p.locality },
+            provider: { "@id": ORG_ID },
+          },
+        })),
       },
       {
         "@type": "Person",
