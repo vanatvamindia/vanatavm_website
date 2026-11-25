@@ -745,12 +745,27 @@ ul {
   .hero-carousel-dots {
     position: absolute !important;
     bottom: 30px !important;
-    left: 20px !important;
+    left: 16px !important;
     transform: none !important;
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 0 !important;
     z-index: 20 !important;
+  }
+  /* Phones: 8px transparent border grows each 9px dot's tap area to 25px (WCAG target size)
+     without changing how the dot looks; the negative margin keeps the visual spacing at 8px. */
+  .hero-carousel-dot {
+    box-sizing: content-box;
+    border: 8px solid transparent;
+    background-clip: padding-box;
+    margin: 0 -4px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* "WHO WE ARE" gold label: darker gold so it passes 4.5:1 contrast on the light background */
+  .home-story-eyebrow {
+    color: #86672f !important;
   }
 }
 

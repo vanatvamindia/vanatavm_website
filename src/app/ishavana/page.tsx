@@ -3,7 +3,7 @@
 import { useState, type CSSProperties, type ReactNode } from "react";
 import { useLeadForm } from "@/lib/useLeadForm";
 import LeadFormStatus from "@/components/LeadFormStatus";
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "framer-motion";
 import { riseStyle } from "@/lib/rise";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";

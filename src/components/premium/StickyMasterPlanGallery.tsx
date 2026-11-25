@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "framer-motion";
 import { responsiveImg } from "@/lib/responsiveImage";
 
 export type MasterPlanItem = {

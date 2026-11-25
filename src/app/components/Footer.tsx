@@ -220,9 +220,13 @@ export default function Footer() {
                   }}
                 >
                   <MapPin size={15} style={{ flexShrink: 0, marginTop: "4px" }} aria-hidden="true" />
-                  #5, Anjanadri Plaza, 2nd Floor, Girinagar 1st Phase,
-                  <br />
-                  (Behind Radhakrishna Hospital), Bangalore – 560085
+                  <span className="vt-footer__address-text">
+                    #5, Anjanadri Plaza, 2nd Floor,
+                    <br className="vt-footer__br-phone" />
+                    {" "}Girinagar 1st Phase,
+                    <br />
+                    (Behind Radhakrishna Hospital), Bangalore – 560085
+                  </span>
                 </span>
               </a>
 
@@ -453,6 +457,9 @@ export default function Footer() {
           font-size: 0.92rem;
           transition: color 0.25s, transform 0.25s;
         }
+        .vt-footer__br-phone {
+          display: none;
+        }
         .vt-footer__contact-item--address {
           max-width: 560px;
           text-align: center;
@@ -562,6 +569,24 @@ export default function Footer() {
           white-space: nowrap;
         }
         @media (max-width: 640px) {
+          /* Phones: keep the address inside the screen and let it wrap naturally */
+          .vt-footer__contact-item--address {
+            max-width: 100%;
+            padding: 0 16px;
+          }
+          .vt-footer__contact-item--address > span {
+            max-width: 100%;
+          }
+          .vt-footer__address-text {
+            min-width: 0;
+            text-align: center;
+          }
+          .vt-footer__address-text br {
+            display: none;
+          }
+          .vt-footer__address-text br.vt-footer__br-phone {
+            display: inline;
+          }
           .vt-footer__cin {
             display: block;
           }

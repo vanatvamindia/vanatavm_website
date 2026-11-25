@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 import {
-  motion,
+  m as motion,
   useReducedMotion,
   useScroll,
   useSpring,

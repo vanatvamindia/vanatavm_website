@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { m as motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 type TiltCardProps = {
   children: React.ReactNode;

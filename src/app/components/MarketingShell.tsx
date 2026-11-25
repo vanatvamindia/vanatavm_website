@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
+import { LazyMotion } from 'framer-motion';
 import FloatingController from '@/components/premium/FloatingController';
 import FloatingWhatsApp from '@/components/premium/FloatingWhatsApp';
 import GrainOverlay from '@/components/premium/GrainOverlay';
@@ -61,12 +62,14 @@ export default function MarketingShell({ children }: { children: React.ReactNode
     };
   }, [pathname, isAdmin]);
 
+  const loadMotionFeatures = () => import('@/lib/motionFeatures').then((mod) => mod.default);
+
   if (isAdmin) {
-    return <>{children}</>;
+    return <LazyMotion features={loadMotionFeatures}>{children}</LazyMotion>;
   }
 
   return (
-    <>
+    <LazyMotion features={loadMotionFeatures}>
       <FloatingController />
       <FloatingWhatsApp />
 
@@ -79,6 +82,6 @@ export default function MarketingShell({ children }: { children: React.ReactNode
 
       <GrainOverlay />
       <SmoothScroll>{children}</SmoothScroll>
-    </>
+    </LazyMotion>
   );
 }

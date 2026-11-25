@@ -5,6 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   path: '/privacy-policy',
+  title: 'Privacy Policy',
   description: 'How VanaTvam collects, uses and protects your personal information.',
 });
 

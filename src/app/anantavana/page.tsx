@@ -4,7 +4,7 @@ import { useLeadForm } from "@/lib/useLeadForm";
 import LeadFormStatus from "@/components/LeadFormStatus";
 import { riseStyle } from "@/lib/rise";
 import {
-  motion,
+  m as motion,
   useScroll,
   useTransform,
   useReducedMotion,

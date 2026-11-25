@@ -11,7 +11,7 @@ import { preloadHero } from "@/lib/preloadHero";
 import { responsiveImg } from "@/lib/responsiveImage";
 import { riseStyle } from "@/lib/rise";
 import { useLeadForm } from "@/lib/useLeadForm";
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,

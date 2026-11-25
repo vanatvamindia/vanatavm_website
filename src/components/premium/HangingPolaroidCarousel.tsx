@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { m as motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { responsiveImg } from '@/lib/responsiveImage';

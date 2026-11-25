@@ -15,19 +15,23 @@ export const DEFAULT_OG_IMAGE =
  */
 export function pageMetadata({
   path,
+  title,
   description,
   image = DEFAULT_OG_IMAGE,
 }: {
   path: string;
+  /** Page title; the root layout adds " | VanaTvam". Omit to keep the site default. */
+  title?: string;
   description: string;
   image?: string;
 }): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
   return {
+    ...(title ? { title } : {}),
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: "Vanatvam | Sustainable Managed Farmland",
+      title: title ? `${title} | VanaTvam` : "Vanatvam | Sustainable Managed Farmland",
       description,
       url,
       siteName: "Vanatvam",

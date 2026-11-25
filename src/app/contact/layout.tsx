@@ -5,6 +5,7 @@ import { breadcrumbs, contactPage } from "@/lib/schema";
 
 export const metadata = pageMetadata({
   path: "/contact",
+  title: "Contact Us",
   description:
     "Meet our team in person, explore project details and plan a guided site visit. VanaTvam's Bangalore office address, phone and enquiry form.",
 });

@@ -13,7 +13,7 @@ import PortraitSource from "@/components/ui/PortraitSource";
 import { preloadHero } from "@/lib/preloadHero";
 import { responsiveImg } from "@/lib/responsiveImage";
 import { useLeadForm } from "@/lib/useLeadForm";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m as motion } from "framer-motion";
 import {
   ArrowRight,
   Award,
@@ -549,6 +549,7 @@ export default function Home() {
             {/* Text content column */}
             <div style={{ flex: "1 1 480px" }}>
               <span
+                className="home-story-eyebrow"
                 style={{
                   color: "var(--accent-gold)",
                   fontSize: "0.85rem",

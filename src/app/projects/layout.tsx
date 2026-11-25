@@ -6,6 +6,7 @@ import { breadcrumbs, projectList } from "@/lib/schema";
 
 export const metadata = pageMetadata({
   path: "/projects",
+  title: "Our Farmland Projects",
   description:
     "Explore VanaTvam's nature communities in the Bangalore–Mysore–Chamarajanagar corridor, where nature, heritage and culture come together.",
 });

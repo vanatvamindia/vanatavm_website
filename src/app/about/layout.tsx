@@ -5,6 +5,7 @@ import { breadcrumbs } from "@/lib/schema";
 
 export const metadata = pageMetadata({
   path: "/about",
+  title: "About Us",
   description:
     "Meet the team behind VanaTvam and our vision: living landscapes, restored biodiversity, and communities where people reconnect with nature.",
 });

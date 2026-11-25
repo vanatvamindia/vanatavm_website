@@ -9,6 +9,7 @@ const project = getProject("ishavana");
 
 export const metadata = pageMetadata({
   path: project.path,
+  title: "Ishavana, Kaveri Riverfront",
   description: project.description,
   image: project.image,
 });

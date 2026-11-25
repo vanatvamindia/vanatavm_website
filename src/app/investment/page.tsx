@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { getAttribution } from '@/lib/attribution';
 import { ArrowRight, ArrowUpRight, ShieldCheck, TrendingUp, Clock, Coins, Globe, TrendingDown, CheckCircle2 } from 'lucide-react';
 import Navigation from '@/app/components/Navigation';

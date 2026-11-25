@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { getAttribution } from '@/lib/attribution';
 import Navigation from '@/app/components/Navigation';
 import Footer from '@/app/components/Footer';

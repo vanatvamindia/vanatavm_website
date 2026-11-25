@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import Link from '@/components/ui/AppLink';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { responsiveImg } from '@/lib/responsiveImage';

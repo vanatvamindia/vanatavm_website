@@ -11,7 +11,7 @@ import PortraitSource from '@/components/ui/PortraitSource';
 import { preloadHero } from '@/lib/preloadHero';
 import { responsiveImg } from '@/lib/responsiveImage';
 import { riseStyle } from '@/lib/rise';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m as motion } from 'framer-motion';
 import { useState } from 'react';
 
 export default function Projects() {

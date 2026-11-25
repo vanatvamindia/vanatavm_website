@@ -5,6 +5,7 @@ import { breadcrumbs } from "@/lib/schema";
 
 export const metadata = pageMetadata({
   path: "/investment",
+  title: "Farmland Investment",
   description:
     "Curated, nature-first investment opportunities with VanaTvam. Diversify your portfolio with managed farmland in Karnataka.",
 });

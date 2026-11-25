@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { m as motion, Variants } from 'framer-motion';
 import { riseStyle } from '@/lib/rise';
 
 type RevealTextProps = {

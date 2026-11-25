@@ -9,6 +9,7 @@ const project = getProject("madhuvana");
 
 export const metadata = pageMetadata({
   path: project.path,
+  title: "Madhuvana, Maddur",
   description: project.description,
   image: project.image,
 });

@@ -5,6 +5,7 @@ import { breadcrumbs } from "@/lib/schema";
 
 export const metadata = pageMetadata({
   path: "/book-a-visit",
+  title: "Book a Site Visit",
   description:
     "Schedule a private guided tour of VanaTvam's sustainable managed farmlands in Karnataka. Pick your community and our team will arrange the date.",
 });

@@ -7,7 +7,7 @@ import Link from "@/components/ui/AppLink";
 import PortraitSource from "@/components/ui/PortraitSource";
 import { preloadHero } from "@/lib/preloadHero";
 import { responsiveImg } from "@/lib/responsiveImage";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const STORY_SECTIONS = [
