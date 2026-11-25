@@ -14,6 +14,8 @@ export interface Project {
   locality: string;
   postalCode?: string;
   acres: number;
+  /** Smallest plot size (sq ft) stated on the project page ("starting from ..."). */
+  minPlotSqft: number;
   description: string;
   image: string;
   /** Amenities named on the project's own page. Do not list anything not shown there. */
@@ -32,6 +34,7 @@ export const projects: Project[] = [
     locality: "Shivanasamudra",
     postalCode: "571440",
     acres: 10,
+    minPlotSqft: 8000,
     description:
       "Ishavana (aka Eeshavana): a nature-first Kaveri riverfront community near Shivanasamudra Falls, with homes designed around the land.",
     image: "/assets/project-images/Esahavana/EV.webp",
@@ -45,6 +48,7 @@ export const projects: Project[] = [
     locality: "Katwalu, Begurjungle (near Kabini)",
     postalCode: "571116",
     acres: 34,
+    minPlotSqft: 12000,
     description:
       "Anantavana is a sustainable reforestation community on the River Kabini for nature lovers, developed by VanaTvam with Indus Herbs.",
     image: "/assets/project-images/Ananthavana/hero-image-2.webp",
@@ -65,6 +69,7 @@ export const projects: Project[] = [
     locality: "V. Ballekere (near Maddur)",
     postalCode: "571419",
     acres: 17,
+    minPlotSqft: 8000,
     description:
       "Madhuvana: 17 acres of quarter-acre farm plots off the Bangalore–Mysore highway, near Maddur and Mandya, surrounded by the River Kaveri and its canals.",
     image: "/assets/project-images/Maduvana/hero.webp",
@@ -86,6 +91,7 @@ export const projects: Project[] = [
     locality: "Krishnapura, Pavagada",
     postalCode: "561202",
     acres: 30,
+    minPlotSqft: 20000,
     description:
       "A reforestation community at Krishnapura, Pavagada, turning dry, thorny land into green shade. Explore Brindavana's plots, plans and brochure.",
     image: "/assets/project-images/Brindavana/sunny-tropical-banana-orchard.webp",

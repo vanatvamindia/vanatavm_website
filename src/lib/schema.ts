@@ -293,6 +293,13 @@ export function projectPlace(p: Project) {
         unitCode: "ACR",
         unitText: "acres",
       },
+      {
+        "@type": "PropertyValue",
+        name: "Minimum plot size",
+        value: p.minPlotSqft,
+        unitCode: "FTK",
+        unitText: "sq ft",
+      },
     ],
     ...(p.amenities.length > 0 && {
       amenityFeature: p.amenities.map((name) => ({
@@ -316,5 +323,19 @@ export function projectList(projects: Project[]) {
       url: `${SITE_URL}${p.path}`,
       name: p.name,
     })),
+  };
+}
+
+/** ContactPage whose main entity is the sitewide organization (a LocalBusiness subtype). */
+export function contactPage() {
+  const url = `${SITE_URL}/contact`;
+  return {
+    "@context": CONTEXT,
+    "@type": "ContactPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: "Contact VanaTvam",
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: { "@id": ORG_ID },
   };
 }
